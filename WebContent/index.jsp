@@ -4,10 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
+	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css"/>
 	<title>Home Tick-Tac</title>
 </head>
 <body>
 	<jsp:include page="/header.jsp" />
-	<h3>Ticket service</h3>
+	<div class="container-fluid">
+	</div>
+		<h3>Ticket service</h3>
 </body>
 </html>

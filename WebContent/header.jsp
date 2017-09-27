@@ -7,8 +7,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Insert title here</title>
 	
-	<!-- Includes -->
-	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
 	<div class="navbar navbar-toggleable-md navbar-inverse" style="background-color: #204f07">
