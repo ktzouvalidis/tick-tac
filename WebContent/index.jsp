@@ -10,8 +10,9 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp" />
+	<jsp:include page="/sidemenu.jsp"/>
 	<div class="container-fluid">
+		<h1>Lorem Ipsum</h1>
 	</div>
-		<h3>Ticket service</h3>
 </body>
 </html>
