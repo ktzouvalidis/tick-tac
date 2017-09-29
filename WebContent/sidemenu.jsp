@@ -9,10 +9,10 @@
 	
 	<script src="includes/js/dynamic.js"></script>
 	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="includes/css/main.css"/>
 </head>
 <body>
-	<div id="sidenav" class="navbar navbar-inverse sidebar"
-		style="background-color: #ff7892;width: 18%; height: 100%; float: left;">
+	<div id="sidenav" class="navbar navbar-inverse sidebar">
 		<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
 			Lorem Ipsum
 			<ul class="nav navbar-nav">

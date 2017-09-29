@@ -10,16 +10,6 @@
 	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css"/>
 	<script src="includes/js/dynamic.js"></script>
 	<style>
-		li {
-		padding-right: 7px;
-		padding-left: 10px;
-		font-size: 20px;
-		}
-		
-		#brand {
-		font-size: 32px;
-		color: #99ffff;
-		}
 	</style>
 	
 </head>
@@ -30,7 +20,7 @@
 	     	<a id="brand" class="navbar-brand nav-link" href="#">Tick - Tac</a>
 	    </div>
 		<div class="collapse navbar-collapse" id="navbarText">
-			<ul class="navbar-nav mr-auto">
+			<ul id="nav-ul" class="navbar-nav mr-auto">
 				<li class="nav-item active">
 					<a class="nav-link" href='#'>Home</a>
 				</li>
@@ -44,7 +34,7 @@
 			<p class="navbar-text" style="padding-right: 40px">Signed in as: </p>
 			<form class="form-inline">
         		<div class="form-group">
-          			<input type="text" class="form-control" value="Search" style="margin-right: 10px"/>
+          			<input type="text" class="form-control" placeholder="Search" style="margin-right: 10px"/>
           			<button type="submit" class="btn btn-primary">Search</button>
         		</div>
       		</form>
