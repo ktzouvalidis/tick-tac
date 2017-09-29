@@ -17,7 +17,7 @@
 	<%String user = (String) session.getAttribute("user");%>
 	<div role="navigation" class="navbar navbar-toggleable-md navbar-inverse" style="background-color: #9fbc43">
 		<div class="navbar-header" style="border-left: 3px solid #ffdd77; border-right: 3px solid #ffdd77;">
-	     	<a id="brand" class="navbar-brand nav-link" href="#">Tick - Tac</a>
+	     	<a id="brand" class="navbar-brand nav-link" href="#"><b>Tick - Tac</b></a>
 	    </div>
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul id="nav-ul" class="navbar-nav mr-auto">
@@ -40,7 +40,7 @@
       		</form>
       		<div>
       			<ul class="navbar-nav">
-					<%if(user != null) {%>
+					<%if(user == null) {%>
 					<li class="nav-item">
 						<a class="nav-link" href='#'>Log In</a>
 					</li>

@@ -7,6 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Insert title here</title>
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="includes/js/dynamic.js"></script>
 	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="includes/css/main.css"/>
@@ -15,7 +16,7 @@
 	<div id="sidenav" class="navbar navbar-inverse sidebar">
 		<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
 			Lorem Ipsum
-			<ul class="nav navbar-nav">
+			<ul id="sidenav-ul" class="nav navbar-nav">
 				<li><a class="nav-link" href="#">Events</a></li>
 				<li><a class="nav-link" href="#">etc...</a></li>
 				
