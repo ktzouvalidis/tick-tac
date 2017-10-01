@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 #nav-ul > li {
 	padding: 0, 7px, 0, 10px;
 	font-size: 20px;
@@ -9,9 +10,13 @@
 	height: 35px;
 	margin: 3px;
 	font-size: 18px;
-	background-color: #000000;
 }
-
+#sidenav-ul .a-hovered {
+	color: #ffffff;
+}
+#sidenav-ul a {
+	color: #001155;
+}
 #sidenav-ul-pressed > li {
 	background-color: #ffffff;
 }

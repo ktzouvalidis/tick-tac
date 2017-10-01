@@ -1,4 +1,4 @@
-package com.ticktac.main;
+package com.ticktac.controllers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
