@@ -42,7 +42,7 @@
       			<ul class="navbar-nav">
 					<%if(user == null) {%>
 					<li class="nav-item">
-						<a class="nav-link" href='#'>Log In</a>
+						<a class="nav-link" href='?p=login'>Log In</a>
 					</li>
 					<%} else {%>
 					<li class="nav-item">
