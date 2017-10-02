@@ -26,7 +26,7 @@ public class UserDAO {
 	public User searchUser(String email, String password) {
 		User u = usersMap.get(email);
 		if(u != null)
-			if(u.getPassword() != password)
+			if(!u.getPassword().equals(password))
 				return null;
 		
 		return u;

@@ -23,13 +23,18 @@ public class LogInRequestHandler implements RequestHandler {
 	  	String password = (String)request.getParameter("password");
 	  	
 	  	if(email == null || password == null)
-	  		view = "/pages/login.html";
+	  		view = "login.jsp";
 	  	else {
-	  		User u = userDAO.searchUser(email, password);
-	  		if(u == null)
-	  			return "/pages/login.html?account=null";
+	  		User userBean = userDAO.searchUser(email, password);
+	  		if(userBean == null) {
+	  			request.getServletContext().setAttribute("accountExists", false);
+	  			view = "login.jsp";
+	  		}
 	  		else {
-	  			return "index.jsp?p=welcome";
+	  			request.setAttribute("accountExists", true);
+	  			request.getSession().setAttribute("user", request.getParameter(userBean.getName()));
+	  			request.setAttribute("userBean", userBean);
+	  			view = "welcome.jsp";
 	  		}
 	  	}
 	  	
