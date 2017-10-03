@@ -6,10 +6,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Home Tick-Tac</title>
-	
-	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css"/>
-	<!-- JQuery -->
+	<!-- CSS -->
+	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="includes/css/main.css" type="text/css"/>
+	<!-- JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="includes/js/dynamic.js"></script>
 		
 	<% String p = request.getParameter("p"); %>
 </head>
