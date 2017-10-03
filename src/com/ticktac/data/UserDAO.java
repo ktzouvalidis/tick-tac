@@ -10,7 +10,7 @@ public class UserDAO {
 		usersMap.put("kostastzouvalidis@gmail.com", new User("Kostas", "Tzouvalidis", "kostastzouvalidis@gmail.com", "qwerty1"));
 		usersMap.put("kostasxouveroudis@gmail.com", new User("Kostas", "Xouveroudis", "kostasxouveroudis@gmail.com", "qwerty2"));
 		usersMap.put("niklasnystad@gmail.com", new User("Niklas", "Nystad", "niklasnystad@gmail.com", "qwerty3"));
-		usersMap.put("teemupoytaniemi@gmail.com", new User("Niklas", "Nystad", "teemupoytaniemi@gmail.com", "qwert4"));
+		usersMap.put("teemupoytaniemi@gmail.com", new User("Teemu", "Poytaniemi", "teemupoytaniemi@gmail.com", "qwerty4"));
 	}
 	
 	public UserDAO() {}
