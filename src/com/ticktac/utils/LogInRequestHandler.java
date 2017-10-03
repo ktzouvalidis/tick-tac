@@ -34,7 +34,7 @@ public class LogInRequestHandler implements RequestHandler {
 	  			request.setAttribute("accountExists", true);
 	  			request.getSession().setAttribute("user", userBean.getName());
 	  			request.setAttribute("userBean", userBean);
-	  			view = "welcome.jsp";
+	  			view = "index.jsp";
 	  		}
 	  	}
 	  	
