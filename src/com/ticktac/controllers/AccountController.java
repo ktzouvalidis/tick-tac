@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.persistence.internal.oxm.mappings.Login;
 
 import com.ticktac.utils.LogInRequestHandler;
+import com.ticktac.utils.LogOutRequestHandler;
 
 /**
  * AccountController
@@ -27,17 +28,30 @@ public class AccountController extends HttpServlet {
 	
 	public void init() {
 		handlersMap.put("/login.htm", new LogInRequestHandler());
+		handlersMap.put("/logout.htm", new LogOutRequestHandler());
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
+		String viewURL;
 		if(path.equals("/login.htm")) {
 			Object handler = handlersMap.get(request.getServletPath());
 			if(handler == null)
 				request.getRequestDispatcher("notfound.html").forward(request, response);
 			else {
 				LogInRequestHandler logInHandler = (LogInRequestHandler) handler;
-				String viewURL = logInHandler.handleRequest(request, response);
+				viewURL = logInHandler.handleRequest(request, response);
+				request.getRequestDispatcher(viewURL).forward(request, response);
+			}
+		}
+		
+		if(path.equals("/logout.htm")) {
+			Object handler = handlersMap.get(request.getServletPath());
+			if(handler == null)
+				request.getRequestDispatcher("notfound.html").forward(request, response);
+			else {
+				LogOutRequestHandler logOutHandler = (LogOutRequestHandler) handler;
+				viewURL = logOutHandler.handleRequest(request, response);
 				request.getRequestDispatcher(viewURL).forward(request, response);
 			}
 		}
