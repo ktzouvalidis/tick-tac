@@ -12,6 +12,15 @@
 	background-color: #fce0b3;
 }
 
+.link-button {
+	background-color: Transparent;
+	color: #e83b2c;
+	display: inline;
+	overflow: hidden;
+	outline: none;
+	cursor: pointer;
+}
+
 #nav-ul > li {
 	padding: 0, 7px, 0, 10px;
 	font-size: 20px;
@@ -40,6 +49,6 @@
 #sidenav {
 	background-color: #b2e692;
 	width: 18%;
-	height: 100%;
+	height: 100vh;
 	float: left;
 }

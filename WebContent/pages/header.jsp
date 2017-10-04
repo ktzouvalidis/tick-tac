@@ -33,7 +33,9 @@
 				</li>
 				<%} else {%>
 				<li class="nav-item">
-					<a class="nav-link" href='#' style="color: #e83b2c">Log out</a>
+					<form action="logout.htm" method="post">
+						<input type="submit" class="link-button btn" value="Log Out"/>
+					</form>
 				</li>
 				<%} %>
 				<li class="nav-item active">
