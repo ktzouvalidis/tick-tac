@@ -26,12 +26,12 @@ public class AccountController extends HttpServlet {
 	public void init() {
 		handlersMap.put("/login.htm", new LogInRequestHandler());
 		handlersMap.put("/logout.htm", new LogOutRequestHandler());
-		handlersMap.put("/addevent.htm", new AddEventRequestHandler());
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
 		String viewURL;
+		
 		if(path.equals("/login.htm")) {
 			Object handler = handlersMap.get(request.getServletPath());
 			if(handler == null)
@@ -51,14 +51,6 @@ public class AccountController extends HttpServlet {
 				LogOutRequestHandler logOutHandler = (LogOutRequestHandler) handler;
 				viewURL = logOutHandler.handleRequest(request, response);
 				request.getRequestDispatcher(viewURL).forward(request, response);
-			}
-		}if(path.equals("/addevent.htm")) {
-			Object handler = handlersMap.get(request.getServletPath());
-			
-			if(handler == null)
-				request.getRequestDispatcher("notfound.html").forward(request, response);
-			else {
-				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 		}
 	}
