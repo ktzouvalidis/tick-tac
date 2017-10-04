@@ -26,7 +26,7 @@
 					<option value="movie">Classical</option>
 			  		<option value="movie">Rock</option>
 			  		<option value="musical">Metal</option>
-			  		<option value="exposition">Dubstep</option>
+			  		<option value="exposition">Hip-Hop</option>
 				</select>
 			</td>
 		</tr>
