@@ -1,5 +1,6 @@
 package com.ticktac.business;
 
+import java.util.Vector;
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -7,6 +8,9 @@ public class User implements Serializable {
 	private String surname;
 	private String email;
 	private String password;
+	private Vector<Ticket> bought_tickets;
+	private Vector<Event> events;
+	
 	
 	public User() {}
 	
@@ -15,6 +19,8 @@ public class User implements Serializable {
 		this.surname = surname;
 		this.email = email;
 		this.password = password;
+		this.bought_tickets= new Vector<Ticket>();
+		this.events= new Vector<Event>();
 	}
 	
 	public String getName() {
@@ -53,5 +59,21 @@ public class User implements Serializable {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Vector<Ticket> getBought_tickets() {
+		return bought_tickets;
+	}
+
+	public void setBought_tickets(Vector<Ticket> bought_tickets) {
+		this.bought_tickets = bought_tickets;
+	}
+
+	public Vector<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Vector<Event> events) {
+		this.events = events;
 	}
 }
