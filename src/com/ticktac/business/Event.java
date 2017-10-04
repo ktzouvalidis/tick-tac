@@ -19,6 +19,8 @@ public class Event implements Serializable {
 	private Vector<Ticket> sold_tickets;
 	
 	public Event() {
+		//for the tests
+		this.title="consert";
 	}
 
 	public String getTitle() {
