@@ -31,28 +31,25 @@ public class AccountController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
 		String viewURL;
+		Object handler = handlersMap.get(path);
 		
-		if(path.equals("/login.htm")) {
-			Object handler = handlersMap.get(request.getServletPath());
-			if(handler == null)
-				request.getRequestDispatcher("notfound.html").forward(request, response);
-			else {
-				LogInRequestHandler logInHandler = (LogInRequestHandler) handler;
-				viewURL = logInHandler.handleRequest(request, response);
-				request.getRequestDispatcher(viewURL).forward(request, response);
-			}
-		}
+		if(handler == null)
+			viewURL = "notfound.html";
 		
-		if(path.equals("/logout.htm")) {
-			Object handler = handlersMap.get(request.getServletPath());
-			if(handler == null)
-				request.getRequestDispatcher("notfound.html").forward(request, response);
-			else {
-				LogOutRequestHandler logOutHandler = (LogOutRequestHandler) handler;
-				viewURL = logOutHandler.handleRequest(request, response);
-				request.getRequestDispatcher(viewURL).forward(request, response);
-			}
+		switch(path) {
+		case "/login.htm" :
+			LogInRequestHandler logInHandler = (LogInRequestHandler) handler;
+			viewURL = logInHandler.handleRequest(request, response);
+			break;
+		case "/logout.htm" :
+			LogOutRequestHandler logOutHandler = (LogOutRequestHandler) handler;
+			viewURL = logOutHandler.handleRequest(request, response);
+			break;
+		default:
+			viewURL = "notfound.html";
 		}
+
+		request.getRequestDispatcher(viewURL).forward(request, response);
 	}
 
 }
