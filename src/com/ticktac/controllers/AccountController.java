@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.ticktac.utils.LogInRequestHandler;
 import com.ticktac.utils.LogOutRequestHandler;
+import com.ticktac.utils.SignUpRequestHandler;
 import com.ticktac.utils.AddEventRequestHandler;
 /**
  * AccountController
@@ -26,6 +27,7 @@ public class AccountController extends HttpServlet {
 	public void init() {
 		handlersMap.put("/login.htm", new LogInRequestHandler());
 		handlersMap.put("/logout.htm", new LogOutRequestHandler());
+		handlersMap.put("/signup.htm", new SignUpRequestHandler());
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,6 +46,10 @@ public class AccountController extends HttpServlet {
 		case "/logout.htm" :
 			LogOutRequestHandler logOutHandler = (LogOutRequestHandler) handler;
 			viewURL = logOutHandler.handleRequest(request, response);
+			break;
+		case "/signup.htm" :
+			SignUpRequestHandler signUpHandler = (SignUpRequestHandler) handler;
+			viewURL = signUpHandler.handleRequest(request, response);
 			break;
 		default:
 			viewURL = "notfound.html";
