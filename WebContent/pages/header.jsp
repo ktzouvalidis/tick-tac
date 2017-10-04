@@ -15,7 +15,11 @@
 				<a class="nav-link" href='#'>Tac</a>
 			</li>
 		</ul>
-		<p class="navbar-text" style="padding-right: 40px">Signed in as: </p>
+		<% if(user==null){
+			%><p class="navbar-text" style="padding-right: 40px">You are not sign in </p>
+		<% }else {%>
+			<p class="navbar-text" style="padding-right: 40px">Signed in as: ${userBean.name}</p>
+		 <%} %>
 		<form class="form-inline">
        		<div class="form-group">
          			<ul style="list-style-type:none;margin-right: 10px;margin-bottom: 0%;line-height: 92%">
