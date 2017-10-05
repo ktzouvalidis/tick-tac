@@ -43,7 +43,7 @@
 				</li>
 				<%} %>
 				<li class="nav-item active">
-					<a class="nav-link" href='#'>Sign Up</a>
+					<a class="nav-link" href='signup.jsp'>Sign Up</a>
 				</li>
 			</ul>
      		</div>

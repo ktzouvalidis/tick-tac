@@ -22,7 +22,7 @@
 				<div class="container-fluid banner"><h1>Log In</h1></div>
 				<div class="col-lg-12">
 					<form class="form-signin" action="login.htm" method="post">
-						<h2 class="form-signin-heading">Sign In</h2>
+						<h2 class="form-signin-heading">Log In</h2>
 						<div class="form-group">
 							<label for="email">Email Address</label>
 							<input type="email" class="form-control" name="email" placeholder="E-mail"/>
