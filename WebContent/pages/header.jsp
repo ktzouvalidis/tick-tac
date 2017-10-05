@@ -22,7 +22,7 @@
 		 <%} %>
 		<form class="form-inline">
        		<div class="form-group">
-         			<ul style="list-style-type:none;margin-right: 10px;margin-bottom: 0%;line-height: 92%">
+         			<ul id="adv-search">
           				<li><input type="text" class="form-control" placeholder="Search" style="margin-right: 10px;margin-top: 10px"/></li>
           				<li><a href="advancedsearch.jsp">Advanced search...</a></li>
           			</ul>
