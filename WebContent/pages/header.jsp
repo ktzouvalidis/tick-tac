@@ -1,4 +1,5 @@
-<%String user = (String) session.getAttribute("user");%>
+<jsp:useBean id="useBean" class="com.ticktac.business.User"/>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div role="navigation" class="navbar navbar-toggleable-md navbar-inverse" style="background-color: #9fbc43">
 	<div class="navbar-header" style="border-left: 3px solid #ffdd77; border-right: 3px solid #ffdd77;">
      	<a id="brand" class="navbar-brand nav-link" href="#"><img src="images/ticket.png" alt="" height="35" width="35" hspace="10" /><b>Tick - Tac</b></a>
@@ -15,11 +16,14 @@
 				<a class="nav-link" href='#'>Tac</a>
 			</li>
 		</ul>
-		<% if(user==null){
-			%><p class="navbar-text" style="padding-right: 40px">You are not sign in </p>
-		<% }else {%>
-			<p class="navbar-text" style="padding-right: 40px">Signed in as: ${userBean.name}</p>
-		 <%} %>
+		<c:choose>
+			<c:when test="${userBean == null }">
+				<p class="navbar-text" style="padding-right: 40px">You are not sign in </p>
+			</c:when>
+			<c:otherwise>
+				<p class="navbar-text" style="padding-right: 40px">Signed in as: ${userBean.name}</p>
+			</c:otherwise>
+		</c:choose>
 		<form class="form-inline" action="SearchController" method="GET">
        		<div class="form-group">
          			<ul id="adv-search">
@@ -31,17 +35,20 @@
      		</form>
      		<div>
      			<ul class="navbar-nav">
-				<%if(user == null) {%>
-				<li class="nav-item">
-					<a class="nav-link" href='login.jsp'>Log In</a>
-				</li>
-				<%} else {%>
-				<li class="nav-item">
-					<form action="logout.htm" method="post">
-						<input type="submit" class="link-button btn" value="Log Out"/>
-					</form>
-				</li>
-				<%} %>
+				<c:choose>
+					<c:when test="${userBean == null }">
+					<li class="nav-item">
+						<a class="nav-link" href='login.jsp'>Log In</a>
+					</li>
+					</c:when>
+					<c:otherwise>
+					<li class="nav-item">
+						<form action="logout.htm" method="post">
+							<input type="submit" class="link-button btn" value="Log Out"/>
+						</form>
+					</li>
+					</c:otherwise>
+				</c:choose>
 				<li class="nav-item active">
 					<a class="nav-link" href='signup.jsp'>Sign Up</a>
 				</li>

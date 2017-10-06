@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.ticktac.utils.LogInRequestHandler;
 import com.ticktac.utils.LogOutRequestHandler;
+import com.ticktac.utils.EditAccountRequestHandler;
 import com.ticktac.utils.RequestHandler;
 import com.ticktac.utils.SignUpRequestHandler;
 /**
@@ -28,6 +29,7 @@ public class AccountController extends HttpServlet {
 		handlersMap.put("/login.htm", new LogInRequestHandler());
 		handlersMap.put("/logout.htm", new LogOutRequestHandler());
 		handlersMap.put("/signup.htm", new SignUpRequestHandler());
+		handlersMap.put("/editaccount.htm", new EditAccountRequestHandler());
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
