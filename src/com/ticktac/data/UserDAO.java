@@ -35,4 +35,21 @@ public class UserDAO {
 	public void addUser(String name, String surname, String email, String password) {
 		usersMap.put(email, new User(name, surname, email, password));
 	}
+	
+	public void updateUser(User user, String name, String surname, String password, String photo) {
+		user.updateUser(name, surname, password, photo);
+	}
+	
+	public User findUserByName(String name) {
+		for(String k : usersMap.keySet()) {
+			User u = usersMap.get(k);
+			if(u.getName().equals(name))
+				return u;
+		}
+		return null;
+	}
+	
+	public boolean validateUser(User user, String pass) {
+		return user.getPassword() == pass;
+	}
 }

@@ -16,7 +16,7 @@ import com.ticktac.utils.SignUpRequestHandler;
  * AccountController
  */
 @WebServlet(description = "Controller that processes information about Registration and Log in actions.",
-urlPatterns = { "/login.htm", "/logout.htm", "/signup.htm" })
+urlPatterns = { "/login.htm", "/logout.htm", "/signup.htm", "/editaccount.htm" })
 public class AccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();

@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ticktac.business.User;
 import com.ticktac.data.UserDAO;
 
 public class EditAccountRequestHandler implements RequestHandler {
@@ -18,8 +19,27 @@ public class EditAccountRequestHandler implements RequestHandler {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		return null;
+		String view = "";
+		String name = (String)request.getParameter("name");
+		String surname = (String)request.getParameter("surname");
+		String oldPassword = (String)request.getParameter("oldPassword");
+	  	String password = (String)request.getParameter("password");
+	  	String photo = (String)request.getParameter("photo");
+	  	
+	  	User userBean = userDAO.findUserByName(name);
+	  	if(userBean == null)
+	  		view = "notfound.html";
+	  	else {
+	  		if(userDAO.validateUser(userBean, oldPassword)) {
+	  			userBean.updateUser(name, surname, password, photo);
+	  			request.getSession().setAttribute("userBean", userBean);
+	  			request.setAttribute("successfullEdit", true);
+	  		} else {
+	  			request.setAttribute("successfullEdit", false);
+	  		}
+  			view = "editaccount.jsp";
+	  	}
+	  	
+		return view;
 	}
-
 }

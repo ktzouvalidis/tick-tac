@@ -8,6 +8,7 @@ public class User implements Serializable {
 	private String surname;
 	private String email;
 	private String password;
+	private String photo;
 	private Vector<Ticket> bought_tickets;
 	private Vector<Event> events;
 	
@@ -19,6 +20,7 @@ public class User implements Serializable {
 		this.surname = surname;
 		this.email = email;
 		this.password = password;
+		this.photo = "";
 		this.bought_tickets= new Vector<Ticket>();
 		this.events= new Vector<Event>();
 	}
@@ -42,6 +44,10 @@ public class User implements Serializable {
 	 */
 	public String getPassword() {
 		return password;
+	}
+	
+	public String getPhoto() {
+		return photo;
 	}
 
 	public Vector<Ticket> getBought_tickets() {
@@ -73,6 +79,10 @@ public class User implements Serializable {
 		this.password = password;
 	}
 	
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
 	public void setBought_tickets(Vector<Ticket> bought_tickets) {
 		this.bought_tickets = bought_tickets;
 	}	
@@ -87,5 +97,12 @@ public class User implements Serializable {
 	
 	public void addEvent(Event event) {
 		events.add(event);
+	}
+	
+	public void updateUser(String name, String surname, String password, String photo) {
+		this.name = name;
+		this.surname = surname;
+		this.password = password;
+		this.photo = photo;
 	}
 }
