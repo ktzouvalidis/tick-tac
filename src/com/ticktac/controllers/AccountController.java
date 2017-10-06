@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.ticktac.utils.LogInRequestHandler;
 import com.ticktac.utils.LogOutRequestHandler;
 import com.ticktac.utils.SignUpRequestHandler;
-import com.ticktac.utils.AddEventRequestHandler;
 /**
  * AccountController
  */
@@ -32,7 +31,7 @@ public class AccountController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
-		String viewURL;
+		String viewURL = "notfound.html";
 		Object handler = handlersMap.get(path);
 		
 		if(handler == null)
@@ -51,8 +50,6 @@ public class AccountController extends HttpServlet {
 			SignUpRequestHandler signUpHandler = (SignUpRequestHandler) handler;
 			viewURL = signUpHandler.handleRequest(request, response);
 			break;
-		default:
-			viewURL = "notfound.html";
 		}
 
 		request.getRequestDispatcher(viewURL).forward(request, response);
