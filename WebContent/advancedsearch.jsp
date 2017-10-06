@@ -16,41 +16,47 @@
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	
+	<form action="searchResults.jsp" method="GET">
 		<table align="center" style="margin-up: 20%" cellspacing="10">
-		<tr>
-			<td>
-				Category: 
-			</td>
-			<td>
-				<select>
-					<option value="movie">Classical</option>
-			  		<option value="movie">Rock</option>
-			  		<option value="musical">Metal</option>
-			  		<option value="exposition">Hip-Hop</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				Venue:
-			</td>
-			<td>
-				<select>
-			  		<option value="barcelona">Barcelona</option>
-			  		<option value="madrid">Madrid</option>
-			  		<option value="valencia">Valencia</option>
-			  		<option value="seville">Seville</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				Date:
-			</td>
-			<td>
-				<input lang="en" type="date" name="date">
-			</td>
-		</tr>
-	</table>
+			<tr>
+				<td>
+					Category: 
+				</td>
+				<td>
+					<select>
+						<option value="movie">Classical</option>
+				  		<option value="movie">Rock</option>
+				  		<option value="musical">Metal</option>
+				  		<option value="exposition">Hip-Hop</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Venue:
+				</td>
+				<td>
+					<select>
+				  		<option value="barcelona">Barcelona</option>
+				  		<option value="madrid">Madrid</option>
+				  		<option value="valencia">Valencia</option>
+				  		<option value="seville">Seville</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Date:
+				</td>
+				<td>
+					<input lang="en" type="date" name="date">
+				</td>
+			</tr>
+			
+		</table><br/><br/>
+		<p align="center">
+			<button type="submit" class="btn btn-primary" style="height: 45px; width: 70px ; align-content: center; color: black; background-color: yellow">Go!</button>
+		</p>
+	</form>
 </body>
 </html>
