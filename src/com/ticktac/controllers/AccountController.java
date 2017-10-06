@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.ticktac.utils.LogInRequestHandler;
 import com.ticktac.utils.LogOutRequestHandler;
+import com.ticktac.utils.RequestHandler;
 import com.ticktac.utils.SignUpRequestHandler;
 /**
  * AccountController
  */
 @WebServlet(description = "Controller that processes information about Registration and Log in actions.",
-urlPatterns = { "*.htm" })
+urlPatterns = { "/login.htm", "/logout.htm", "/signup.htm" })
 public class AccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
@@ -32,26 +33,13 @@ public class AccountController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
 		String viewURL = "notfound.html";
-		Object handler = handlersMap.get(path);
+		RequestHandler handler = (RequestHandler) handlersMap.get(path);
 		
 		if(handler == null)
 			viewURL = "notfound.html";
+		else
+			viewURL = handler.handleRequest(request, response);
 		
-		switch(path) {
-		case "/login.htm" :
-			LogInRequestHandler logInHandler = (LogInRequestHandler) handler;
-			viewURL = logInHandler.handleRequest(request, response);
-			break;
-		case "/logout.htm" :
-			LogOutRequestHandler logOutHandler = (LogOutRequestHandler) handler;
-			viewURL = logOutHandler.handleRequest(request, response);
-			break;
-		case "/signup.htm" :
-			SignUpRequestHandler signUpHandler = (SignUpRequestHandler) handler;
-			viewURL = signUpHandler.handleRequest(request, response);
-			break;
-		}
-
 		request.getRequestDispatcher(viewURL).forward(request, response);
 	}
 
