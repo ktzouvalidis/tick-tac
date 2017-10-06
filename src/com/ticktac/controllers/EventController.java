@@ -14,7 +14,7 @@ import com.ticktac.utils.AddEventRequestHandler;
 /**
  * Servlet implementation class EventController
  */
-@WebServlet("/*htm")
+@WebServlet("/addevent.htm")
 public class EventController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
@@ -35,9 +35,9 @@ public class EventController extends HttpServlet {
 			Object handler = handlersMap.get(request.getServletPath());
 			
 			if(handler == null)
-				request.getRequestDispatcher("notfound.html").forward(request, response);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			else {
-				request.getRequestDispatcher("index.jsp").forward(request, response);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 		}
 	}
