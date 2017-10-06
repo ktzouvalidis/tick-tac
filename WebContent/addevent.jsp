@@ -16,10 +16,28 @@
 
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
+	<h1>Create your event.</h1>
 	<form action="addevent.htm" method="post" >
 		<div>
-       		<label for="title">Name:</label>
-        	<input type="text" id="title" name="title">
+       		<label for="title">Name:</label><br>
+        	<input type="text" id="title" name="title"><br>
+        	<label for="date">Date</label><br>
+        	<input type="date" id="date" name="date"><br>
+        	<label for="place">Place</label><br>
+        	<input type="text" id="place" name="place"><br>
+        	<label for="tickets">Available tickets</label><br>
+        	<input type="text" id="tickets" name="tickets"><br>
+        	<label for="price">Price</label><br>
+        	<input type="text" id="price" name="price"><br>
+        	<p>select category</p>
+        	<select>
+        		    <option value="movie">Classical</option>
+			  		<option value="movie">Rock</option>
+			  		<option value="musical">Metal</option>
+			  		<option value="exposition">Hip-Hop</option>
+        	</select><br>
+        	<p>Add events information</p>
+        	<textarea rows="4" cols="50" name ="textarea" placeholder="Add events information"> </textarea>
     	</div>
     		<div class="button">
   			<button type="submit">Add your event</button>

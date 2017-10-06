@@ -14,10 +14,14 @@
 	<script src="includes/js/dynamic.js"></script>
 		
 	<% String p = request.getParameter("p"); %>
+	<% String newUser = (String)request.getAttribute("newUser"); %>
 </head>
 <body>	
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
+	<% if(newUser != null && !newUser.isEmpty()) {%>
+		<h1>Welcome to the club <% out.print(newUser); %></h1>
+	<%} %>
 	<div class="container">
 		<%@include  file="home.jsp" %>
 	</div>

@@ -15,11 +15,15 @@
 				<a class="nav-link" href='#'>Tac</a>
 			</li>
 		</ul>
-		<p class="navbar-text" style="padding-right: 40px">Signed in as: </p>
+		<% if(user==null){
+			%><p class="navbar-text" style="padding-right: 40px">You are not sign in </p>
+		<% }else {%>
+			<p class="navbar-text" style="padding-right: 40px">Signed in as: ${userBean.name}</p>
+		 <%} %>
 		<form class="form-inline" action="SearchController" method="GET">
        		<div class="form-group">
-         			<ul style="list-style-type:none;margin-right: 10px;margin-bottom: 0%;line-height: 92%">
-          				<li><input type="text" name="searchBar" class="form-control" placeholder="Search" style="margin-right: 10px;margin-top: 10px" autocomplete="on"/></li>
+         			<ul id="adv-search">
+          				<li><input type="text" class="form-control" placeholder="Search" style="margin-right: 10px;margin-top: 10px"/></li>
           				<li><a href="advancedsearch.jsp">Advanced search...</a></li>
           			</ul>
          			<button type="submit" class="btn btn-primary">Search</button>
@@ -39,7 +43,7 @@
 				</li>
 				<%} %>
 				<li class="nav-item active">
-					<a class="nav-link" href='#'>Sign Up</a>
+					<a class="nav-link" href='signup.jsp'>Sign Up</a>
 				</li>
 			</ul>
      		</div>

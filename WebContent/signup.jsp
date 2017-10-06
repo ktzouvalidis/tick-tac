@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Log In to Tick-Tac!</title>
+	<title>Sign Up to Tick-Tac!</title>
 	<!-- CSS -->
 	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css" type="text/css"/>
 	<link rel="stylesheet" href="includes/css/main.css" type="text/css"/>
@@ -19,10 +19,18 @@
 	<div class="container">
 		<div class="center" style="background-color: #ededed">
 			<div class="row">
-				<div class="container-fluid banner"><h1>Log In</h1></div>
+				<div class="container-fluid banner"><h1>Sign Up</h1></div>
 				<div class="col-lg-12">
-					<form class="form-signin" action="login.htm" method="post">
-						<h2 class="form-signin-heading">Log In</h2>
+					<form class="form-signin" action="signup.htm" method="post">
+						<h2 class="form-signin-heading">Sign Up</h2>
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" class="form-control" name="name" placeholder="Name"/>
+						</div>
+						<div class="form-group">
+							<label for="surname">Surname</label>
+							<input type="text" class="form-control" name="surname" placeholder="Surname"/>
+						</div>
 						<div class="form-group">
 							<label for="email">Email Address</label>
 							<input type="email" class="form-control" name="email" placeholder="E-mail"/>

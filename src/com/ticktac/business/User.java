@@ -23,6 +23,8 @@ public class User implements Serializable {
 		this.events= new Vector<Event>();
 	}
 	
+	// Getters
+	
 	public String getName() {
 		return name;
 	}
@@ -41,6 +43,16 @@ public class User implements Serializable {
 	public String getPassword() {
 		return password;
 	}
+
+	public Vector<Ticket> getBought_tickets() {
+		return bought_tickets;
+	}
+
+	public Vector<Event> getEvents() {
+		return events;
+	}
+	
+	// Setters
 	
 	public void setName(String name) {
 		this.name = name;
@@ -60,20 +72,20 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public Vector<Ticket> getBought_tickets() {
-		return bought_tickets;
-	}
-
+	
 	public void setBought_tickets(Vector<Ticket> bought_tickets) {
 		this.bought_tickets = bought_tickets;
-	}
-
-	public Vector<Event> getEvents() {
-		return events;
-	}
+	}	
 
 	public void setEvents(Vector<Event> events) {
 		this.events = events;
+	}
+	
+	public void addTicket(Ticket ticket) {
+		bought_tickets.add(ticket);
+	}
+	
+	public void addEvent(Event event) {
+		events.add(event);
 	}
 }

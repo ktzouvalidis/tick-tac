@@ -31,4 +31,8 @@ public class UserDAO {
 		
 		return u;
 	}
+	
+	public void addUser(String name, String surname, String email, String password) {
+		usersMap.put(email, new User(name, surname, email, password));
+	}
 }

@@ -21,6 +21,13 @@
 	cursor: pointer;
 }
 
+#adv-search {
+	list-style-type:none;
+	margin-right: 10px;
+	margin-bottom: 0%;
+	line-height: 92%;
+}
+
 #nav-ul > li {
 	padding: 0, 7px, 0, 10px;
 	font-size: 20px;
