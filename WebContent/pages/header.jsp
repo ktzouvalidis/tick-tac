@@ -1,4 +1,4 @@
-<jsp:useBean id="useBean" class="com.ticktac.business.User"/>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div role="navigation" class="navbar navbar-toggleable-md navbar-inverse" style="background-color: #9fbc43">
 	<div class="navbar-header" style="border-left: 3px solid #ffdd77; border-right: 3px solid #ffdd77;">
@@ -17,11 +17,11 @@
 			</li>
 		</ul>
 		<c:choose>
-			<c:when test="${userBean == null }">
-				<p class="navbar-text" style="padding-right: 40px">You are not sign in </p>
+			<c:when test="${sessionScope.user == null }">
+				<p class="navbar-text" style="padding-right: 40px">You are not signed in </p>
 			</c:when>
 			<c:otherwise>
-				<p class="navbar-text" style="padding-right: 40px">Signed in as: ${userBean.name}</p>
+				<p class="navbar-text" style="padding-right: 40px">Signed in as: ${sessionScope.user}</p>
 			</c:otherwise>
 		</c:choose>
 		<form class="form-inline" action="SearchController" method="GET">
@@ -36,7 +36,7 @@
      		<div>
      			<ul class="navbar-nav">
 				<c:choose>
-					<c:when test="${userBean == null }">
+					<c:when test="${sessionScope.user == null }">
 					<li class="nav-item">
 						<a class="nav-link" href='login.jsp'>Log In</a>
 					</li>

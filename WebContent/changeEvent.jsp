@@ -32,6 +32,7 @@
 	</c:forEach>
 	
 	</table>
+	${sessionScope.user}
 	
 </body>
 </html>
