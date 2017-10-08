@@ -12,6 +12,7 @@
 			<c:if test="${sessionScope.user !=null}">
 				<li><a class="nav-link" href="addevent"> Add Events</a></li>
 				<li><a class="nav-link" href="c.jsp"> Change your events</a></li>	
+				<li><a class="nav-link" href="editaccount.jsp">My Account</a></li>
 			</c:if>
 	
 			<%-- 

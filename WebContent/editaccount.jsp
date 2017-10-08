@@ -24,7 +24,7 @@
 			<div class="row">
 				<div class="container-fluid banner"><h1>Account Editor</h1></div>
 				<div class="col-lg-12">
-					<form class="form-signin" action="editaccount.htm" method="post">
+					<form class="form-signin" action="editaccount" method="post">
 						<h2 class="form-signin-heading">Edit Account</h2>
 						<div class="form-group">
 							<div class="photo-container">
@@ -34,19 +34,19 @@
 						</div>
 						<div class="form-group">
 							<label for="name">Name</label>
-							<input type="text" class="form-control" name="name" placeholder="${userBean.name }"/>
+							<input type="text" class="form-control" name="name" value="${userBean.name }" required/>
 						</div>
 						<div class="form-group">
 							<label for="surname">Surname</label>
-							<input type="text" class="form-control" name="surname" placeholder="${userBean.surname }"/>
+							<input type="text" class="form-control" name="surname" value="${userBean.surname }" required/>
 						</div>
 						<div class="form-group">
 							<label for="password">Old Password</label>
-							<input type="password" class="form-control" name="oldPassword" placeholder="Old Password"/>
+							<input type="password" class="form-control" name="oldPassword" placeholder="Old Password" required/>
 						</div>
 						<div class="form-group">
 							<label for="password">New Password</label>
-							<input type="password" class="form-control" name="password" placeholder="New Password"/>
+							<input type="password" class="form-control" name="password" placeholder="New Password" required/>
 						</div>
 						<div class="form-group">
 							<input type="submit" class="btn-default" name="submit"/>

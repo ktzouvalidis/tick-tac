@@ -16,7 +16,7 @@ import com.ticktac.utils.SignUpRequestHandler;
  * AccountController
  */
 @WebServlet(description = "Controller that processes information about Registration and Log in actions.",
-urlPatterns = { "/login.htm", "/logout.htm", "/signup.htm", "/editaccount.htm" })
+urlPatterns = { "/login", "/logout", "/signup", "/editaccount" })
 public class AccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
@@ -26,10 +26,14 @@ public class AccountController extends HttpServlet {
     }
 	
 	public void init() {
-		handlersMap.put("/login.htm", new LogInRequestHandler());
-		handlersMap.put("/logout.htm", new LogOutRequestHandler());
-		handlersMap.put("/signup.htm", new SignUpRequestHandler());
-		handlersMap.put("/editaccount.htm", new EditAccountRequestHandler());
+		handlersMap.put("/login", new LogInRequestHandler());
+		handlersMap.put("/logout", new LogOutRequestHandler());
+		handlersMap.put("/signup", new SignUpRequestHandler());
+		handlersMap.put("/editaccount", new EditAccountRequestHandler());
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

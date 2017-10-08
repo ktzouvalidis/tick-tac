@@ -21,7 +21,7 @@
 			<div class="row">
 				<div class="container-fluid banner"><h1>Log In</h1></div>
 				<div class="col-lg-12">
-					<form class="form-signin" action="login.htm" method="post">
+					<form class="form-signin" action="login" method="post">
 						<h2 class="form-signin-heading">Log In</h2>
 						<div class="form-group">
 							<label for="email">Email Address</label>

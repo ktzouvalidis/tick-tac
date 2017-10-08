@@ -43,9 +43,7 @@
 					</c:when>
 					<c:otherwise>
 					<li class="nav-item">
-						<form action="logout.htm" method="post">
-							<input type="submit" class="link-button btn" value="Log Out"/>
-						</form>
+						<a class="nav-link" href='logout'>Log Out</a>
 					</li>
 					</c:otherwise>
 				</c:choose>
