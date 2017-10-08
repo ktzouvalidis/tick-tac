@@ -20,8 +20,11 @@ public class Event implements Serializable {
 	private int sold_tickets;
 	
 	public Event() {
-		//for the tests
-		this.title="concert";
+		this.title="m";
+		this.category="k";
+		this.picture="j";
+		this.ticket_price=0;
+		
 	}
 	
 	public Event(String title, String category, String picture, double ticket_price, String date, String venue, String information, int total_ticket, int soldTickets){

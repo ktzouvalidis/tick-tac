@@ -17,7 +17,7 @@
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	<h1>Create your event.</h1>
-	<form action="addevent.htm" method="post" >
+	<form action="addevent" method="post" >
 		<div>
        		<label for="title">Name:</label><br>
         	<input type="text" id="title" name="title"><br>
