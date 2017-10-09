@@ -41,16 +41,7 @@ public class UserDAO {
 		user.updateUser(name, surname, password, photo);
 	}
 	
-	public User findUserByName(String name) {
-		for(String k : usersMap.keySet()) {
-			User u = usersMap.get(k);
-			if(u.getName().equals(name))
-				return u;
-		}
-		return null;
-	}
-	
 	public boolean validateUser(User user, String pass) {
-		return user.getPassword() == pass;
+		return user.getPassword().equals(pass);
 	}
 }

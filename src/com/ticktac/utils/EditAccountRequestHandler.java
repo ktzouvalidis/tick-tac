@@ -26,16 +26,17 @@ public class EditAccountRequestHandler implements RequestHandler {
 	  	String password = (String)request.getParameter("password");
 	  	String photo = (String)request.getParameter("photo");
 	  	
-	  	User userBean = userDAO.findUserByName(name);
+	  	User userBean = (User)request.getSession().getAttribute("userBean");
+	  	
 	  	if(userBean == null)
 	  		view = "notfound.html";
 	  	else {
 	  		if(userDAO.validateUser(userBean, oldPassword)) {
 	  			userBean.updateUser(name, surname, password, photo);
 	  			request.getSession().setAttribute("userBean", userBean);
-	  			request.setAttribute("successfullEdit", true);
+	  			request.setAttribute("successfullEdit", 1);
 	  		} else {
-	  			request.setAttribute("successfullEdit", false);
+	  			request.setAttribute("successfullEdit", 0);
 	  		}
   			view = "editaccount.jsp";
 	  	}

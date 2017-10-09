@@ -19,6 +19,17 @@
 <body>
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
+	<div class="error-message">
+	<c:choose>
+		<c:when test="${empty requestScope.successfullEdit}"></c:when>
+		<c:otherwise>
+			<c:choose>
+				<c:when test="${requestScope.successfullEdit == 0 }"><b>Please type your old password correctly.</b></c:when>
+				<c:otherwise><b>Your account has been changed!</b></c:otherwise>
+			</c:choose>
+		</c:otherwise>
+	</c:choose>
+	</div>
 	<div class="container">
 		<div class="center" style="background-color: #ededed">
 			<div class="row">
