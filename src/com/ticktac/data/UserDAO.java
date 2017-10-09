@@ -37,6 +37,10 @@ public class UserDAO {
 		usersMap.put(email, new User(name, surname, email, password));
 	}
 	
+	public void removeUser(String email) {
+		usersMap.remove(email);
+	}
+	
 	public void updateUser(User user, String name, String surname, String password, String photo) {
 		user.updateUser(name, surname, password, photo);
 	}

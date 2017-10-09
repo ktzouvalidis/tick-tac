@@ -60,7 +60,13 @@
 							<input type="password" class="form-control" name="password" placeholder="New Password" required/>
 						</div>
 						<div class="form-group">
-							<input type="submit" class="btn-default" name="submit"/>
+							<input type="submit" class="btn-default" name="submit" value="Change"/>
+						</div>
+					</form>
+					<form class="form-signin" action="editaccount" method="post">
+						<input type="hidden" name="deletion" value="1"/>
+						<div class="form-group">
+							<input type="submit" class="btn-default" name="submit" value="Delete my account"/>
 						</div>
 					</form>
 				</div>
