@@ -16,18 +16,18 @@
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	
-	<form action="searchResults.jsp" method="GET">
+	<form action="advSearchResults.htm" method="GET">
 		<table align="center" style="margin-up: 20%" cellspacing="10">
 			<tr>
 				<td>
 					Category: 
 				</td>
 				<td>
-					<select>
-						<option value="movie">Classical</option>
-				  		<option value="movie">Rock</option>
-				  		<option value="musical">Metal</option>
-				  		<option value="exposition">Hip-Hop</option>
+					<select id="evCategory" name="evCategory">
+						<option value="Classical">Classical</option>
+				  		<option value="Rock">Rock</option>
+				  		<option value="Metal">Metal</option>
+				  		<option value="Hip-Hop">Hip-Hop</option>
 					</select>
 				</td>
 			</tr>
@@ -36,11 +36,11 @@
 					Venue:
 				</td>
 				<td>
-					<select>
-				  		<option value="barcelona">Barcelona</option>
-				  		<option value="madrid">Madrid</option>
-				  		<option value="valencia">Valencia</option>
-				  		<option value="seville">Seville</option>
+					<select name="evVenue">
+				  		<option value="Barcelona">Barcelona</option>
+				  		<option value="Madrid">Madrid</option>
+				  		<option value="Valencia">Valencia</option>
+				  		<option value="Seville">Seville</option>
 					</select>
 				</td>
 			</tr>
@@ -49,7 +49,7 @@
 					Date:
 				</td>
 				<td>
-					<input lang="en" type="date" name="date">
+					<input lang="en" type="date" name="evDate">
 				</td>
 			</tr>
 			

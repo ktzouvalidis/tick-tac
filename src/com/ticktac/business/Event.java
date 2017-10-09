@@ -1,6 +1,6 @@
 package com.ticktac.business;
 
-//import java.util.Vector;
+import java.util.Vector;
 
 import java.io.Serializable;
 
@@ -16,8 +16,8 @@ public class Event implements Serializable {
 	private String venue;
 	private String informaton;
 	private int total_tickets;
-	//private Vector<Ticket> sold_tickets;
-	private int sold_tickets;
+	private Vector<Ticket> sold_tickets;
+	//private int sold_tickets;
 	
 	public Event() {
 		this.title="m";
@@ -27,7 +27,7 @@ public class Event implements Serializable {
 		
 	}
 	
-	public Event(String title, String category, String picture, double ticket_price, String date, String venue, String information, int total_ticket, int soldTickets){
+	public Event(String title, String category, String picture, double ticket_price, String date, String venue, String information, int total_ticket, Vector<Ticket> soldTickets){
 		this.title = title;
 		this.category = category;
 		this.picture = picture;
@@ -103,20 +103,20 @@ public class Event implements Serializable {
 		this.total_tickets = total_tickets;
 	}
 
-	public int getSold_tickets() {
-		return sold_tickets;
-	}
-	
-	public void setSold_tickets(int sold_tickets) {
-		this.sold_tickets = sold_tickets;
-	}
-	
-	/*
 	public Vector<Ticket> getSold_tickets() {
 		return sold_tickets;
 	}
 
 	public void setSold_tickets(Vector<Ticket> sold_tickets) {
+		this.sold_tickets = sold_tickets;
+	}
+	
+	/*
+	public int getSold_tickets() {
+		return sold_tickets;
+	}
+	
+	public void setSold_tickets(int sold_tickets) {
 		this.sold_tickets = sold_tickets;
 	}
 	*/

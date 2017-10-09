@@ -43,6 +43,7 @@ public class SearchRequestHandler implements RequestHandler{
 	  		if (bean == null) {
 	  			sView = "notfound.html";
 			}else {
+				System.out.println(ed.getInfo(eTitle));
 				request.setAttribute("eventBean", bean);
 				sView = "searchResults.jsp";
 			}
