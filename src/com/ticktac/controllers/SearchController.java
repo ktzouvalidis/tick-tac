@@ -17,7 +17,8 @@ import com.ticktac.utils.SearchRequestHandler;
 /**
  * Servlet implementation class SearchController
  */
-@WebServlet("/SearchController")
+@WebServlet(description = "This controller proccesses information about the users' search inputs.",
+		urlPatterns = {"/searchResults.htm","/advSearchResults.htm"})
 public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
@@ -30,13 +31,14 @@ public class SearchController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    private Map<String, SearchRequestHandler> handlerHash = new HashMap<String, SearchRequestHandler>();
+    private Map<String, Object> handlerHash = new HashMap<String, Object>();
     
     public void init() throws ServletException {
 
 	    // This will read mapping definitions and populate handlerHash (reads URLs)
-	    handlerHash.put("/SearchController", new com.ticktac.utils.SearchRequestHandler());
-	  }
+	    handlerHash.put("/searchResults.htm", new com.ticktac.utils.SearchRequestHandler());
+	    handlerHash.put("/advSearchResults.htm", new com.ticktac.utils.AdvSearchRequestHandler());
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,20 +47,16 @@ public class SearchController extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		System.out.println("In the servlet!!!");
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("Are we in the servlet yet?<br/><br/>");
 		
 		String sUrl = request.getServletPath();
-		out.println(sUrl);
 		//Retrieve from the HashMap the instance of the class which implements the logic of the requested url
-		Object aux = (SearchRequestHandler) handlerHash.get(sUrl);
+		Object aux = handlerHash.get(sUrl);
 		  
 		//If no instance is retrieved redirects to error
 		if (aux == null) {
 			//Error page.
 			System.out.println("No object for this url...");
-			//response.sendRedirect("index.jsp");
+			response.sendRedirect("notfound.html");
 		}
 		  
 		//Call the method handleRequsest of the instance in order to obtain the url 
