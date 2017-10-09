@@ -48,4 +48,8 @@ public class UserDAO {
 	public boolean validateUser(User user, String pass) {
 		return user.getPassword().equals(pass);
 	}
+	
+	public boolean userHasTickets(User user) {
+		return user.getEvents().size() > 0;
+	}
 }

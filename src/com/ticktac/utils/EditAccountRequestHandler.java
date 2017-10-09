@@ -43,9 +43,14 @@ public class EditAccountRequestHandler implements RequestHandler {
 	  			view = "editaccount.jsp";
 		  	}
 	  	} else {
-	  		userDAO.removeUser(userBean.getEmail());
-	  		request.getSession().removeAttribute("userBean");
-  			view = "index.jsp";
+	  		if(userDAO.userHasTickets(userBean)) {
+	  			request.setAttribute("successfullEdit", -1);
+	  			view = "editaccount.jsp";
+	  		} else {
+		  		userDAO.removeUser(userBean.getEmail());
+		  		request.getSession().removeAttribute("userBean");
+	  			view = "index.jsp";	  			
+	  		}
 	  	}
 	  	
 		return view;

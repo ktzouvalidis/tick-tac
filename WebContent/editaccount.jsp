@@ -25,6 +25,7 @@
 		<c:otherwise>
 			<c:choose>
 				<c:when test="${requestScope.successfullEdit == 0 }"><b>Please type your old password correctly.</b></c:when>
+				<c:when test="${requestScope.successfullEdit == -1 }"><b>You've got an event running... Cannot delete your account!</b></c:when>
 				<c:otherwise><b>Your account has been changed!</b></c:otherwise>
 			</c:choose>
 		</c:otherwise>
@@ -66,7 +67,7 @@
 					<form class="form-signin" action="editaccount" method="post">
 						<input type="hidden" name="deletion" value="1"/>
 						<div class="form-group">
-							<input type="submit" class="btn-default" name="submit" value="Delete my account"/>
+							<input type="submit" class="btn-default" id="btn-delete" name="submit" value="Delete my account"/>
 						</div>
 					</form>
 				</div>
