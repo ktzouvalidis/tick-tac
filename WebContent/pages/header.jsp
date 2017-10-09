@@ -24,7 +24,7 @@
 				<p class="navbar-text" style="padding-right: 40px">Signed in as: ${userBean.name}</p>
 			</c:otherwise>
 		</c:choose>
-		<form class="form-inline" action="SearchController" method="GET">
+		<form class="form-inline" action="searchResults.htm" method="GET">
        		<div class="form-group">
          			<ul id="adv-search">
           				<li><input type="text" name="searchBar" class="form-control" placeholder="Search" style="margin-right: 10px;margin-top: 10px"/></li>
