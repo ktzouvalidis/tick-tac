@@ -33,5 +33,11 @@
 		
 		
 	</form>
+	<br><br>
+	
+	<form action="deleteEvent" method="post">
+	<button type="submit" value="${ eventBean.getTitle()}" name="eventName" > delete your event</button>
+	
+	</form>
 </body>
 </html>

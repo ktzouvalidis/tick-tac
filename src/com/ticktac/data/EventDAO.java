@@ -24,4 +24,10 @@ public class EventDAO {
 	public Event getInfo(String title) {
 		return (Event) events.get(title);
 	}
+	public boolean deleteEvent (String title) {
+		events.remove(title);
+		
+		return true;
+		
+	}
 }

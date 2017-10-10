@@ -17,13 +17,15 @@ import com.ticktac.data.*;
 /**
  * Servlet implementation class EventController
  */
-@WebServlet(urlPatterns = { "/addevent","/getevents" ,"/c.jsp","/toeventform.jsp", "/updateEvent"})
+@WebServlet(urlPatterns = { "/addevent","/getevents" ,"/c.jsp","/toeventform.jsp", "/updateEvent", "/deleteEvent"})
 public class EventController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
+	private EventDAO events;
 	
     public EventController() {
 		handlersMap.put("/addevent.htm", new AddEventRequestHandler());
+		 events=new EventDAO();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,7 +52,7 @@ public class EventController extends HttpServlet {
 		}else if(path.equals("/toeventform.jsp")) {
 			System.out.println("miksi");
 			String event=request.getParameter("title");
-			EventDAO events=new EventDAO();
+			
 			
 			request.setAttribute("eventBean", new Event());
 			request.getRequestDispatcher("changeEventform.jsp").forward(request, response);
@@ -80,11 +82,24 @@ public class EventController extends HttpServlet {
 			System.out.println(title);
 			Event event= events.getInfo(title);
 			if(event==null) {
-				event=events.getInfo("Hello");
+				event=events.getInfo("Band");
 			}
 			event.setTicket_price(Double.parseDouble(request.getParameter("newprice")));
 			
 			request.getRequestDispatcher("index.jsp").forward(request, response);
+			
+		}else if(path.equals("/deleteEvent")) {
+			
+			String name= (String)request.getParameter("eventName");
+			String user=(String)request.getSession().getAttribute("user");
+			
+			if(events.deleteEvent(name)) {
+				
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+			}
+			
+			
+			
 		}
 	}
 
