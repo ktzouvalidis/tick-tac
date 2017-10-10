@@ -17,7 +17,7 @@ import com.ticktac.data.*;
 /**
  * Servlet implementation class EventController
  */
-@WebServlet(urlPatterns = { "/addevent","/getevents" ,"/c.jsp","/toeventform.jsp", "/updateEvent", "/deleteEvent"})
+@WebServlet(urlPatterns = { "/addevent","/getevents" ,"/c.jsp","/toeventform.jsp", "/updateEvent", "/deleteEvent", "/showevents"})
 public class EventController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
@@ -37,22 +37,18 @@ public class EventController extends HttpServlet {
 			Vector<Event> events=new Vector<Event>();
 			events.add(new Event());
 			
-			String name=(String)request.getSession().getAttribute("user");
-			User user= new User();
-			UserDAO users=new UserDAO();
-			if(name!=null) {
-				
-			}
+			String name= (String) request.getParameter("event");
 			events.add(new Event());
 			request.setAttribute("events", events);
 			System.out.println(name);
-			request.getRequestDispatcher("changeEvent.jsp").forward(request, response);
+			request.setAttribute("page", name);
+			request.getRequestDispatcher("showevents.jsp").forward(request, response);
 			
 			
 		}else if(path.equals("/toeventform.jsp")) {
-			System.out.println("miksi");
-			String event=request.getParameter("title");
 			
+			String event=request.getParameter("title");
+			System.out.println(event);
 			
 			request.setAttribute("eventBean", new Event());
 			request.getRequestDispatcher("changeEventform.jsp").forward(request, response);

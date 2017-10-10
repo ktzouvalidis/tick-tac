@@ -10,6 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import com.ticktac.business.*;
 
 /**
  * Servlet Filter implementation class loginFilter
@@ -44,7 +45,7 @@ public class LoginFilter implements Filter {
 		
 		
 		 HttpServletRequest http = (HttpServletRequest) request;
-		 String user= (String) http.getSession().getAttribute("user");
+		 User user= (User) http.getSession().getAttribute("userBean");
 		 
 		 System.out.println("filter");
 		 if(user==null) {
