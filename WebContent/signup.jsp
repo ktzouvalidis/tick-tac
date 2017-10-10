@@ -12,6 +12,7 @@
 	<!-- JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="includes/js/dynamic.js"></script>
+	<script src="includes/js/utils.js"></script>
 </head>
 <body>
 	<jsp:include page="/pages/header.jsp" />
@@ -21,23 +22,27 @@
 			<div class="row">
 				<div class="container-fluid banner"><h1>Sign Up</h1></div>
 				<div class="col-lg-12">
-					<form class="form-signin" action="signup.htm" method="post">
+					<form class="form-signup" id="form-signup" action="signup" method="post">
 						<h2 class="form-signin-heading">Sign Up</h2>
 						<div class="form-group">
 							<label for="name">Name</label>
-							<input type="text" class="form-control" name="name" placeholder="Name"/>
+							<input type="text" class="form-control" name="name" placeholder="Name" required/>
 						</div>
 						<div class="form-group">
 							<label for="surname">Surname</label>
-							<input type="text" class="form-control" name="surname" placeholder="Surname"/>
+							<input type="text" class="form-control" name="surname" placeholder="Surname" required/>
 						</div>
 						<div class="form-group">
 							<label for="email">Email Address</label>
-							<input type="email" class="form-control" name="email" placeholder="E-mail"/>
+							<input type="email" class="form-control" name="email" placeholder="E-mail" required/>
 						</div>
 						<div class="form-group">
 							<label for="password">Password</label>
-							<input type="password" class="form-control" name="password" placeholder="Password"/>
+							<input type="password" class="form-control" name="password" id="pass" placeholder="Password" required/>
+						</div>
+						<div class="form-group">
+							<label for="password">Confirm Password</label>
+							<input type="password" class="form-control" id="cfmpass" placeholder="Password Confirmation" required/>
 						</div>
 						<div class="form-group">
 							<input type="submit" class="btn-default" name="submit"/>

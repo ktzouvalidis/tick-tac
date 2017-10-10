@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div role="navigation" class="navbar navbar-toggleable-md navbar-inverse" style="background-color: #9fbc43">
 	<div class="navbar-header" style="border-left: 3px solid #ffdd77; border-right: 3px solid #ffdd77;">
@@ -17,11 +16,11 @@
 			</li>
 		</ul>
 		<c:choose>
-			<c:when test="${sessionScope.user == null }">
+			<c:when test="${sessionScope.userBean == null }">
 				<p class="navbar-text" style="padding-right: 40px">You are not signed in </p>
 			</c:when>
 			<c:otherwise>
-				<p class="navbar-text" style="padding-right: 40px">Signed in as: ${sessionScope.user}</p>
+				<p class="navbar-text" style="padding-right: 40px">Signed in as: ${sessionScope.userBean.name}</p>
 			</c:otherwise>
 		</c:choose>
 		<form class="form-inline" action="searchResults.htm" method="GET">
@@ -43,9 +42,7 @@
 					</c:when>
 					<c:otherwise>
 					<li class="nav-item">
-						<form action="logout.htm" method="post">
-							<input type="submit" class="link-button btn" value="Log Out"/>
-						</form>
+						<a class="nav-link" href='logout'>Log Out</a>
 					</li>
 					</c:otherwise>
 				</c:choose>

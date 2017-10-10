@@ -27,13 +27,12 @@ public class LogInRequestHandler implements RequestHandler {
 	  	else {
 	  		User userBean = userDAO.searchUser(email, password);
 	  		if(userBean == null) {
-	  			request.getServletContext().setAttribute("accountExists", false);
+	  			request.setAttribute("accountFound", 0);
 	  			view = "login.jsp";
 	  		}
 	  		else {
-	  			request.setAttribute("accountExists", true);
-	  			request.getSession().setAttribute("user", userBean.getName());
-	  			request.setAttribute("userBean", userBean);
+	  			request.setAttribute("accountFound", 1);
+	  			request.getSession().setAttribute("userBean", userBean);
 	  			view = "index.jsp";
 	  		}
 	  	}

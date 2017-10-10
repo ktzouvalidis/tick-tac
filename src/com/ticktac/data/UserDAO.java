@@ -36,4 +36,20 @@ public class UserDAO {
 	public void addUser(String name, String surname, String email, String password) {
 		usersMap.put(email, new User(name, surname, email, password));
 	}
+	
+	public void removeUser(String email) {
+		usersMap.remove(email);
+	}
+	
+	public void updateUser(User user, String name, String surname, String password, String photo) {
+		user.updateUser(name, surname, password, photo);
+	}
+	
+	public boolean validateUser(User user, String pass) {
+		return user.getPassword().equals(pass);
+	}
+	
+	public boolean userHasTickets(User user) {
+		return user.getEvents().size() > 0;
+	}
 }
