@@ -11,45 +11,35 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import com.ticktac.business.User;
+
 /**
  * Servlet Filter implementation class loginFilter
  */
 @WebFilter(dispatcherTypes = {
 				DispatcherType.REQUEST, 
 				DispatcherType.FORWARD
-		}
-					, urlPatterns = { "/addevent.jsp" }, servletNames = { "EventController" })
+		}, urlPatterns = { "/addevent.jsp", "/editaccount.jsp" }, servletNames = { "EventController", "AccountController"})
 public class LoginFilter implements Filter {
-
-    /**
-     * Default constructor. 
-     */
-    public LoginFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	
+    public LoginFilter() {}
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-		
-		
 		 HttpServletRequest http = (HttpServletRequest) request;
-		 String user= (String) http.getSession().getAttribute("user");
+		 User user= (User) http.getSession().getAttribute("userBean");
 		 
-		 System.out.println("filter");
-		 if(user==null) {
+		 if(user==null)
 			 request.getRequestDispatcher("login.jsp").forward(request, response);
-		 }
 		//  HttpSession session = request.getSession(false);
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
@@ -59,7 +49,7 @@ public class LoginFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -35,7 +35,7 @@
      		<div>
      			<ul class="navbar-nav">
 				<c:choose>
-					<c:when test="${sessionScope.user == null }">
+					<c:when test="${sessionScope.userBean == null }">
 					<li class="nav-item">
 						<a class="nav-link" href='login.jsp'>Log In</a>
 					</li>

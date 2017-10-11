@@ -10,7 +10,7 @@ public class LogOutRequestHandler implements RequestHandler {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getSession().setAttribute("user", null);
+		request.getSession().setAttribute("userBean", null);
 		return "index.jsp";
 	}
 
