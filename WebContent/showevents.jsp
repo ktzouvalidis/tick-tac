@@ -39,7 +39,7 @@
 			<c:forEach items="${events}" var="i">
 				<tr>
 				<th>
-				<a href=showevents?title=${i.title}>  link to ${i.title}</a>
+				<a href=eventinformation?title=${i.title}>  link to ${i.title}</a>
 				<p> moi</p>
 				</th>
 				</tr>

@@ -17,7 +17,8 @@ import com.ticktac.data.*;
 /**
  * Servlet implementation class EventController
  */
-@WebServlet(urlPatterns = { "/addevent","/getevents" ,"/c.jsp","/toeventform.jsp", "/updateEvent", "/deleteEvent", "/showevents"})
+@WebServlet(urlPatterns = { "/addevent","/getevents" ,"/c.jsp","/toeventform.jsp", "/updateEvent", 
+		"/deleteEvent", "/eventinformation"})
 public class EventController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
@@ -56,6 +57,22 @@ public class EventController extends HttpServlet {
 		}else if(path.equals("/addevent")) {
 			
 			request.getRequestDispatcher("addevent.jsp").forward(request, response);
+		
+		
+		}else if(path.equals("/eventinformation")) {
+			
+			String tittle=(String)request.getParameter("title");
+			Event event=events.getInfo(tittle);
+			request.setAttribute("title", tittle);
+			if(event==null) {
+				request.getRequestDispatcher("eventsinformation.jsp").forward(request, response);
+			}else {
+			Vector<Ticket> tickets=event.getSold_tickets();
+			request.setAttribute("tickets", tickets);
+			
+			
+			request.getRequestDispatcher("eventsinformation.jsp").forward(request, response);
+			}
 		}
 	}
 

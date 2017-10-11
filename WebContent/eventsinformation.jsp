@@ -18,5 +18,20 @@
 
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
+	<p> ${title}</p>
+	<br>
+	<p> sold tickets</p>
+	<table>
+		<c:forEach items="${tickets}" var="i">
+			<tr>
+			<th>
+				<p> ${i.getId()}</p>
+				
+			</th>
+			</tr>
+		</c:forEach>
+	
+	
+	</table>
 </body>
 </html>
