@@ -21,6 +21,21 @@
 	cursor: pointer;
 }
 
+.photo-container {
+	width: 150px;
+	height: 150px;
+	background-color: #ffd3c9;
+}
+
+.photo-container > img {
+	width: 130px;
+	height: 130px;
+}
+
+.error-message {
+	color: #ff0000;
+}
+
 #adv-search {
 	list-style-type:none;
 	margin-right: 10px;
