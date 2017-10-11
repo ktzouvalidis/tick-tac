@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ticktac.utils.AddEventRequestHandler;
+import com.ticktac.utils.RequestHandler;
 import com.ticktac.business.*;
 import com.ticktac.data.*;
 
@@ -24,7 +25,7 @@ public class EventController extends HttpServlet {
 	private EventDAO events;
 	
     public EventController() {
-		handlersMap.put("/addevent.htm", new AddEventRequestHandler());
+		handlersMap.put("/addevent", new AddEventRequestHandler());
 		 events=new EventDAO();
     }
 
@@ -65,10 +66,15 @@ public class EventController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
-		EventDAO events= new EventDAO();
+		String viewURL = "notfound.html";
+		EventDAO events = new EventDAO();
+		
+		RequestHandler handler = (RequestHandler) handlersMap.get(path);
 		
 		//TODO More handlers
-		if(path.equals("/addevent")) {
+		if(handler != null)
+			viewURL = handler.handleRequest(request, response);
+		/*if(path.equals("/addevent")) {
 			Object handler = handlersMap.get(request.getServletPath());
 			
 			if(handler == null)
@@ -76,7 +82,8 @@ public class EventController extends HttpServlet {
 			else {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
-		}else if(path.equals("/updateEvent") ) {
+		}*/
+		if(path.equals("/updateEvent") ) {
 			
 			String title=(String)request.getParameter("title");
 			System.out.println(title);
@@ -96,11 +103,10 @@ public class EventController extends HttpServlet {
 			if(events.deleteEvent(name)) {
 				
 				request.getRequestDispatcher("index.jsp").forward(request, response);
-			}
-			
-			
-			
+			}			
 		}
+		
+		request.getRequestDispatcher(viewURL).forward(request, response);
 	}
 
 }

@@ -41,9 +41,7 @@ public class AccountController extends HttpServlet {
 		String viewURL = "notfound.html";
 		RequestHandler handler = (RequestHandler) handlersMap.get(path);
 		
-		if(handler == null)
-			viewURL = "notfound.html";
-		else
+		if(handler != null)
 			viewURL = handler.handleRequest(request, response);
 		
 		request.getRequestDispatcher(viewURL).forward(request, response);
