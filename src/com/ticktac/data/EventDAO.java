@@ -30,4 +30,8 @@ public class EventDAO {
 		return true;
 		
 	}
+	
+	public boolean addEvent(String title, String date, String place, int tickets, double price, String category, String info) {
+		return events.put(title, new Event(title, category, "", price, date, place, info, tickets, new Vector<Ticket>())) == null;
+	}
 }

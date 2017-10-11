@@ -71,18 +71,10 @@ public class EventController extends HttpServlet {
 		
 		RequestHandler handler = (RequestHandler) handlersMap.get(path);
 		
-		//TODO More handlers
 		if(handler != null)
 			viewURL = handler.handleRequest(request, response);
-		/*if(path.equals("/addevent")) {
-			Object handler = handlersMap.get(request.getServletPath());
-			
-			if(handler == null)
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			else {
-				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
-		}*/
+
+		//TODO More handlers
 		if(path.equals("/updateEvent") ) {
 			
 			String title=(String)request.getParameter("title");
@@ -108,5 +100,4 @@ public class EventController extends HttpServlet {
 		
 		request.getRequestDispatcher(viewURL).forward(request, response);
 	}
-
 }
