@@ -40,8 +40,7 @@
 				<%=eventBean.getInformaton()%><br/><br/>
 				- Venue: <b><%=eventBean.getVenue()%></b><br/>
 				- Date: <b><%=eventBean.getDate()%></b> <br/>
-				- Ticket Price: <b><%=eventBean.getTicket_price()%></b>
-				- Tickets available: <b><%=eventBean.getTotal_tickets()%></b>
+				- Ticket Price: <b><%=eventBean.getTicket_price()%></b> / Tickets available: <b><%=eventBean.getTotal_tickets()%></b>
 			</div>
 				
 		
