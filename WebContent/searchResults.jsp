@@ -26,28 +26,25 @@
 <body>
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/><br/><br/>
-	<div class="center" style="background-color:#D3D2D2; border: 1px solid black"> <!-- margin-left: 35% -->
-		<div class="row">
-			<div class="container-fluid" style="background-color: #ff793f; overflow: auto;">
-				<h3><b><%=eventBean.getTitle()%></b></h3>
-			</div>
-			<div class="col-lg-12" style="margin-top: 3%; margin-left: 12.5%"> <!--  -->
-				<div style="top:25%; left: 25%"> <!-- style="margin-top: 3%; margin-left: 15%" -->
-					<img src="<%=eventBean.getPicture()%>" alt="" height="350" width="550"/>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="center" style="position: absolute; top: 37.5%; left: 50%; background-color:#D3D2D2; 
+	margin-top: -9em; margin-left: -15em; max-width: 50%;border: 1px solid black">
 	
-	<%! HashSet<Event> eventList = new HashSet<Event>();%>
-	<% eventList.add(eventBean);
-		application.setAttribute("eventList", new HashSet<Event>(eventList));
-		for(Event listOfEvents : eventList){
-			if (eventBean.getCategory().equals("Rock")){%>
-				Rock Concert
+			<div style="background-color: #ff793f; text-align: center;">
+				<h4><b><%=eventBean.getTitle()%></b></h4>
+			</div>
+			<div style="float: left; cleaf: left; margin-top: 2px"> <!--  -->
+					<img src="<%=eventBean.getPicture()%>" alt="" height="350" width="550"/>
+			</div>			
+			<div style="float: left; clear: left; margin-top: 2px">
+				<br/>
+				<%=eventBean.getInformaton()%><br/><br/>
+				- Venue: <b><%=eventBean.getVenue()%></b><br/>
+				- Date: <b><%=eventBean.getDate()%></b> <br/>
+				- Ticket Price: <b><%=eventBean.getTicket_price()%></b>
+				- Tickets available: <b><%=eventBean.getTotal_tickets()%></b>
+			</div>
 				
-		<%}
-		}
-	%>
+		
+	</div>
 </body>
 </html>
