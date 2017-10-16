@@ -32,7 +32,7 @@
 			<div style="background-color: #ff793f; text-align: center;">
 				<h4><b><%=eventBean.getTitle()%></b></h4>
 			</div>
-			<div style="float: left; cleaf: left; margin-top: 2px"> <!--  -->
+			<div style="float: left; clear: left; margin-top: 2px"> <!--  -->
 					<img src="<%=eventBean.getPicture()%>" alt="" height="350" width="550"/>
 			</div>			
 			<div style="float: left; clear: left; margin-top: 2px">
