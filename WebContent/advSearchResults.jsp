@@ -41,22 +41,29 @@
 	 		   && entry.getValue().getVenue().compareTo(venue) == 0
 	 		   && entry.getValue().getDate().compareTo(date) == 0) { %>
 	 		
-	 		<div class="center" style="background-color:#D3D2D2; border: 1px solid black; margin-top: 1%"> <!-- margin-left: 35% -->
-				<div class="row">
-	 				<div class="container-fluid" style="background-color: #ff793f; overflow: auto;">
-	 					<%	out.println(entry.getValue().getTitle()); %>
-	 				</div>
-	 				<div class="col-lg-12" style="margin-top: 3%; margin-left: 12.5%">
-						<img src="<%=entry.getValue().getPicture()%>" alt="" height="150" width="260"/>
-					</div>		
-	 			</div>	
-	 		</div>
-	 		<% 		
+		 		<div class="center" style="background-color:#D3D2D2; border: 1px solid black; margin-top: 1%; margin-left: 1.5%"> <!-- margin-left: 35% -->
+
+		 				<div style="background-color: #ff793f; text-align: center;">
+		 					<%	out.println(entry.getValue().getTitle()); %>
+		 				</div>
+		 				<div style="float: left; clear: left; margin-top: 10px">
+							<img src="<%=entry.getValue().getPicture()%>" alt="" height="150" width="260"/>
+						</div>		
+						<div style="float: left; clear: left; margin-top: 2px">
+							<br/>
+							<h6><%=entry.getValue().getInformaton()%><br/></h6>
+							- Venue: <b><%=entry.getValue().getVenue()%></b><br/>
+							- Date: <b><%=entry.getValue().getDate()%></b> <br/>
+							- Ticket Price: <b><%=entry.getValue().getTicket_price()%></b> / Available: <b><%=entry.getValue().getTotal_tickets()%></b>
+							<div style="text-align: right; margin-top: 7px"><a href="eventDetails.jsp">More info...</a></div>
+						</div>
+		 		</div>
+		 <% 		
 	 			eventList.add(entry.getValue());
 	 		}
 	 	}
 		//out.println(category);
 		
-	%>
+		%>
 </body>
 </html>

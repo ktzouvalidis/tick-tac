@@ -41,6 +41,7 @@
 				- Venue: <b><%=eventBean.getVenue()%></b><br/>
 				- Date: <b><%=eventBean.getDate()%></b> <br/>
 				- Ticket Price: <b><%=eventBean.getTicket_price()%></b> / Tickets available: <b><%=eventBean.getTotal_tickets()%></b>
+				<div style="text-align: right; margin-top: 7px"><a href="eventDetails.jsp">More info...</a></div>
 			</div>
 				
 		
