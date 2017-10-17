@@ -1,7 +1,6 @@
 package com.ticktac.data;
 
 import java.sql.Connection;
-import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
@@ -14,8 +13,7 @@ public class DAOFactory {
 	 */
 	public static Connection getConnection() {
 		try {
-			Context context = new InitialContext();
-			return ((DataSource)context.lookup("java:comp/env/jdbc/DSName")).getConnection();
+			return ((DataSource) new InitialContext().lookup("java:comp/env/jdbc/ticktac")).getConnection();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
