@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ticktac.utils.AddEventRequestHandler;
+import com.ticktac.utils.EventDetailsRequestHandler;
 import com.ticktac.utils.RequestHandler;
 import com.ticktac.business.*;
 import com.ticktac.data.*;
@@ -18,7 +19,7 @@ import com.ticktac.data.*;
 /**
  * Servlet implementation class EventController
  */
-@WebServlet(urlPatterns = { "/addevent","/getevents" ,"/c.jsp","/toeventform.jsp", "/updateEvent", "/deleteEvent"})
+@WebServlet(urlPatterns = { "/addevent","/getevents" ,"/c.jsp","/toeventform.jsp", "/updateEvent", "/deleteEvent", "/eventDetails.htm"})
 public class EventController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
@@ -26,6 +27,7 @@ public class EventController extends HttpServlet {
 	
     public EventController() {
 		handlersMap.put("/addevent", new AddEventRequestHandler());
+		handlersMap.put("/eventDetails.htm", new com.ticktac.utils.EventDetailsRequestHandler());
 		 events=new EventDAO();
     }
 
@@ -61,6 +63,18 @@ public class EventController extends HttpServlet {
 		}else if(path.equals("/addevent")) {
 			
 			request.getRequestDispatcher("addevent.jsp").forward(request, response);
+		
+		}else if(path.equals("/eventDetails.htm")) {
+			Object aux = handlersMap.get(path);
+			if (aux == null) {
+				//Error page.
+				response.sendRedirect("notfound.html");
+			}
+			else {
+				RequestHandler rh = (RequestHandler) aux; 
+				String sView = rh.handleRequest(request, response);
+				request.getRequestDispatcher(sView).forward(request, response);
+			}
 		}
 	}
 
