@@ -29,35 +29,37 @@
 		
 		EventDAO evData = new EventDAO();
 		HashSet<Event> eventList = new HashSet<Event>();
-		Map<String , Event> eventMap = new HashMap <String, Event>();	
-	 	eventMap = evData.returnEvents();
+		Map<String , Event> eventMap = new HashMap <String, Event>();
+	 	eventMap = evData.returnEvents(); //We get all the registered events.
 	 	
-	 	for (Map.Entry<String,Event> entry : eventMap.entrySet()){
-	 		//HERE use "entry" to set every event that has the category you want 
-	 		//into an attribute.
-	 		//Then when we are at the adSearchResult.jsp, we'll make all the events
-	 		//inside this attribute appear.
-	 		if(entry.getValue().getCategory().compareTo(category) == 0 
-	 		   && entry.getValue().getVenue().compareTo(venue) == 0
-	 		   && entry.getValue().getDate().compareTo(date) == 0) { %>
+	 	for (Map.Entry<String,Event> entry : eventMap.entrySet()){ 		 //for every entry in eventMap
+	 		if(entry.getValue().getCategory().compareTo(category) == 0  //if the entry's category,
+	 		   && entry.getValue().getVenue().compareTo(venue) == 0	   //the entry's venue,
+	 		   && entry.getValue().getDate().compareTo(date) == 0) {  //AND the enty's date matches the ones we got advancesearch.jsp, load them here.
+	
+	 			String title = (String) entry.getValue().getTitle();
+	 			%> 
 	 		
 		 		<div class="center" style="background-color:#D3D2D2; border: 1px solid black; margin-top: 1%; margin-left: 1.5%"> <!-- margin-left: 35% -->
-
+				<form action="eventDetails.htm" method="GET">
 		 				<div style="background-color: #ff793f; text-align: center;">
-		 					<%	out.println(entry.getValue().getTitle()); %>
+		 					<%=(String)(entry.getValue().getTitle())%>
+		 					<input type="hidden" name="evDetailTitle" value="<%=title%>">
 		 				</div>
 		 				<div style="float: left; clear: left; margin-top: 10px">
 							<img src="<%=entry.getValue().getPicture()%>" alt="" height="150" width="260"/>
 						</div>		
 						<div style="float: left; clear: left; margin-top: 2px">
 							<br/>
-							<h6><%=entry.getValue().getInformaton()%><br/></h6>
-							- Venue: <b><%=entry.getValue().getVenue()%></b><br/>
+							<h6>Soon at <%=entry.getValue().getVenue()%>!<br/></h6>
 							- Date: <b><%=entry.getValue().getDate()%></b> <br/>
-							- Ticket Price: <b><%=entry.getValue().getTicket_price()%></b> / Available: <b><%=entry.getValue().getTotal_tickets()%></b>
-							<div style="text-align: right; margin-top: 7px"><a href="eventDetails.jsp">More info...</a></div>
+							- Ticket Price: <b><%=entry.getValue().getTicket_price()%></b><br/>
+							- Number of Tickets: <b><%=entry.getValue().getTotal_tickets()%></b>
+							<div style="text-align: right; margin-top: 7px"><input type="submit" value="More info..."></div>
 						</div>
+		 		</form>
 		 		</div>
+			
 		 <% 		
 	 			eventList.add(entry.getValue());
 	 		}
