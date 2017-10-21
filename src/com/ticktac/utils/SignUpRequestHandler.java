@@ -21,7 +21,7 @@ public class SignUpRequestHandler implements RequestHandler {
 		String name = (String)request.getParameter("name");
 		String surname = (String)request.getParameter("surname");
 	  	String email = (String)request.getParameter("email");
-	  	String password = (String)request.getParameter("password");
+	  	String password = (String)request.getParameter("pass");
 		
 		if(name.isEmpty() || surname.isEmpty() || email.isEmpty() || password.isEmpty())
 			view = "signup.jsp";

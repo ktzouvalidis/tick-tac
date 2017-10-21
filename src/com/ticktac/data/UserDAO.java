@@ -1,5 +1,8 @@
 package com.ticktac.data;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import com.ticktac.business.User;
 
@@ -35,6 +38,30 @@ public class UserDAO {
 	
 	public void addUser(String name, String surname, String email, String password) {
 		usersMap.put(email, new User(name, surname, email, password));
+	}
+	
+	/*
+	 * Test!
+	 * TODO - Create a correct INSERT statement!
+	 */
+	public boolean insertUser(String name, String surname, String email, String password) {
+		Connection con = null;
+		try {
+			con = DAOFactory.getConnection();
+			con.createStatement().executeUpdate("INSERT INTO user(name, surname, email, password)" +
+												" VALUES(" + name + "," + surname + "," + email + "," + password + ")");
+			return true;
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if(con != null)
+					con.close();
+			} catch(SQLException e) {
+				e.printStackTrace();				
+			}
+		}
 	}
 	
 	public void removeUser(String email) {
