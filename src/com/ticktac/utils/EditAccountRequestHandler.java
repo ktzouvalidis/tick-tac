@@ -34,7 +34,7 @@ public class EditAccountRequestHandler implements RequestHandler {
 		  		view = "notfound.html";
 		  	else {
 		  		if(userDAO.validateUser(userBean, oldPassword)) {
-		  			userBean.updateUser(name, surname, password, photo);
+		  			userBean = updateUser(name, surname, password, photo);
 		  			request.getSession().setAttribute("userBean", userBean);
 		  		} else {
 		  			request.setAttribute("successfullEdit", 0);
@@ -46,12 +46,22 @@ public class EditAccountRequestHandler implements RequestHandler {
 	  			request.setAttribute("successfullEdit", -1);
 	  			view = "editaccount.jsp";
 	  		} else {
-		  		userDAO.removeUser(userBean.getEmail());
+		  		userDAO.removeUser(userBean);
 		  		request.getSession().removeAttribute("userBean");
 	  			view = "index.jsp";	  			
 	  		}
 	  	}
 	  	
 		return view;
+	}
+	
+	private User updateUser(String n, String sn, String p, String ph) {
+		User u = new User();
+		u.setName(n);
+		u.setSurname(sn);
+		u.setPassword(p);
+		u.setPhoto(ph);
+		
+		return u;
 	}
 }

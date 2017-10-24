@@ -1,75 +1,94 @@
 package com.ticktac.data;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+
 import com.ticktac.business.User;
+import com.ticktac.business.UserT;
 
 public class UserDAO {
-	private static HashMap<String, User> usersMap = new HashMap<String, User>();
+	private static HashMap<String, UserT> usersMap = new HashMap<String, UserT>();
 	
 	static {
-		usersMap.put("kostastzouvalidis@gmail.com", new User("Kostas", "Tzouvalidis", "kostastzouvalidis@gmail.com", "qwerty1"));
-		usersMap.put("kostasxouveroudis@gmail.com", new User("Kostas", "Xouveroudis", "kostasxouveroudis@gmail.com", "qwerty2"));
-		usersMap.put("niklasnystad@gmail.com", new User("Niklas", "Nystad", "niklasnystad@gmail.com", "qwerty3"));
-		usersMap.put("teemupoytaniemi@gmail.com", new User("Teemu", "Poytaniemi", "teemupoytaniemi@gmail.com", "qwerty4"));
-		usersMap.put("a@gmail.com",new User("a","a","a@gmai.com","a"));
+		usersMap.put("kostastzouvalidis@gmail.com", new UserT("Kostas", "Tzouvalidis", "kostastzouvalidis@gmail.com", "qwerty1"));
+		usersMap.put("kostasxouveroudis@gmail.com", new UserT("Kostas", "Xouveroudis", "kostasxouveroudis@gmail.com", "qwerty2"));
+		usersMap.put("niklasnystad@gmail.com", new UserT("Niklas", "Nystad", "niklasnystad@gmail.com", "qwerty3"));
+		usersMap.put("teemupoytaniemi@gmail.com", new UserT("Teemu", "Poytaniemi", "teemupoytaniemi@gmail.com", "qwerty4"));
+		usersMap.put("a@gmail.com",new UserT("a","a","a@gmai.com","a"));
 	}
 	
 	public UserDAO() {}
 	
-	public int putNewUser(User user) {
-		return 0;
-	}
-	
-	public User getInfo(String email) {
-		return usersMap.get(email);
-	}
-	
 	public User searchUser(String email, String password) {
-		User u = usersMap.get(email);
+		EntityManager em = DBUtil.getEMF().createEntityManager();
+		String prep = "SELECT u FROM User u WHERE u.email=:email AND u.password=:password";
+		
+		try {
+			TypedQuery<User> q = em.createQuery(prep, User.class);
+			q.setParameter("email", email);
+			q.setParameter("password", password);
+			
+			User u = (User) q.getSingleResult();
+			return u;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		/*UserT u = usersMap.get(email);
 		if(u != null)
 			if(!u.getPassword().equals(password))
 				return null;
 		
-		return u;
+		return u;*/
 	}
 	
 	public void addUser(String name, String surname, String email, String password) {
-		usersMap.put(email, new User(name, surname, email, password));
+		usersMap.put(email, new UserT(name, surname, email, password));
 	}
 	
-	/*
-	 * Test!
-	 * TODO - Create a correct INSERT statement!
-	 */
-	public boolean insertUser(String name, String surname, String email, String password) {
-		Connection con = null;
+	public boolean insertUser(User user) {
+		EntityManager em = DBUtil.getEMF().createEntityManager();
+		EntityTransaction tr = em.getTransaction();
+		
 		try {
-			con = DAOFactory.getConnection();
-			con.createStatement().executeUpdate("INSERT INTO user(name, surname, email, password)" +
-												" VALUES(" + name + "," + surname + "," + email + "," + password + ")");
-			return true;
-		} catch(SQLException e) {
+			tr.begin();
+			em.persist(user);
+			tr.commit();
+		} catch(Exception e) {
 			e.printStackTrace();
+			tr.rollback();
 			return false;
 		} finally {
-			try {
-				if(con != null)
-					con.close();
-			} catch(SQLException e) {
-				e.printStackTrace();				
-			}
+			em.close();
 		}
+
+		return true;
 	}
 	
-	public void removeUser(String email) {
-		usersMap.remove(email);
+	public boolean removeUser(User user) {
+		EntityManager em = DBUtil.getEMF().createEntityManager();
+		EntityTransaction tr = em.getTransaction();
+		
+		try {
+			tr.begin();
+			em.remove(user);
+			tr.commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			tr.rollback();
+			return false;
+		} finally {
+			em.close();
+		}
+
+		return true;
 	}
 	
 	public void updateUser(User user, String name, String surname, String password, String photo) {
-		user.updateUser(name, surname, password, photo);
+		//user.updateUser(name, surname, password, photo);
 	}
 	
 	public boolean validateUser(User user, String pass) {
@@ -77,6 +96,7 @@ public class UserDAO {
 	}
 	
 	public boolean userHasTickets(User user) {
-		return user.getEvents().size() > 0;
+		//return user.getEvents().size() > 0;
+		return false;
 	}
 }
