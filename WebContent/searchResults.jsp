@@ -35,14 +35,14 @@
 				<input type="hidden" name="evDetailTitle" value="<%=eventBean.getTitle()%>">
 			</div>
 			<div style="float: left; clear: left; margin-top: 2px"> <!--  -->
-					<img src="<%=eventBean.getPicture()%>" alt="" height="350" width="550"/>
+					<img src="<%=eventBean.getPhoto()%>" alt="" height="350" width="550"/>
 			</div>			
 			<div style="float: left; clear: left; margin-top: 2px">
 				<br/>
 				Soon at <%=eventBean.getVenue()%>!<br/><br/>
 				- Category: <b><%=eventBean.getCategory()%></b> <br/>
 				- Date: <b><%=eventBean.getDate()%></b> <br/>
-				- Ticket Price: <b><%=eventBean.getTicket_price()%></b> / Tickets available: <b><%=eventBean.getTotal_tickets()%></b>
+				- Ticket Price: <b><%=eventBean.getTicketPrice()%></b> / Tickets available: <b><%=eventBean.getTotalTickets()%></b>
 				<div style="text-align: right; margin-top: 7px"><input type="submit" value="More info..."></div>
 			</div>
 				

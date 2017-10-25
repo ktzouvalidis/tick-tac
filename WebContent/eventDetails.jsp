@@ -28,7 +28,7 @@
 	
 	<div class="center" style="position: absolute; top: 32%; left: 41%; 
 	margin-top: -9em; margin-left: -15em;">
-		<img src="<%=ev.getPicture()%>" alt="" height="460" width="900"  style="max-height: 100%; max-width: 100%; border: 1px solid black "/>
+		<img src="<%=ev.getPhoto()%>" alt="" height="460" width="900"  style="max-height: 100%; max-width: 100%; border: 1px solid black "/>
 	</div>	
 	
 	<div class="center" style="position: absolute; top: 86%; left: 50%; background-color: #c2beff;
@@ -37,10 +37,10 @@
 		<h4><b><i><%=ev.getTitle()%></i></b></h4>
 			
 		<div style="float: left; clear: left; margin-top: 2px">
-			<%=ev.getInformaton()%><br/><br/>
+			<%=ev.getInfo()%><br/><br/>
 			- Venue: <b><%=ev.getVenue()%></b><br/>
 			- Date: <b><%=ev.getDate()%></b> <br/>
-			- Ticket Price: <b><%=ev.getTicket_price()%></b> / Tickets available: <b><%=ev.getTotal_tickets()%></b>
+			- Ticket Price: <b><%=ev.getTicketPrice()%></b> / Tickets available: <b><%=ev.getTotalTickets()%></b>
 		</div>
 				
 		

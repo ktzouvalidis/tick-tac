@@ -1,124 +1,134 @@
 package com.ticktac.business;
 
-import java.util.Vector;
-
 import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Date;
 
+
+/**
+ * The persistent class for the event database table.
+ * 
+ */
+@Entity
+@NamedQuery(name="Event.findAll", query="SELECT e FROM Event e")
 public class Event implements Serializable {
-	
-	private String title;
-	//category type should be "enum", I don't know what it is in Java
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+
 	private String category;
-	//image type in Java?
-	private String picture;
-	private double ticket_price;
-	private String date;
+
+	@Temporal(TemporalType.DATE)
+	private Date date;
+
+	private String info;
+
+	private String photo;
+
+	private int soldTickets;
+
+	private float ticketPrice;
+
+	private String title;
+
+	private int totalTickets;
+
+	@Column(name="user_id")
+	private int userId;
+
 	private String venue;
-	private String informaton;
-	private int total_tickets;
-	private Vector<Ticket> sold_tickets;
-	//private int sold_tickets;
-	
+
 	public Event() {
-		this.title="m";
-		this.category="k";
-		this.picture="j";
-		this.ticket_price=0;
-		
-	}
-	
-	public Event(String title, String category, String picture, double ticket_price, String date, String venue, String information, int total_ticket, Vector<Ticket> soldTickets){
-		this.title = title;
-		this.category = category;
-		this.picture = picture;
-		this.ticket_price = ticket_price;
-		this.date = date;
-		this.venue = venue;
-		this.informaton = information;
-		this.total_tickets = total_ticket;
-		this.sold_tickets = soldTickets;
 	}
 
-	public String getTitle() {
-		return title;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getCategory() {
-		return category;
+		return this.category;
 	}
 
 	public void setCategory(String category) {
 		this.category = category;
 	}
 
-	public String getPicture() {
-		return picture;
+	public Date getDate() {
+		return this.date;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
-
-	public double getTicket_price() {
-		return ticket_price;
-	}
-
-	public void setTicket_price(double ticket_price) {
-		this.ticket_price = ticket_price;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
+	public String getInfo() {
+		return this.info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+	public String getPhoto() {
+		return this.photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public int getSoldTickets() {
+		return this.soldTickets;
+	}
+
+	public void setSoldTickets(int soldTickets) {
+		this.soldTickets = soldTickets;
+	}
+
+	public float getTicketPrice() {
+		return this.ticketPrice;
+	}
+
+	public void setTicketPrice(float ticketPrice) {
+		this.ticketPrice = ticketPrice;
+	}
+
+	public String getTitle() {
+		return this.title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public int getTotalTickets() {
+		return this.totalTickets;
+	}
+
+	public void setTotalTickets(int totalTickets) {
+		this.totalTickets = totalTickets;
+	}
+
+	public int getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	public String getVenue() {
-		return venue;
+		return this.venue;
 	}
 
 	public void setVenue(String venue) {
 		this.venue = venue;
 	}
-
-	public String getInformaton() {
-		return informaton;
-	}
-
-	public void setInformaton(String informaton) {
-		this.informaton = informaton;
-	}
-
-	public int getTotal_tickets() {
-		return total_tickets;
-	}
-
-	public void setTotal_tickets(int total_tickets) {
-		this.total_tickets = total_tickets;
-	}
-
-	public Vector<Ticket> getSold_tickets() {
-		return sold_tickets;
-	}
-
-	public void setSold_tickets(Vector<Ticket> sold_tickets) {
-		this.sold_tickets = sold_tickets;
-	}
-	
-	/*
-	public int getSold_tickets() {
-		return sold_tickets;
-	}
-	
-	public void setSold_tickets(int sold_tickets) {
-		this.sold_tickets = sold_tickets;
-	}
-	*/
 
 }

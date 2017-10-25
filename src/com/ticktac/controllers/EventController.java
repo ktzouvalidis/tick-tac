@@ -97,7 +97,7 @@ public class EventController extends HttpServlet {
 			if(event==null) {
 				event=events.getInfo("Band");
 			}
-			event.setTicket_price(Double.parseDouble(request.getParameter("newprice")));
+			event.setTicketPrice(Float.parseFloat(request.getParameter("newprice")));
 			
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			
