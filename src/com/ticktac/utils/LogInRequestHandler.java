@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
 import com.ticktac.business.User;
-import com.ticktac.business.UserT;
 import com.ticktac.data.UserDAO;
 
 public class LogInRequestHandler implements RequestHandler {

@@ -9,18 +9,8 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import com.ticktac.business.User;
-import com.ticktac.business.UserT;
 
 public class UserDAO {
-	private static HashMap<String, UserT> usersMap = new HashMap<String, UserT>();
-	
-	static {
-		usersMap.put("kostastzouvalidis@gmail.com", new UserT("Kostas", "Tzouvalidis", "kostastzouvalidis@gmail.com", "qwerty1"));
-		usersMap.put("kostasxouveroudis@gmail.com", new UserT("Kostas", "Xouveroudis", "kostasxouveroudis@gmail.com", "qwerty2"));
-		usersMap.put("niklasnystad@gmail.com", new UserT("Niklas", "Nystad", "niklasnystad@gmail.com", "qwerty3"));
-		usersMap.put("teemupoytaniemi@gmail.com", new UserT("Teemu", "Poytaniemi", "teemupoytaniemi@gmail.com", "qwerty4"));
-		usersMap.put("a@gmail.com",new UserT("a","a","a@gmai.com","a"));
-	}
 	
 	public UserDAO() {}
 	
@@ -47,7 +37,7 @@ public class UserDAO {
 	}
 	
 	public void addUser(String name, String surname, String email, String password) {
-		usersMap.put(email, new UserT(name, surname, email, password));
+		
 	}
 	
 	public boolean insertUser(User user, EntityManager em, UserTransaction tr) {
