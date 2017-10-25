@@ -43,8 +43,11 @@ public class EditAccountRequestHandler implements RequestHandler {
 		  		view = "notfound.html";
 		  	else {
 		  		if(userDAO.validateUser(userBean, oldPassword)) {
-		  			userBean = updateUser(name, surname, password, photo);
-		  			request.getSession().setAttribute("userBean", userBean);
+		  			User updatedUser = userDAO.updateUser(userBean, name, surname, password, photo, em, tr);
+		  			if(updatedUser != null)
+		  				request.getSession().setAttribute("userBean", updatedUser);
+		  			else
+			  			request.setAttribute("successfullEdit", 0);
 		  		} else {
 		  			request.setAttribute("successfullEdit", 0);
 		  		}
