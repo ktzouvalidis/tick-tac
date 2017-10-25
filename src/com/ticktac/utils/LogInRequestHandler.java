@@ -2,9 +2,11 @@ package com.ticktac.utils;
 
 import java.io.IOException;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.UserTransaction;
 
 import com.ticktac.business.User;
 import com.ticktac.business.UserT;
@@ -19,6 +21,12 @@ public class LogInRequestHandler implements RequestHandler {
 	
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		return null;
+	}
+
+	@Override
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
+			UserTransaction tr) throws ServletException, IOException {
 		String view = "";
 	  	String email = (String)request.getParameter("email");
 	  	String password = (String)request.getParameter("password");
@@ -26,7 +34,7 @@ public class LogInRequestHandler implements RequestHandler {
 	  	if(email == null || password == null)
 	  		view = "login.jsp";
 	  	else {
-	  		User userBean = userDAO.searchUser(email, password);
+	  		User userBean = userDAO.searchUser(email, password, em); // Doesn't need UserTransaction
 	  		if(userBean == null) {
 	  			request.setAttribute("accountFound", 0);
 	  			view = "login.jsp";

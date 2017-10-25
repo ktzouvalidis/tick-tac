@@ -5,6 +5,8 @@ import java.util.HashMap;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 import com.ticktac.business.User;
 import com.ticktac.business.UserT;
@@ -22,8 +24,7 @@ public class UserDAO {
 	
 	public UserDAO() {}
 	
-	public User searchUser(String email, String password) {
-		EntityManager em = DBUtil.getEMF().createEntityManager();
+	public User searchUser(String email, String password, EntityManager em) {
 		String prep = "SELECT u FROM User u WHERE u.email=:email AND u.password=:password";
 		
 		try {
@@ -49,39 +50,31 @@ public class UserDAO {
 		usersMap.put(email, new UserT(name, surname, email, password));
 	}
 	
-	public boolean insertUser(User user) {
-		EntityManager em = DBUtil.getEMF().createEntityManager();
-		EntityTransaction tr = em.getTransaction();
-		
+	public boolean insertUser(User user, EntityManager em, UserTransaction tr) {
 		try {
 			tr.begin();
 			em.persist(user);
 			tr.commit();
 		} catch(Exception e) {
 			e.printStackTrace();
-			tr.rollback();
+			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
 			return false;
-		} finally {
-			em.close();
 		}
 
 		return true;
 	}
 	
-	public boolean removeUser(User user) {
-		EntityManager em = DBUtil.getEMF().createEntityManager();
-		EntityTransaction tr = em.getTransaction();
-		
+	public boolean removeUser(User user, EntityManager em, UserTransaction tr) {		
 		try {
 			tr.begin();
+			if(!em.contains(user))
+				user = em.merge(user);
 			em.remove(user);
 			tr.commit();
 		} catch(Exception e) {
 			e.printStackTrace();
-			tr.rollback();
+			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
 			return false;
-		} finally {
-			em.close();
 		}
 
 		return true;

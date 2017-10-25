@@ -7,9 +7,11 @@ import java.util.HashSet;
 import com.ticktac.business.Event;
 import com.ticktac.data.EventDAO;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.UserTransaction;
 
 public class EventDetailsRequestHandler implements RequestHandler{
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,5 +43,12 @@ public class EventDetailsRequestHandler implements RequestHandler{
 		}
 		
 		return sView;
+	}
+
+	@Override
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
+			UserTransaction tr) throws ServletException, IOException {
+		
+		return null;
 	}
 }

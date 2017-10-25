@@ -11,8 +11,12 @@ import com.sun.xml.wss.impl.callback.DecryptionKeyCallback.Request;
 */
 
 import java.io.*;
+
+import javax.persistence.EntityManager;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import javax.transaction.UserTransaction;
+
 import com.ticktac.data.EventDAO;
 import com.ticktac.business.Event;
 
@@ -49,5 +53,12 @@ public class SearchRequestHandler implements RequestHandler{
 			}
 		}
 		return sView;
+	}
+
+	@Override
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
+			UserTransaction tr) throws ServletException, IOException {
+		
+		return null;
 	}
 }

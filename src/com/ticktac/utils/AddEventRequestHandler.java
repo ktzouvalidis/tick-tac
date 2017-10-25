@@ -2,9 +2,11 @@ package com.ticktac.utils;
 
 import java.io.IOException;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.UserTransaction;
 
 import com.ticktac.data.EventDAO;
 
@@ -39,6 +41,13 @@ public class AddEventRequestHandler implements RequestHandler {
 		}
 		
 		return view;
+	}
+
+	@Override
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
+			UserTransaction tr) throws ServletException, IOException {
+		
+		return null;
 	}
 
 }
