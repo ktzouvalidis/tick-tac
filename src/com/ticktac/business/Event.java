@@ -86,6 +86,10 @@ public class Event implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
+	public void setDate(String date) {
+		try { this.date = new SimpleDateFormat("yyyy-MM-dd").parse(date); }catch(Exception e) { e.printStackTrace(); }
+	}
 
 
 	public String getInfo() {

@@ -23,7 +23,10 @@
 		 
 		<c:forEach items="${sessionScope.userBean.events}" var="e">
 			<div class="col-lg-3 col-md-3 col-xs-9" style="background-color: #dadcef">
-				<a class="d-block mb-3 h-100"" href="/editevent" style="color: #000030">  link to ${e.title}</a>
+				<form method="post" action="editevent">
+					<input type="hidden" name="eventID" value="${e.id}">
+					<input type="submit" class="btn-default" value="${e.title}">
+				</form>
 			</div>
 		</c:forEach>
 	</div>

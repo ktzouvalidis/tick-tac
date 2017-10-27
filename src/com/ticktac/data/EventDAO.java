@@ -1,16 +1,14 @@
 package com.ticktac.data;
 
+import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import com.ticktac.business.Event;
-import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
-import com.ticktac.business.Ticket;
 import com.ticktac.business.User;	
 public class EventDAO {
 
@@ -52,5 +50,41 @@ public class EventDAO {
 		}
 
 		return true;
+	}
+
+	public Event getEvent(int eventID, EntityManager em, UserTransaction tr) {
+		Event event;
+		try {
+			tr.begin();
+			event = em.find(Event.class, eventID);
+			tr.commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
+			return null;
+		}
+		return event;
+	}
+	
+	public Event updateEvent(Event event, String title, String date, String photo, String info,
+			int ticketPrice, int moreTickets, EntityManager em, UserTransaction tr) {
+		try {
+			tr.begin();
+			if(!em.contains(event)) // Is it being managed?
+				event = em.merge(event);
+			event.setTitle(title);
+			event.setDate(date);
+			event.setPhoto(photo);
+			event.setInfo(info);
+			event.setTicketPrice(ticketPrice);
+			event.setTotalTickets(event.getTotalTickets() + moreTickets);
+			tr.commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
+			return null;
+		}
+		
+		return event;
 	}
 }
