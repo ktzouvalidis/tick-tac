@@ -43,10 +43,10 @@
         	<input type="text" id="price" name="price" required/><br>
         	<p>select category</p>
         	<select name="category">
-        		    <option value="movie">Classical</option>
-			  		<option value="movie">Rock</option>
-			  		<option value="musical">Metal</option>
-			  		<option value="exposition">Hip-Hop</option>
+        		    <option value="Concert">Concert</option>
+			  		<option value="Festival">Festival</option>
+			  		<option value="Expedition">Expedition</option>
+			  		<option value="Theater">Theater</option>
         	</select><br>
         	<p>Add events information</p>
         	<textarea rows="4" cols="50" name ="info" placeholder="Add events information"> </textarea>

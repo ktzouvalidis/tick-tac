@@ -4,11 +4,15 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Vector;
 
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.UserTransaction;
 
 import com.ticktac.utils.AddEventRequestHandler;
 import com.ticktac.utils.EventDetailsRequestHandler;
@@ -24,6 +28,12 @@ public class EventController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
 	private EventDAO events;
+	
+	@PersistenceContext(unitName="ticktacUP")
+	EntityManager em;
+	@Resource
+	UserTransaction tr;
+	
 	
     public EventController() {
 		handlersMap.put("/addevent", new AddEventRequestHandler());
@@ -60,8 +70,7 @@ public class EventController extends HttpServlet {
 			request.setAttribute("eventBean", new Event());
 			request.getRequestDispatcher("changeEventform.jsp").forward(request, response);
 			
-		}else if(path.equals("/addevent")) {
-			
+		}else if(path.equals("/addevent")) {	
 			request.getRequestDispatcher("addevent.jsp").forward(request, response);
 		
 		}else if(path.equals("/eventDetails.htm")) {
@@ -86,7 +95,7 @@ public class EventController extends HttpServlet {
 		RequestHandler handler = (RequestHandler) handlersMap.get(path);
 		
 		if(handler != null)
-			viewURL = handler.handleRequest(request, response);
+			viewURL = handler.handleRequest(request, response, em, tr);
 
 		//TODO More handlers
 		if(path.equals("/updateEvent") ) {

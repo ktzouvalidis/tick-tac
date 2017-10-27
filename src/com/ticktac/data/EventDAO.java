@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import com.ticktac.business.Event;
 import java.util.Vector;
+
+import javax.persistence.EntityManager;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
+
 import com.ticktac.business.Ticket;	
 public class EventDAO {
 
@@ -32,7 +37,17 @@ public class EventDAO {
 		
 	}
 	
-	public boolean addEvent(String title, String date, String place, int tickets, double price, String category, String info) {
-		return false;
+	public boolean addEvent(Event event, EntityManager em, UserTransaction tr) {
+		try {
+			tr.begin();
+			em.persist(event);
+			tr.commit();
+		} catch(Exception e) {
+			e.printStackTrace();
+			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
+			return false;
+		}
+
+		return true;
 	}
 }
