@@ -1,6 +1,7 @@
 package com.ticktac.data;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.ticktac.business.Event;
 import java.util.Vector;
@@ -9,7 +10,8 @@ import javax.persistence.EntityManager;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
-import com.ticktac.business.Ticket;	
+import com.ticktac.business.Ticket;
+import com.ticktac.business.User;	
 public class EventDAO {
 
 	private Map<String , Event> events =new HashMap <String, Event>();
@@ -37,10 +39,11 @@ public class EventDAO {
 		
 	}
 	
-	public boolean addEvent(Event event, EntityManager em, UserTransaction tr) {
+	public boolean addEvent(Event event, User user, EntityManager em, UserTransaction tr) {
 		try {
 			tr.begin();
 			em.persist(event);
+			user.addEvent(event);
 			tr.commit();
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -10,7 +10,7 @@
 	
 			<c:if test="${sessionScope.userBean !=null}">
 				<li><a class="nav-link" href="addevent"> Add Events</a></li>
-				<li><a class="nav-link" href="c.jsp"> Change your events</a></li>	
+				<li><a class="nav-link" href="myevents.jsp"> Edit your events</a></li>	
 				<li><a class="nav-link" href="editaccount.jsp">My Account</a></li>
 			</c:if>
 	

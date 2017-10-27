@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
 import javax.persistence.*;
+
+import com.ticktac.utils.Color;
+
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +30,9 @@ public class Event implements Serializable {
 	private String venue;
 	private User user;
 	private List<Ticket> tickets;
+	
+	//For the view - Can't make it work
+	private String color;
 
 	public Event() {}
 
@@ -40,6 +46,16 @@ public class Event implements Serializable {
 		this.ticketPrice = ticketPrice;
 		this.totalTickets = totalTickets;
 		this.user = user;
+		
+		//Manage background color - Can't make it work
+		if(category == "Concert")
+			this.color = Color.CONCERT.getColor();
+		else if(category == "Festival")
+			this.color = Color.FESTIVAL.getColor();
+		else if(category == "Expedition")
+			this.color = Color.EXPEDITION.getColor();
+		else
+			this.color = Color.THEATER.getColor();
 	}
 
 	@Id
@@ -169,5 +185,9 @@ public class Event implements Serializable {
 
 		return ticket;
 	}
-
+	
+	//For the view - Can't make it work
+	public String getColor() {
+		return color;
+	}
 }

@@ -45,8 +45,10 @@ public class AddEventRequestHandler implements RequestHandler {
 			if(category.isEmpty() || info.isEmpty())
 				view = "addevent.jsp";
 			else {
-				if(eventDAO.addEvent(new Event(title, category, venue, date, info, ticketPrice, totalTickets, user), em, tr))
+				Event event = new Event(title, category, venue, date, info, ticketPrice, totalTickets, user);
+				if(eventDAO.addEvent(event, user, em, tr)) {
 					request.setAttribute("eventExists", 0);
+				}
 				else
 					request.setAttribute("eventExists", 1);
 					

@@ -23,11 +23,10 @@ import com.ticktac.data.*;
 /**
  * Servlet implementation class EventController
  */
-@WebServlet(urlPatterns = { "/addevent","/getevents" ,"/c.jsp","/toeventform.jsp", "/updateEvent", "/deleteEvent", "/eventDetails.htm"})
+@WebServlet(urlPatterns = { "/addevent", "/getevents" ,"/myevents", "/editevent", "/updateevent", "/deleteEvent", "/eventDetails.htm"})
 public class EventController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
-	private EventDAO events;
 	
 	@PersistenceContext(unitName="ticktacUP")
 	EntityManager em;
@@ -38,7 +37,6 @@ public class EventController extends HttpServlet {
     public EventController() {
 		handlersMap.put("/addevent", new AddEventRequestHandler());
 		handlersMap.put("/eventDetails.htm", new com.ticktac.utils.EventDetailsRequestHandler());
-		 events=new EventDAO();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -63,17 +61,16 @@ public class EventController extends HttpServlet {
 			
 			
 		}else if(path.equals("/toeventform.jsp")) {
-			System.out.println("miksi");
 			String event=request.getParameter("title");
-			
 			
 			request.setAttribute("eventBean", new Event());
 			request.getRequestDispatcher("changeEventform.jsp").forward(request, response);
 			
-		}else if(path.equals("/addevent")) {	
+		}else if(path.equals("/addevent"))
 			request.getRequestDispatcher("addevent.jsp").forward(request, response);
-		
-		}else if(path.equals("/eventDetails.htm")) {
+		else if(path.equals("/myevents"))
+			request.getRequestDispatcher("myevents.jsp").forward(request, response);
+		else if(path.equals("/eventDetails.htm")) {
 			Object aux = handlersMap.get(path);
 			if (aux == null) {
 				//Error page.
@@ -98,9 +95,9 @@ public class EventController extends HttpServlet {
 			viewURL = handler.handleRequest(request, response, em, tr);
 
 		//TODO More handlers
-		if(path.equals("/updateEvent") ) {
+		if(path.equals("/updateevent") ) {
 			
-			String title=(String)request.getParameter("title");
+			/*String title=(String)request.getParameter("title");
 			System.out.println(title);
 			Event event= events.getInfo(title);
 			if(event==null) {
@@ -108,7 +105,7 @@ public class EventController extends HttpServlet {
 			}
 			event.setTicketPrice(Float.parseFloat(request.getParameter("newprice")));
 			
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response); */
 			
 		}else if(path.equals("/deleteEvent")) {
 			
