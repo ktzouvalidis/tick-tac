@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -38,7 +39,7 @@
 						<h2 class="form-signin-heading">Edit Event</h2>
 						<div class="form-group">
 							<div class="photo-container">
-								<img src="${sessionScope.eventBean.photo }" alt="Profile photo" />
+								<img src="${sessionScope.eventBean.photo }" alt="Event photo" />
 							</div>
 							<input type="file" class="form-control" name="photo" accept="image"/>
 						</div>
@@ -47,7 +48,7 @@
 							<input type="text" class="form-control" name="title" value="${sessionScope.eventBean.title}"/>
 						</div>
 						<div class="form-group">
-							<label for="title">Date</label>
+							<label for="title">Date</label><br/>
 							<input type="date" id="date" name="date" value="${sessionScope.eventBean.date}"/>
 						</div>
 						<div class="form-group">
@@ -57,7 +58,8 @@
 						<div class="form-group">
 							<label for="ticketPrice">Ticket Price</label>
 							<div class="col-sm-2">
-								<input type="number" class="form-control" name="ticketPrice" min="1" value="${sessionScope.eventBean.ticketPrice}"/> <!-- Integer for now -->
+								<fmt:parseNumber var="ticketPrice" type="number" value="${sessionScope.eventBean.ticketPrice}"/>
+								<input type="number" class="form-control" name="ticketPrice" min="1" step="0.1" value="${ticketPrice}"/>
 							</div>
 						</div>
 						<div class="form-group">
