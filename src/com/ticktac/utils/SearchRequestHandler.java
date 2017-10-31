@@ -25,7 +25,6 @@ public class SearchRequestHandler implements RequestHandler{
 	private EventDAO eventData;
 	
 	public SearchRequestHandler() {
-		// TODO Auto-generated constructor stub
 		eventData = new EventDAO();
 	}
 	
@@ -42,12 +41,11 @@ public class SearchRequestHandler implements RequestHandler{
 	  		sView = "index.jsp";
 	  	}
 		else {
-	  		EventDAO ed = new EventDAO();
-	  		Event bean = ed.getInfo(eTitle);
+	  		Event bean = eventData.getInfo(eTitle);
 	  		if (bean == null) {
 	  			sView = "notfound.html";
 			}else {
-				System.out.println(ed.getInfo(eTitle));
+				System.out.println(eventData.getInfo(eTitle));
 				request.setAttribute("eventBean", bean);
 				sView = "searchResults.jsp";
 			}

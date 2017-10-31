@@ -18,7 +18,8 @@
     <jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	<p> Your events</p>
-	<c:if test="${not empty sessionScope.userBean }"></c:if>
+	<c:if test="${not empty requestScope.successfullDeletion }"><b>Event deleted successfully</b></c:if>
+	<c:if test="${not empty sessionScope.userBean }">
 	<div class="row text-center text-lg-left">
 		 
 		<c:forEach items="${sessionScope.userBean.events}" var="e">
@@ -30,6 +31,7 @@
 			</div>
 		</c:forEach>
 	</div>
+	</c:if>
 		
 </body>
 </html>

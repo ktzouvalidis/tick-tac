@@ -29,6 +29,9 @@
 			</c:choose>
 		</c:otherwise>
 	</c:choose>
+	<c:if test="${not empty requestScope.failedDeletion }">
+		<b>Couldn't delete this event... Please try again.</b>
+	</c:if>
 	</div>
 	<div class="container">
 		<div class="center" style="background-color: #ededed">
@@ -72,7 +75,7 @@
 							<input type="submit" class="btn-default" name="submit" value="Update"/>
 						</div>
 					</form>
-					<form class="form-signin" action="editaccount" method="post">
+					<form class="form-signin" action="updateevent" method="post">
 						<input type="hidden" name="deletion" value="1"/>
 						<div class="form-group">
 							<input type="submit" class="btn-default" id="btn-delete" name="submit" value="Delete this event"/>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
 import com.ticktac.business.Event;
+import com.ticktac.business.User;
 import com.ticktac.data.EventDAO;
 
 public class EditEventRequestHandler implements RequestHandler {
@@ -39,25 +40,38 @@ public class EditEventRequestHandler implements RequestHandler {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException{
 		String view = "notfound.html";
-		String title = request.getParameter("title");
-		String date = request.getParameter("date");
-		String photo = request.getParameter("photo");
-		String info= request.getParameter("info");
-		int ticketPrice = Integer.parseInt(request.getParameter("ticketPrice"));
-		int moreTickets = Integer.parseInt(request.getParameter("moreTickets"));
-		
+	  	String deletion = (String)request.getParameter("deletion");
+	  	
 	  	Event eventBean = (Event)request.getSession().getAttribute("eventBean");
-	  	if(eventBean != null) {
-	  		if(photo != null && !photo.isEmpty()) {
-	  			photo = PHOTO_DIRECTORY + photo;
-	  			uploadPhoto(photo, response.getWriter());
+	  	User userBean = (User)request.getSession().getAttribute("userBean");
+	  	if(deletion == null) {
+			String title = request.getParameter("title");
+			String date = request.getParameter("date");
+			String photo = request.getParameter("photo");
+			String info= request.getParameter("info");
+			int ticketPrice = Integer.parseInt(request.getParameter("ticketPrice"));
+			int moreTickets = Integer.parseInt(request.getParameter("moreTickets"));
+		  	
+		  	if(eventBean != null) {
+		  		if(photo != null && !photo.isEmpty()) {
+		  			photo = PHOTO_DIRECTORY + photo;
+		  			uploadPhoto(photo, response.getWriter());
+		  		}
+		  		Event updatedEvent = eventDAO.updateEvent(eventBean, title, date, photo, info, ticketPrice, moreTickets, em, tr);
+		  		if(updatedEvent != null)
+	  				request.getSession().setAttribute("eventBean", updatedEvent);
+	  			else
+		  			request.setAttribute("successfullEdit", 0);
+	  			view = "editevent.jsp";
+		  	}
+	  	} else {
+	  		if(eventDAO.deleteEvent(eventBean, userBean, em, tr)) {
+	  			request.setAttribute("successfullDeletion", 0);
+	  			view = "myevents.jsp";
+	  		} else {
+	  			request.setAttribute("failedDeletion", 0);
+	  			view = "editevent.jsp";
 	  		}
-	  		Event updatedEvent = eventDAO.updateEvent(eventBean, title, date, photo, info, ticketPrice, moreTickets, em, tr);
-	  		if(updatedEvent != null)
-  				request.getSession().setAttribute("eventBean", updatedEvent);
-  			else
-	  			request.setAttribute("successfullEdit", 0);
-  			view = "editevent.jsp";
 	  	}
 		
 		return view;

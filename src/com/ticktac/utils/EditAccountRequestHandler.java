@@ -66,15 +66,4 @@ public class EditAccountRequestHandler implements RequestHandler {
 	  	
 		return view;
 	}
-	
-	private User updateUser(String n, String sn, String p, String ph) {
-		User u = new User();
-		u.setName(n);
-		u.setSurname(sn);
-		u.setPassword(p);
-		u.setPhoto(ph);
-		
-		return u;
-	}
-
 }

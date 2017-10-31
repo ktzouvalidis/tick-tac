@@ -88,7 +88,7 @@ public class User implements Serializable {
 
 
 	//bi-directional many-to-one association to Event
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL, orphanRemoval=true)
 	public List<Event> getEvents() {
 		return this.events;
 	}

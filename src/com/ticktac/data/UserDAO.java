@@ -1,9 +1,6 @@
 package com.ticktac.data;
 
-import java.util.HashMap;
-
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
@@ -28,12 +25,6 @@ public class UserDAO {
 			e.printStackTrace();
 			return null;
 		}
-		/*UserT u = usersMap.get(email);
-		if(u != null)
-			if(!u.getPassword().equals(password))
-				return null;
-		
-		return u;*/
 	}
 	
 	public void addUser(String name, String surname, String email, String password) {
