@@ -3,7 +3,6 @@ package com.ticktac.utils;
 import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.HashSet;
 import com.ticktac.business.Event;
 import com.ticktac.data.EventDAO;
 

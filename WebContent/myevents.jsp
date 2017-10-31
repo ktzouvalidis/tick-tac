@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- 
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,22 +14,24 @@
 	<script src="includes/js/dynamic.js"></script>
 </head>
 <body>
-
+	<%@ page import="com.ticktac.utils.Color" %>
     <jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	<p> Your events</p>
-	<table style= "width:40%">
+	<c:if test="${not empty requestScope.successfullDeletion }"><b>Event deleted successfully</b></c:if>
+	<c:if test="${not empty sessionScope.userBean }">
+	<div class="row text-center text-lg-left">
 		 
-	<c:forEach items="${events}" var="i">
-		<tr>
-		<th>
-		<a href=toeventform.jsp?title=${i.title}>  link to ${i.title}</a>
-		</th>
-		</tr>
-	</c:forEach>
-	
-	</table>
-	${sessionScope.user}
-	
+		<c:forEach items="${sessionScope.userBean.events}" var="e">
+			<div class="col-lg-3 col-md-3 col-xs-9" style="background-color: #dadcef">
+				<form method="post" action="editevent">
+					<input type="hidden" name="eventID" value="${e.id}">
+					<input type="submit" class="btn-default" value="${e.title}">
+				</form>
+			</div>
+		</c:forEach>
+	</div>
+	</c:if>
+		
 </body>
 </html>
