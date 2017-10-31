@@ -18,11 +18,12 @@ import com.ticktac.data.EventDAO;
 import com.ticktac.utils.AddEventRequestHandler;
 import com.ticktac.utils.EditEventRequestHandler;
 import com.ticktac.utils.RequestHandler;
+import com.ticktac.utils.EventDetailsRequestHandler;
 
 /**
  * Servlet implementation class EventController
  */
-@WebServlet(urlPatterns = { "/addevent", "/getevents" ,"/myevents", "/editevent", "/updateevent", "/deleteEvent", "/eventDetails.htm"})
+@WebServlet(urlPatterns = { "/addevent", "/getevents" ,"/myevents", "/editevent", "/updateevent", "/deleteEvent", "/eventdetails"})
 public class EventController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
@@ -35,7 +36,7 @@ public class EventController extends HttpServlet {
     public EventController() {
 		handlersMap.put("/addevent", new AddEventRequestHandler());
 		handlersMap.put("/updateevent", new EditEventRequestHandler());
-		handlersMap.put("/eventDetails.htm", new com.ticktac.utils.EventDetailsRequestHandler());
+		handlersMap.put("/eventdetails", new EventDetailsRequestHandler());
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,16 +48,11 @@ public class EventController extends HttpServlet {
 			request.getRequestDispatcher("addevent.jsp").forward(request, response);
 		else if(path.equals("/myevents"))
 			request.getRequestDispatcher("myevents.jsp").forward(request, response);
-		else if(path.equals("/eventDetails.htm")) {
-			Object aux = handlersMap.get(path);
-			if (aux == null) {
-				//Error page.
-				response.sendRedirect("notfound.html");
-			}
-			else {
-				RequestHandler rh = (RequestHandler) aux; 
-				String sView = rh.handleRequest(request, response);
-				request.getRequestDispatcher(sView).forward(request, response);
+		else if(path.equals("/eventdetails")) {
+			Event event = new EventDAO().getEvent(Integer.parseInt(request.getParameter("eventID")), em, tr);
+			if(event != null) {
+				request.getSession().setAttribute("eventBean", event);
+				request.getRequestDispatcher("eventdetails.jsp").forward(request, response);
 			}
 		}
 	}

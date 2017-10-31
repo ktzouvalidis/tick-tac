@@ -1,16 +1,7 @@
-<%@page import="com.ticktac.data.EventDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="com.ticktac.business.Event" %>
-<%@ page import="java.util.HashSet" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Map;" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<jsp:useBean id="eventBean"
-  scope="request"
-  type="com.ticktac.business.Event" />
-
 <html>
 
 <head>
@@ -24,29 +15,21 @@
 	<script src="includes/js/dynamic.js"></script>
 </head>
 <body>
-	<jsp:include page="/pages/header.jsp" />
-	<jsp:include page="/pages/sidemenu.jsp"/><br/><br/>
-	<div class="center" style="position: absolute; top: 37.5%; left: 50%; background-color:#D3D2D2; 
-	margin-top: -9em; margin-left: -15em; max-width: 50%;border: 1px solid black">
+	<%@ page import="com.ticktac.utils.Color" %>
+    <jsp:include page="/pages/header.jsp" />
+	<jsp:include page="/pages/sidemenu.jsp"/>
+	<c:if test="${not empty requestScope.foundNothing }"><b>No events found...</b></c:if>
 	
-	<form action="eventDetails.htm" method="GET">
-			<div style="background-color: #ff793f; text-align: center;">
-				<h4><b><%=eventBean.getTitle()%></b></h4>
-				<input type="hidden" name="evDetailTitle" value="<%=eventBean.getTitle()%>">
+	<div class="row text-center text-lg-left">
+		<c:forEach items="${requestScope.events}" var="e">
+			<div class="col-lg-3 col-md-3 col-xs-9" style="background-color: #dadcef">
+				<form method="get" action="eventdetails">
+					<input type="hidden" name="eventID" value="${e.id}">
+					<h2><b>${e.title}</b></h2><br>
+					<input type="submit" class="btn-default" value="Details">
+				</form>
 			</div>
-			<div style="float: left; clear: left; margin-top: 2px"> <!--  -->
-					<img src="<%=eventBean.getPhoto()%>" alt="" height="350" width="550"/>
-			</div>			
-			<div style="float: left; clear: left; margin-top: 2px">
-				<br/>
-				Soon at <%=eventBean.getVenue()%>!<br/><br/>
-				- Category: <b><%=eventBean.getCategory()%></b> <br/>
-				- Date: <b><%=eventBean.getDate()%></b> <br/>
-				- Ticket Price: <b><%=eventBean.getTicketPrice()%></b> / Tickets available: <b><%=eventBean.getTotalTickets()%></b>
-				<div style="text-align: right; margin-top: 7px"><input type="submit" value="More info..."></div>
-			</div>
-				
-		</form>
+		</c:forEach>
 	</div>
 </body>
 </html>

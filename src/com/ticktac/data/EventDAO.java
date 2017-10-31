@@ -1,10 +1,12 @@
 package com.ticktac.data;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.ticktac.business.Event;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
@@ -28,6 +30,21 @@ public class EventDAO {
 		
 		return true;
 		
+	}
+	
+	public List<Event> searchEvents(String title, EntityManager em, UserTransaction tr) {
+		String prep = "SELECT e FROM Event e WHERE e.title LIKE :title";
+		try {
+			TypedQuery<Event> q = em.createQuery(prep, Event.class);
+			q.setParameter("title", "%" + title + "%"); // % needed for the LIKE statement in the query
+			
+			List<Event> events = q.getResultList();
+			return events;
+		} catch(Exception e) {
+			e.printStackTrace();
+			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
+			return null;
+		}
 	}
 	
 	public boolean addEvent(Event event, User user, EntityManager em, UserTransaction tr) {

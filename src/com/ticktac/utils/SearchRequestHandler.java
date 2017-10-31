@@ -1,16 +1,7 @@
 package com.ticktac.utils;
 
-/*
 import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.sun.xml.wss.impl.callback.DecryptionKeyCallback.Request;
-*/
-
-import java.io.*;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.*;
@@ -22,41 +13,39 @@ import com.ticktac.business.Event;
 
 public class SearchRequestHandler implements RequestHandler{
 	
-	private EventDAO eventData;
+	private EventDAO eventDAO;
 	
 	public SearchRequestHandler() {
-		eventData = new EventDAO();
+		eventDAO = new EventDAO();
 	}
 	
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String eTitle = null;	
-		String sView = "";
-	
-		eTitle = request.getParameter("searchBar");
-		
-		if (eTitle == null) {
-	  		sView = "index.jsp";
-	  	}
-		else {
-	  		Event bean = eventData.getInfo(eTitle);
-	  		if (bean == null) {
-	  			sView = "notfound.html";
-			}else {
-				System.out.println(eventData.getInfo(eTitle));
-				request.setAttribute("eventBean", bean);
-				sView = "searchResults.jsp";
-			}
-		}
-		return sView;
+		return null;
 	}
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException {
+		String eTitle = null;	
+		String view = "notfound.html";
+	
+		eTitle = request.getParameter("eTitle");
 		
-		return null;
+		if (eTitle != null) {
+			if(eTitle.isEmpty())
+				request.setAttribute("foundNothing", 0);
+			else {
+		  		List<Event> events = eventDAO.searchEvents(eTitle, em, tr);
+		  		if (events != null && !events.isEmpty())
+					request.setAttribute("events", events);
+				else
+					request.setAttribute("foundNothing", 0);
+			}
+			view = "searchResults.jsp";
+		}
+		return view;
 	}
 }
+ 
