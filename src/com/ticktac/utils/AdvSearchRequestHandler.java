@@ -20,30 +20,27 @@ public class AdvSearchRequestHandler implements RequestHandler{
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//System.out.println("Hey!");
-		String sView = "";
-	
-		String eCateg = (String) request.getParameter("evCategory");
-		String eVenue = (String) request.getParameter("evVenue");
-		String eDate = (String) request.getParameter("evDate");
-		
-		if (eCateg == null || eVenue == null) {
-	  		sView = "index.jsp";
-	  	}
-		else {
-			request.setAttribute("eventCategory", eCateg);
-			request.setAttribute("eventVenue", eVenue);
-			request.setAttribute("eventDate", eDate);
-			sView = "advSearchResults.jsp";
-		}
-		return sView;
+		return null;
 	}
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException {
+		String view = "";
 		
-		return null;
+		String eCateg = (String) request.getParameter("evCategory");
+		String eVenue = (String) request.getParameter("evVenue");
+		String eDate = (String) request.getParameter("evDate");
+		
+		if (eCateg == null || eVenue == null) {
+	  		view = "index.jsp";
+	  	}
+		else {
+			request.setAttribute("eventCategory", eCateg);
+			request.setAttribute("eventVenue", eVenue);
+			request.setAttribute("eventDate", eDate);
+			view = "advSearchResults.jsp";
+		}
+		return view;
 	}
 }

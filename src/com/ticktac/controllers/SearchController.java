@@ -19,7 +19,7 @@ import com.ticktac.utils.RequestHandler;
  * Servlet implementation class SearchController
  */
 @WebServlet(description = "This controller proccesses information about the users' search inputs.",
-		urlPatterns = {"/searchResults","/advSearchResults.htm"})
+		urlPatterns = {"/searchResults","/advSearchResults"})
 public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
@@ -35,7 +35,7 @@ public class SearchController extends HttpServlet {
     public void init() throws ServletException {
 	    // This will read mapping definitions and populate handlersMap (reads URLs)
     	handlersMap.put("/searchResults", new com.ticktac.utils.SearchRequestHandler());
-    	handlersMap.put("/advSearchResults.htm", new com.ticktac.utils.AdvSearchRequestHandler());
+    	handlersMap.put("/advSearchResults", new com.ticktac.utils.AdvSearchRequestHandler());
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 

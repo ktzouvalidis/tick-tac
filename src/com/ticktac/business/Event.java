@@ -41,7 +41,10 @@ public class Event implements Serializable {
 		this.title = title;
 		this.category = category;
 		this.venue = venue;
-		try { this.date = new SimpleDateFormat("yyyy-MM-dd").parse(date); }catch(Exception e) { e.printStackTrace(); }
+		// Managing the date input
+		String[] dateNtime = date.split("T");
+		String datetime = dateNtime[0] + " " + dateNtime[1] + ":00";
+		try { this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetime); }catch(Exception e) { e.printStackTrace(); }
 		this.info = info;
 		this.ticketPrice = ticketPrice;
 		this.totalTickets = totalTickets;
@@ -78,7 +81,7 @@ public class Event implements Serializable {
 	}
 
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getDate() {
 		return this.date;
 	}

@@ -7,6 +7,7 @@ import com.ticktac.business.Event;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.transaction.Status;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
@@ -51,11 +52,15 @@ public class EventDAO {
 		try {
 			tr.begin();
 			em.persist(event);
-			user.addEvent(event);
 			tr.commit();
+			user.addEvent(event);
 		} catch(Exception e) {
 			e.printStackTrace();
-			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
+			try {
+				if (tr.getStatus()==Status.STATUS_ACTIVE){
+					tr.rollback();
+				}
+			} catch (Exception se) {se.printStackTrace(); return false;}
 			return false;
 		}
 

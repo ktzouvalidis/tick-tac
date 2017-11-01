@@ -52,7 +52,7 @@
 						</div>
 						<div class="form-group">
 							<label for="title">Date</label><br/>
-							<input type="date" id="date" name="date" value="${sessionScope.eventBean.date}"/>
+							<input type="datetime-local" id="date" name="date" value="${sessionScope.eventBean.date}"/>
 						</div>
 						<div class="form-group">
 							<label for="info">Event information</label>
