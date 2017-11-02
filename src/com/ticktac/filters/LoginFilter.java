@@ -19,21 +19,13 @@ import com.ticktac.business.User;
 @WebFilter(dispatcherTypes = {
 				DispatcherType.REQUEST, 
 				DispatcherType.FORWARD
-		}, urlPatterns = { "/addevent.jsp", "/editaccount.jsp" }, servletNames = { "EventController", "AccountController"})
+		}, urlPatterns = { "/addevent.jsp", "/editevent.jsp", "/myevents.jsp", "/editaccount.jsp" }, servletNames = { "EventController", "AccountController"})
 public class LoginFilter implements Filter {
 	
     public LoginFilter() {}
 
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		
-	}
+	public void destroy() {}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest http = (HttpServletRequest) request;
 		User user= (User) http.getSession().getAttribute("userBean");
@@ -43,12 +35,7 @@ public class LoginFilter implements Filter {
 		
 		chain.doFilter(request, response);
 	}
-
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		
-	}
+	
+	public void init(FilterConfig fConfig) throws ServletException {}
 
 }
