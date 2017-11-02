@@ -43,7 +43,35 @@ public class EventDAO {
 			return events;
 		} catch(Exception e) {
 			e.printStackTrace();
-			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
+			try {
+				if (tr.getStatus()==Status.STATUS_ACTIVE)
+					tr.rollback();
+			} catch (Exception se) {se.printStackTrace(); return null;}
+			return null;
+		}
+	}
+	
+	public List<Event> searchEvents(String category, String venue, String date, EntityManager em, UserTransaction tr) {
+		String prep;
+		if(date.isEmpty() || date == "")
+			prep = "SELECT e FROM Event e WHERE e.category=:category AND e.venue LIKE :venue";
+		else
+			prep = "SELECT e FROM Event e WHERE e.category=:category AND e.venue LIKE :venue AND e.date LIKE :date";
+		try {
+			TypedQuery<Event> q = em.createQuery(prep, Event.class);
+			q.setParameter("category", category);
+			q.setParameter("venue", "%" + venue + "%");
+			if(!date.isEmpty() && date != "")
+				q.setParameter("date", "%" + date + "%");
+			
+			List<Event> events = q.getResultList();
+			return events;
+		} catch(Exception e) {
+			e.printStackTrace();
+			try {
+				if (tr.getStatus()==Status.STATUS_ACTIVE)
+					tr.rollback();
+			} catch (Exception se) {se.printStackTrace(); return null;}
 			return null;
 		}
 	}
@@ -57,9 +85,8 @@ public class EventDAO {
 		} catch(Exception e) {
 			e.printStackTrace();
 			try {
-				if (tr.getStatus()==Status.STATUS_ACTIVE){
+				if (tr.getStatus()==Status.STATUS_ACTIVE)
 					tr.rollback();
-				}
 			} catch (Exception se) {se.printStackTrace(); return false;}
 			return false;
 		}
@@ -95,8 +122,10 @@ public class EventDAO {
 			event.setTotalTickets(event.getTotalTickets() + moreTickets);
 			tr.commit();
 		} catch(Exception e) {
-			e.printStackTrace();
-			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
+			e.printStackTrace();try {
+				if (tr.getStatus()==Status.STATUS_ACTIVE)
+					tr.rollback();
+			} catch (Exception se) {se.printStackTrace(); return null;}
 			return null;
 		}
 		

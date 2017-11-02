@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import com.ticktac.utils.AdvSearchRequestHandler;
 import com.ticktac.utils.RequestHandler;
+import com.ticktac.utils.SearchRequestHandler;
 
 /**
  * Servlet implementation class SearchController
@@ -34,8 +36,8 @@ public class SearchController extends HttpServlet {
     
     public void init() throws ServletException {
 	    // This will read mapping definitions and populate handlersMap (reads URLs)
-    	handlersMap.put("/searchResults", new com.ticktac.utils.SearchRequestHandler());
-    	handlersMap.put("/advSearchResults", new com.ticktac.utils.AdvSearchRequestHandler());
+    	handlersMap.put("/searchResults", new SearchRequestHandler());
+    	handlersMap.put("/advSearchResults", new AdvSearchRequestHandler());
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 

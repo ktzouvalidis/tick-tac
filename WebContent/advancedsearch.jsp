@@ -15,48 +15,40 @@
 <body>
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
-	
-	<form action="advSearchResults.htm" method="GET">
-		<table align="center" style="margin-up: 20%" cellspacing="10">
-			<tr>
-				<td>
-					Category: 
-				</td>
-				<td>
-					<select id="evCategory" name="evCategory">
-						<option value="Classical">Classical</option>
-				  		<option value="Rock">Rock</option>
-				  		<option value="Metal">Metal</option>
-				  		<option value="Hip-Hop">Hip-Hop</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Venue:
-				</td>
-				<td>
-					<select name="evVenue">
-				  		<option value="Barcelona">Barcelona</option>
-				  		<option value="Madrid">Madrid</option>
-				  		<option value="Valencia">Valencia</option>
-				  		<option value="Seville">Seville</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Date:
-				</td>
-				<td>
-					<input lang="en" type="date" name="evDate">
-				</td>
-			</tr>
-			
-		</table><br/><br/>
-		<p align="center">
-			<button type="submit" class="btn btn-primary" style="height: 45px; width: 70px ; align-content: center; color: black; background-color: yellow">Go!</button>
-		</p>
-	</form>
+	<div class="container">
+		<div class="center" style="background-color: #ededed">
+			<form class="form-horizontal bv-form" action="advSearchResults" method="POST">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<td><label for="category">Category</label></td>
+							<td>
+								<select id="category" name="category">
+									<option value="Concert">Concert</option>
+							  		<option value="Festival">Festival</option>
+							  		<option value="Expedition">Expedition</option>
+							  		<option value="Theater">Theater</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="venue">Venue</label></td>
+							<td>
+								<input type="text" id="venue" name="venue" required/>
+							</td>
+						</tr>
+						<tr>
+							<td><label for="date">Date</label></td>
+							<td><input lang="en" type="date" name="date"></td>
+						</tr>
+					</tbody>
+				</table><br/>
+				<p align="center">
+					<input type="submit" class="btn btn-primary" value="Search"
+					style="color: black; background-color: yellow"/>
+				</p>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
