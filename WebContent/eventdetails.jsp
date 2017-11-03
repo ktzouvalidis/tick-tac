@@ -47,12 +47,19 @@
 							<p>${sessionScope.eventBean.info}"</p>
 						</div>
 					</div>
-					<form class="form-signin" action="buytickets" method="post">
-						<input type="hidden" name="deletion" value="1"/>
-						<div class="form-group">
-							<input type="submit" class="btn-default" id="btn-delete" name="submit" value="Buy Tickets!"/>
+					<br/>
+					<div class="offset-9">
+						<div class="row">
+							<c:choose>
+								<c:when test="${sessionScope.userBean == null }">
+									<a href="login.jsp"><i>Login </i></a> <i>to purchase ticket...</i>
+								</c:when>
+								<c:otherwise>
+									<a href="ticketPurchase.jsp" class="btn btn-primary" style="height: 40px; width: 120px ; align-content: center; color: black; background-color: yellow">Buy a ticket!</a>
+								</c:otherwise>
+							</c:choose>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
