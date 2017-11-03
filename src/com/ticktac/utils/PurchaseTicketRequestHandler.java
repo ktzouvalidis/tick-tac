@@ -2,7 +2,6 @@ package com.ticktac.utils;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -40,10 +39,7 @@ public class PurchaseTicketRequestHandler implements RequestHandler{
 		String sView = null;
 		Event eventBean = (Event)request.getSession().getAttribute("eventBean");
 	  	User userBean = (User)request.getSession().getAttribute("userBean");
-	  	
-
-	  	
-		
+	  		  	
 		if (eventBean != null) {
 			//Note: Decided not to have the option to buy multiple tickets, because they are all added to the same user.
 			Event ev = evDAO.buyTicket(eventBean, em, tr);
