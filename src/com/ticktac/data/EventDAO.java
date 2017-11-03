@@ -131,6 +131,25 @@ public class EventDAO {
 		
 		return event;
 	}
+	
+	public Event buyTicket(Event event, EntityManager em, UserTransaction tr) {
+		try {
+			tr.begin();
+			if(!em.contains(event)) // Is it being managed?
+				event = em.merge(event);
+			int sold = event.getSoldTickets();
+			event.setSoldTickets(++sold);
+			tr.commit();
+		}
+		catch (Exception e){
+			e.printStackTrace();try {
+				if (tr.getStatus()==Status.STATUS_ACTIVE)
+					tr.rollback();
+			} catch (Exception se) {se.printStackTrace(); return null;}
+			return null;
+		}
+		return event;
+	}
 
 	public boolean deleteEvent(Event event, User user, EntityManager em, UserTransaction tr) {
 		try {

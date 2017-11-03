@@ -39,7 +39,7 @@
 					<div class="form-group">
 						<h3><i>Available Tickets: </i></h3>
 						<!-- Calculate the available tickets of this event -->
-						<b>${sessionScope.eventBean.totalTickets}</b>
+						<b>Tickets sold: ${sessionScope.eventBean.soldTickets } / ${sessionScope.eventBean.totalTickets}</b>
 					</div>
 					<div class="form-group">
 						<h3><i>Event Information: </i></h3>
