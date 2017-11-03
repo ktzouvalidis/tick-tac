@@ -22,6 +22,12 @@ public class Ticket implements Serializable {
 	public Ticket() {
 	}
 
+	public Ticket(int code, Date dateOfSale, Event eventBean, User user){
+		this.code = code;
+		this.dateOfSale = dateOfSale;
+		this.eventBean = eventBean;
+		this.user = user;
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
