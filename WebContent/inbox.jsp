@@ -17,27 +17,21 @@
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	<div class="error-message">
-		<!-- ADMINISTRATOR - One more check with value -1 to show that there is no user with that email account -->
-		<c:choose>
-			<c:when test="${requestScope.messageSent == 1 }"><b>Message sent!</b></c:when>
-			<c:when test="${requestScope.messageSent == 0 }"><b>Message couldn't send... Please try again</b></c:when>
-		</c:choose>
+		<c:if test="${requestScope.noMessages == 1 }"><b>No messages</b></c:if>
 	</div>
 	<div class="container">
-		<div class="center" style="background-color: #ededed">
-			<div class="row">
-				<div class="col-lg-9">
-					<form class="form-signin" action="sendmessage" method="post">
-						<div class="form-group">
-							<textarea rows="5" cols="75" class="form-control" name="message" placeholder="Your message"></textarea>
-						</div>
-						<div class="form-group">
-							<input type="hidden" id="destination" name="destination" value="1"/> <!-- Knowing that the id of the administrator will be always 1 -->
-							<input type="submit" class="btn-default" name="submit" value="Send"/>
-						</div>
+		<div class="row text-center text-lg-left">
+			<c:set var="i" value="1" scope="page"/> <!-- Use to show the # of the message displayed -->
+			<c:forEach items="${applicationScope['messages']}" var="m">
+				<div class="col-lg-3 col-md-3" style="background-color: #dadcef">
+					<form method="post" action="showmessage">
+						<b>Message <i>#${i}</i></b>
+						<input type="hidden" name="message_id" value="${i - 1}">
+						<input type="submit" class="btn-default" value="Show message">
 					</form>
 				</div>
-			</div>
+				<c:set var="i" value="${i + 1}" scope="page"/>
+			</c:forEach>
 		</div>
 	</div>
 </body>

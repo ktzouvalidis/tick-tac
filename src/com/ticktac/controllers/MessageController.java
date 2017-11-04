@@ -12,19 +12,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ticktac.utils.EditAccountRequestHandler;
-import com.ticktac.utils.LogInRequestHandler;
-import com.ticktac.utils.LogOutRequestHandler;
+import com.ticktac.utils.BrowseMessageRequestHandler;
 import com.ticktac.utils.MessageRequestHandler;
-import com.ticktac.utils.RequestHandler;
 import com.ticktac.utils.SendMessageRequestHandler;
-import com.ticktac.utils.SignUpRequestHandler;
+import com.ticktac.utils.ShowMessageRequestHandler;
 
 /**
  * Servlet implementation class MessageController
  */
 @WebServlet(description = "Controller for handling the messaging functions",
-urlPatterns = { "/sendmessage", "/readmessage", "/browsemessages"})
+urlPatterns = { "/sendmessage", "/readmessage", "/browsemessages", "/showmessage"})
 public class MessageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -41,7 +38,8 @@ public class MessageController extends HttpServlet {
     public void init() {
 		handlersMap.put("/sendmessage", new SendMessageRequestHandler());
 		//handlersMap.put("/readmessage", new LogOutRequestHandler());
-		//handlersMap.put("/browsemessages", new SignUpRequestHandler());
+		handlersMap.put("/browsemessages", new BrowseMessageRequestHandler());
+		handlersMap.put("/showmessage", new ShowMessageRequestHandler());
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

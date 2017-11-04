@@ -1,12 +1,11 @@
 package com.ticktac.utils;
 
 import java.io.IOException;
+import java.util.List;
 
-import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
-import javax.jms.MessageProducer;
+import javax.jms.Message;
 import javax.jms.Queue;
-import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
-public class SendMessageRequestHandler implements MessageRequestHandler {
+public class ShowMessageRequestHandler implements MessageRequestHandler {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -27,31 +26,22 @@ public class SendMessageRequestHandler implements MessageRequestHandler {
 			UserTransaction tr) throws ServletException, IOException {
 		return null;
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * Main message request handler
-	 * @see com.ticktac.utils.MessageRequestHandler#handleRequest(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.jms.ConnectionFactory, javax.jms.Queue)
-	 */
+
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, ConnectionFactory cf,
 			Queue queue) throws ServletException, IOException {
 		String view = "notfound.html";
+		
+		@SuppressWarnings("unchecked")
+		List<Message> messages = (List<Message>) request.getServletContext().getAttribute("messages");
+		Message m = (Message) messages.get(Integer.parseInt(request.getParameter("message_id")));
 		try {
-			Connection connection = cf.createConnection();
-			Session session = connection.createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
-			MessageProducer messageProducer = session.createProducer(queue);
-			TextMessage textMessage = session.createTextMessage(request.getParameter("message"));
-			messageProducer.send(textMessage);
-			
-			messageProducer.close();
-			session.close();
-			connection.close();
-			
-			request.setAttribute("messageSent", 1);
-			view = "sendmessage.jsp";
+			if(m instanceof TextMessage) {
+				TextMessage message = (TextMessage) m;
+				request.setAttribute("message", message.getText());
+				view = "showmessage.jsp";
+			}
 		} catch(Exception e) {
-			request.setAttribute("messageSent", 0);
 			e.printStackTrace();
 		}
 		
