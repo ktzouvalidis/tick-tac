@@ -19,7 +19,7 @@ import com.ticktac.business.User;
 @WebFilter(dispatcherTypes = {
 				DispatcherType.REQUEST, 
 				DispatcherType.FORWARD
-		}, urlPatterns = { "/addevent.jsp", "/editevent.jsp", "/myevents.jsp", "/editaccount.jsp" }, servletNames = { "EventController", "AccountController"})
+		}, urlPatterns = { "/addevent.jsp", "/editevent.jsp", "/myevents.jsp", "/editaccount.jsp", "/inbox.jsp" }, servletNames = { "EventController", "AccountController"})
 public class LoginFilter implements Filter {
 	
     public LoginFilter() {}

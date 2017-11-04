@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Change your event</title>
-   <!-- CSS -->
+	<!-- CSS -->
 	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css" type="text/css"/>
 	<link rel="stylesheet" href="includes/css/main.css" type="text/css"/>
 	<!-- JS -->

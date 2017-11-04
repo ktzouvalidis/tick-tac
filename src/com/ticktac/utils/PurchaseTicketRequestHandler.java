@@ -28,7 +28,6 @@ public class PurchaseTicketRequestHandler implements RequestHandler{
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -36,7 +35,7 @@ public class PurchaseTicketRequestHandler implements RequestHandler{
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException {
 		
-		String sView = null;
+		String sView = "notfound.html";
 		Event eventBean = (Event)request.getSession().getAttribute("eventBean");
 	  	User userBean = (User)request.getSession().getAttribute("userBean");
 	  		  	
@@ -48,7 +47,7 @@ public class PurchaseTicketRequestHandler implements RequestHandler{
 			//Random 5-digit number to be used as Ticket Code (NOT the Ticket ID)
 		  	int tCode = (int) (10000 + Math.random() * (99999-10000));
 		  	
-		  	//Should we use the java.sql.Date import instead of java.util.Date?
+		  	//Should we use the java.sql.Date import instead of java.util.Date? - (Kostas) java.util.Date is fine :)
 		  	Date currentDate = new Date();
 		  	
 		  	//Creating and adding the ticket to the database.
@@ -56,8 +55,6 @@ public class PurchaseTicketRequestHandler implements RequestHandler{
 		  	tickDAO.addTicket(ticket, userBean, em, tr);
 		  	
 		  	sView = "purchaseComplete.jsp";
-		}else {
-			sView = "notfound.html";
 		}
 		
 		return sView;

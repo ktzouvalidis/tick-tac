@@ -41,6 +41,9 @@
 					</li>
 					</c:when>
 					<c:otherwise>
+					<li class="nav_item">
+						<a class="nav-link" href="inbox.jsp">Inbox</a>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href='logout'>Log Out</a>
 					</li>

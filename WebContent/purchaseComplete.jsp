@@ -18,6 +18,7 @@
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	
 	<br/>
+	<!-- No need to go to a new page, it can return to the previous page, check an attribute and print a message -->
 	<h4 style="text-align: center;">Thank you!</h4>
 
 </body>

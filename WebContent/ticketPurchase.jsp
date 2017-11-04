@@ -19,7 +19,7 @@
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	
 	<br/><br/>
-	<div style="margin-left: 40%">
+	<div style="margin-left: 40%"> <!-- Add this cool style in the container class in main.css -->
 		<div class="container">
 			<form method="post"></form>
 			<div class="center" style="background-color: #ededed">
