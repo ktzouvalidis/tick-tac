@@ -20,16 +20,23 @@
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	<c:if test="${not empty requestScope.foundNothing }"><b>No events found...</b></c:if>
 	
-	<div class="row text-center text-lg-left">
-		<c:forEach items="${requestScope.events}" var="e">
-			<div class="col-lg-3 col-md-3 col-xs-9" style="background-color: #dadcef">
-				<form method="get" action="eventdetails">
-					<input type="hidden" name="eventID" value="${e.id}">
-					<h2><b>${e.title}</b></h2><br>
-					<input type="submit" class="btn-default" value="Details">
-				</form>
-			</div>
-		</c:forEach>
+	<div class="container" style="top: 25px">
+		<div class="offset-4" style="margin-top: 20px;">
+			<c:forEach items="${requestScope.events}" var="e">
+				<br/>
+				<div class="row">
+					<div class="col-10" style="background-color: #D3D2D2; border: 1px solid black;">
+						<form method="get" action="eventdetails">
+							<input type="hidden" name="eventID" value="${e.id}">
+							<h2><b>${e.title}</b></h2><br/>
+							<img src="${e.photo}" alt="" height="350" width="550"/>
+							<input type="submit" class="btn-default" value="Details">
+						</form><br/>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
+	
 </body>
 </html>
