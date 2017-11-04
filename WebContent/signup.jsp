@@ -18,42 +18,43 @@
 <body>
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
-	<div class="container">
-		<div class="center" style="background-color: #ededed">
-			<div class="row">
-				<div class="container-fluid banner"><h1>Sign Up</h1></div>
-				<div class="col-lg-12">
-					<form class="form-signup" id="form-signup" action="signup" method="post">
-						<h2 class="form-signin-heading">Sign Up</h2>
-						<div class="form-group">
-							<label for="name">Name</label>
-							<input type="text" class="form-control" name="name" placeholder="Name" required/>
-						</div>
-						<div class="form-group">
-							<label for="surname">Surname</label>
-							<input type="text" class="form-control" name="surname" placeholder="Surname" required/>
-						</div>
-						<div class="form-group">
-							<label for="email">Email Address</label>
-							<input type="email" class="form-control" name="email" placeholder="E-mail" required/>
-						</div>
-						<div class="form-group">
-							<label for="password">Password</label>
-							<input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required/>
-						</div>
-						<div class="form-group">
-							<label for="password">Confirm Password</label>
-							<input type="password" class="form-control" id="cfmpass" name="cfmpass" placeholder="Password Confirmation" required/>
-							<div class="error-message">
-							<c:if test="${not empty requestScope.passValidation}">
-								<b>Confirmation password must be the same as the password you entered.</b>
-							</c:if>
+	<div class="container" style ="margin-top:15px">
+		<div style="margin-left:40%">
+			<div class="center" style="background-color: #cfdfe3; border: 1px solid black">
+				<div class="row">
+					<div class="container-fluid banner"><h1>Sign Up</h1></div>
+					<div class="col-lg-12">
+						<form class="form-signup" id="form-signup" action="signup" method="post">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" class="form-control" name="name" placeholder="Name" required/>
 							</div>
-						</div>
-						<div class="form-group">
-							<input type="submit" class="btn-default" name="submit"/>
-						</div>
-					</form>
+							<div class="form-group">
+								<label for="surname">Surname</label>
+								<input type="text" class="form-control" name="surname" placeholder="Surname" required/>
+							</div>
+							<div class="form-group">
+								<label for="email">Email Address</label>
+								<input type="email" class="form-control" name="email" placeholder="E-mail" required/>
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required/>
+							</div>
+							<div class="form-group">
+								<label for="password">Confirm Password</label>
+								<input type="password" class="form-control" id="cfmpass" name="cfmpass" placeholder="Password Confirmation" required/>
+								<div class="error-message">
+								<c:if test="${not empty requestScope.passValidation}">
+									<b>Confirmation password must be the same as the password you entered.</b>
+								</c:if>
+								</div>
+							</div>
+							<div class="form-group" align="center">
+								<input type="submit" class="btn btn-primary" name="submit" value="Sign Up!" style="background-color: #206dc4;"/>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
