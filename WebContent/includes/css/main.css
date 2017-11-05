@@ -5,6 +5,8 @@
 	padding: 30px;
   	display: inline-block;
   	align-items: center;
+  	background-color: #cfdfe3;
+  	border: 1px solid black
 }
 
 .banner {

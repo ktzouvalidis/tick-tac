@@ -19,7 +19,7 @@
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	<div class="container" style ="margin-top:55px">
 		<div style="margin-left:45%">
-			<div class="center" style="background-color: #cfdfe3; border: 1px solid black">
+			<div class="center">
 				<div class="row">
 					<div class="col-lg-12">
 						<form class="form-signin" action="login" method="post">

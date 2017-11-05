@@ -30,7 +30,7 @@
 	</div>
 	<div class="container" style="margin-top:25px">
 		<div style="margin-left:40%">
-			<div class="center" style="background-color: #ededed; border: 1px solid black">
+			<div class="center">
 				<div class="row">
 					<div class="col-lg-9">
 						<form action="addevent" method="post">

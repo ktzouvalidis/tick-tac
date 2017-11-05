@@ -20,7 +20,7 @@
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	<div class="container" style ="margin-top:15px">
 		<div style="margin-left:40%">
-			<div class="center" style="background-color: #cfdfe3; border: 1px solid black">
+			<div class="center">
 				<div class="row">
 					<div class="container-fluid banner"><h1>Sign Up</h1></div>
 					<div class="col-lg-12">

@@ -35,7 +35,7 @@
 	</div>
 	<div class="container">
 		<div style="margin-left: 30%; margin-top: 25px">
-			<div class="center" style="background-color: #ededed; border: 1px solid black">
+			<div class="center">
 				<div class="row">
 					<div class="col-lg-9">
 						<form class="form-signin" action="updateevent" method="post">
