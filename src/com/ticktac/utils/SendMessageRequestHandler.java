@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
+import javax.jms.Message;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
@@ -13,6 +14,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
+
+import com.ticktac.business.User;
 
 public class SendMessageRequestHandler implements MessageRequestHandler {
 
@@ -41,8 +44,17 @@ public class SendMessageRequestHandler implements MessageRequestHandler {
 			Connection connection = cf.createConnection();
 			Session session = connection.createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
 			MessageProducer messageProducer = session.createProducer(queue);
-			TextMessage textMessage = session.createTextMessage(request.getParameter("message"));
-			messageProducer.send(textMessage);
+			
+			Message message = session.createTextMessage(request.getParameter("message")); // Always a TextMessage
+			// The ID of the User as the receiver (Should be always 1 if the logged in user is not the administrator)
+			message.setIntProperty("receiver_id", Integer.parseInt(request.getParameter("receiver")));
+			// The ID of the User as the sender
+			message.setIntProperty("sender_id", ((User)request.getSession().getAttribute("userBean")).getId());
+			// The Fullname of the User as the sender 
+			message.setStringProperty("sender_name", ((User)request.getSession().getAttribute("userBean")).getName() + " " +
+					((User)request.getSession().getAttribute("userBean")).getSurname());
+			
+			messageProducer.send(message);
 			
 			messageProducer.close();
 			session.close();

@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import com.ticktac.business.User;
+
 public class BrowseMessageRequestHandler implements MessageRequestHandler {
 	
 	/* A constant String that holds the property value of the receiver's ID
@@ -44,7 +46,8 @@ public class BrowseMessageRequestHandler implements MessageRequestHandler {
 		try {
 			Connection connection = cf.createConnection();
 			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			QueueBrowser browser = session.createBrowser(queue); // Without filtering the messages
+			// Filtering the messages - receiver_id should be equal to the id of the current logged in user
+			QueueBrowser browser = session.createBrowser(queue, "receiver_id = " + ((User) request.getSession().getAttribute("userBean")).getId());
 			
 			connection.start();
 			@SuppressWarnings("unchecked")
@@ -52,6 +55,7 @@ public class BrowseMessageRequestHandler implements MessageRequestHandler {
 			List<TextMessage> messages = new ArrayList<TextMessage>();
 			while(messageCollection.hasMoreElements()) {
 				Message message = messageCollection.nextElement();
+				
 				if(message instanceof TextMessage)
 					messages.add((TextMessage) message);
 			}

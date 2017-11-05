@@ -19,6 +19,7 @@
 	<div class="error-message">
 		<c:if test="${requestScope.noMessages == 1 }"><b>No messages</b></c:if>
 	</div>
+	<a class="nav-link" href="sendmessage.jsp">Send new message to administrator</a>
 	<div class="container">
 		<div class="row text-center text-lg-left">
 			<c:set var="i" value="1" scope="page"/> <!-- Use to show the # of the message displayed -->

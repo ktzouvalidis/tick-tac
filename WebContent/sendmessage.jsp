@@ -32,7 +32,7 @@
 							<textarea rows="5" cols="75" class="form-control" name="message" placeholder="Your message"></textarea>
 						</div>
 						<div class="form-group">
-							<input type="hidden" id="destination" name="destination" value="1"/> <!-- Knowing that the id of the administrator will be always 1 -->
+							<input type="hidden" id="receiver" name="receiver" value="1"/> <!-- Knowing that the id of the administrator will be always 1 -->
 							<input type="submit" class="btn-default" name="submit" value="Send"/>
 						</div>
 					</form>
