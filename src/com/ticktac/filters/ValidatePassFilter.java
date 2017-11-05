@@ -17,19 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 urlPatterns = { "/signup" }, servletNames = {"AccountController"})
 public class ValidatePassFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
     public ValidatePassFilter() {}
 
-	/**
-	 * @see Filter#destroy()
-	 */
 	public void destroy() {}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest rqst = (HttpServletRequest) request;
 		String pass = (String) rqst.getParameter("pass");
@@ -42,11 +33,6 @@ public class ValidatePassFilter implements Filter {
 		chain.doFilter(request, response);
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-	}
+	public void init(FilterConfig fConfig) throws ServletException {}
 
 }

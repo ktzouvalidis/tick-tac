@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
     import="java.util.HashMap"
@@ -21,7 +22,7 @@
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	
-	
+	<!-- These Scriptlets need to be removed.. -->
 	<%
 		String category = (String) request.getAttribute("eventCategory");
 		String venue = (String) request.getAttribute("eventVenue");
@@ -35,7 +36,7 @@
 	 	for (Map.Entry<String,Event> entry : eventMap.entrySet()){ 		 //for every entry in eventMap
 	 		if(entry.getValue().getCategory().compareTo(category) == 0  //if the entry's category,
 	 		   && entry.getValue().getVenue().compareTo(venue) == 0	   //the entry's venue,
-	 		   && entry.getValue().getDate().compareTo(date) == 0) {  //AND the enty's date matches the ones we got advancesearch.jsp, load them here.
+	 		   && entry.getValue().getDate().compareTo(new SimpleDateFormat("yyyy-MM-dd").parse(date)) == 0) {  //AND the enty's date matches the ones we got advancesearch.jsp, load them here.
 	
 	 			String title = (String) entry.getValue().getTitle();
 	 			%> 
@@ -47,14 +48,14 @@
 		 					<input type="hidden" name="evDetailTitle" value="<%=title%>">
 		 				</div>
 		 				<div style="float: left; clear: left; margin-top: 10px">
-							<img src="<%=entry.getValue().getPicture()%>" alt="" height="150" width="260"/>
+							<img src="<%=entry.getValue().getPhoto()%>" alt="" height="150" width="260"/>
 						</div>		
 						<div style="float: left; clear: left; margin-top: 2px">
 							<br/>
 							<h6>Soon at <%=entry.getValue().getVenue()%>!<br/></h6>
 							- Date: <b><%=entry.getValue().getDate()%></b> <br/>
-							- Ticket Price: <b><%=entry.getValue().getTicket_price()%></b><br/>
-							- Number of Tickets: <b><%=entry.getValue().getTotal_tickets()%></b>
+							- Ticket Price: <b><%=entry.getValue().getTicketPrice()%></b><br/>
+							- Number of Tickets: <b><%=entry.getValue().getTotalTickets()%></b>
 							<div style="text-align: right; margin-top: 7px"><input type="submit" value="More info..."></div>
 						</div>
 		 		</form>

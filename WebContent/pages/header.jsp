@@ -23,15 +23,15 @@
 				<p class="navbar-text" style="padding-right: 40px">Signed in as: ${sessionScope.userBean.name}</p>
 			</c:otherwise>
 		</c:choose>
-		<form class="form-inline" action="searchResults.htm" method="GET">
+		<form class="form-inline" action="searchResults" method="POST">
        		<div class="form-group">
-         			<ul id="adv-search">
-          				<li><input type="text" name="searchBar" class="form-control" placeholder="Search" style="margin-right: 10px;margin-top: 10px"/></li>
-          				<li><a href="advancedsearch.jsp">Advanced search...</a></li>
-          			</ul>
-         			<button type="submit" class="btn btn-primary">Search</button>
+         		<ul id="adv-search">
+          			<li><input type="text" name="eTitle" class="form-control" placeholder="Search" style="margin-right: 10px;margin-top: 10px"/></li>
+          			<li><a href="advancedsearch.jsp">Advanced search...</a></li>
+          		</ul>
+         		<button type="submit" class="btn btn-primary">Search</button>
        		</div>
-     		</form>
+		</form>
      		<div>
      			<ul class="navbar-nav">
 				<c:choose>
@@ -41,6 +41,9 @@
 					</li>
 					</c:when>
 					<c:otherwise>
+					<li class="nav_item">
+						<a class="nav-link" href="browsemessages">Inbox</a>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href='logout'>Log Out</a>
 					</li>

@@ -1,16 +1,19 @@
 package com.ticktac.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.Map;
 
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.UserTransaction;
 
+import com.ticktac.utils.AdvSearchRequestHandler;
 import com.ticktac.utils.RequestHandler;
 import com.ticktac.utils.SearchRequestHandler;
 
@@ -18,62 +21,39 @@ import com.ticktac.utils.SearchRequestHandler;
  * Servlet implementation class SearchController
  */
 @WebServlet(description = "This controller proccesses information about the users' search inputs.",
-		urlPatterns = {"/searchResults.htm","/advSearchResults.htm"})
+		urlPatterns = {"/searchResults","/advSearchResults", "/purchaseComplete.htm"})
 public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
-	 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
+	@PersistenceContext(unitName="ticktacUP")
+	EntityManager em;
+	@Resource
+	UserTransaction tr;
+	
     public SearchController() {
         super();
-        // TODO Auto-generated constructor stub
     }
-    
-    private Map<String, Object> handlerHash = new HashMap<String, Object>();
     
     public void init() throws ServletException {
-
-	    // This will read mapping definitions and populate handlerHash (reads URLs)
-	    handlerHash.put("/searchResults.htm", new com.ticktac.utils.SearchRequestHandler());
-	    handlerHash.put("/advSearchResults.htm", new com.ticktac.utils.AdvSearchRequestHandler());
+	    // This will read mapping definitions and populate handlersMap (reads URLs)
+    	handlersMap.put("/searchResults", new SearchRequestHandler());
+    	handlersMap.put("/advSearchResults", new AdvSearchRequestHandler());
+    	handlersMap.put("/purchaseComplete.htm", new com.ticktac.utils.PurchaseTicketRequestHandler());
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("In the servlet!!!");
-		
-		String sUrl = request.getServletPath();
-		//Retrieve from the HashMap the instance of the class which implements the logic of the requested url
-		Object aux = handlerHash.get(sUrl);
-		  
-		//If no instance is retrieved redirects to error
-		if (aux == null) {
-			//Error page.
-			System.out.println("No object for this url...");
-			response.sendRedirect("notfound.html");
-		}
-		  
-		//Call the method handleRequsest of the instance in order to obtain the url 
-		else {
-			RequestHandler rh = (RequestHandler) aux; 
-			//Dispatch the request to the url obtained
-			String sView = rh.handleRequest(request, response);
-			request.getRequestDispatcher(sView).forward(request, response);
-		}
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+		doPost(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String path = request.getServletPath();
+		String viewURL = "notfound.html";
+		RequestHandler handler = (RequestHandler) handlersMap.get(path);
+		
+		if (handler != null)
+			viewURL = handler.handleRequest(request, response, em, tr);
+		
+		request.getRequestDispatcher(viewURL).forward(request, response);
 	}
 
 }

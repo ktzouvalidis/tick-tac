@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import com.ticktac.business.Event;
+import com.ticktac.business.User;
 import com.ticktac.data.EventDAO;
 
 public class AddEventRequestHandler implements RequestHandler {
@@ -20,34 +22,41 @@ public class AddEventRequestHandler implements RequestHandler {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String view = "";
-		String title = (String)request.getParameter("title");
-		String date = (String)request.getParameter("date");
-		String place = (String)request.getParameter("place");
-		int tickets = Integer.parseInt(request.getParameter("tickets"));
-		double price = Double.parseDouble(request.getParameter("price"));
-		String category = (String)request.getParameter("category");
-		String info = (String)request.getParameter("info");
 		
-		if(category.isEmpty() || info.isEmpty())
-			view = "addevent.jsp";
-		else {
-			if(eventDAO.addEvent(title, date, place, tickets, price, category, info))
-				request.setAttribute("eventExists", 0);
-			else
-				request.setAttribute("eventExists", 1);
-				
-			view = "addevent.jsp";
-		}
-		
-		return view;
+		return null;
 	}
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException {
+		String view = "";
+		String title = (String)request.getParameter("title");
+		String date = (String)request.getParameter("date");
+		String venue = (String)request.getParameter("place");
+		int totalTickets = Integer.parseInt(request.getParameter("tickets"));
+		float ticketPrice = Float.parseFloat(request.getParameter("price"));
+		String category = (String)request.getParameter("category");
+		String info = (String)request.getParameter("info");
+		User user = (User) request.getSession().getAttribute("userBean");
 		
-		return null;
+		if(user == null)
+			view = "notfound.jsp";
+		else {
+			if(category.isEmpty() || info.isEmpty())
+				view = "addevent.jsp";
+			else {
+				Event event = new Event(title, category, venue, date, info, ticketPrice, totalTickets, user);
+				if(eventDAO.addEvent(event, user, em, tr)) {
+					request.setAttribute("eventExists", 0);
+				}
+				else
+					request.setAttribute("eventExists", 1);
+					
+				view = "addevent.jsp";
+			}
+		}
+		
+		return view;
 	}
 
 }

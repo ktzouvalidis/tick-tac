@@ -1,6 +1,7 @@
 package com.ticktac.utils;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -8,42 +9,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import com.ticktac.business.Event;
+import com.ticktac.data.EventDAO;
+
 
 
 public class AdvSearchRequestHandler implements RequestHandler{
 
+	private EventDAO eventDAO;
 	
 	public AdvSearchRequestHandler() {
-		// TODO Auto-generated constructor stub
+		eventDAO = new EventDAO();		
 	}
 	
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//System.out.println("Hey!");
-		String sView = "";
-	
-		String eCateg = (String) request.getParameter("evCategory");
-		String eVenue = (String) request.getParameter("evVenue");
-		String eDate = (String) request.getParameter("evDate");
-		
-		if (eCateg == null || eVenue == null) {
-	  		sView = "index.jsp";
-	  	}
-		else {
-			request.setAttribute("eventCategory", eCateg);
-			request.setAttribute("eventVenue", eVenue);
-			request.setAttribute("eventDate", eDate);
-			sView = "advSearchResults.jsp";
-		}
-		return sView;
+		return null;
 	}
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException {
+		String view = "notfound.html";
 		
-		return null;
+		String category = (String) request.getParameter("category");
+		String venue = (String) request.getParameter("venue");
+		String date = (String) request.getParameter("date");
+		
+		if (category != null && venue != null && date != null) {
+	  		List<Event> events = eventDAO.searchEvents(category, venue, date, em, tr);
+	  		if(events != null && !events.isEmpty())
+				request.setAttribute("events", events);
+	  		else
+				request.setAttribute("foundNothing", 0);
+
+  			view = "searchResults.jsp";
+		}
+		return view;
 	}
 }

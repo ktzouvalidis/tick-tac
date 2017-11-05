@@ -1,0 +1,45 @@
+DROP TABLE User;
+DROP TABLE Event;
+
+CREATE TABLE User (
+'id' int(11) NOT NULL AUTO_INCREMENT,
+'name' varchar(45) NOT NULL,
+'surname' varchar(45) NOT NULL,
+'email' varchar(45) NOT NULL,
+'password' varchar(32) NOT NULL,
+'photo' varchar(100) DEFAULT NULL,
+PRIMARY KEY ('id'),
+UNIQUE KEY 'email_UNIQUE' ('email')
+)ENGINE=InnoDB AUTO INCREMENT=1 DEFAULT CHARSET=utf8
+
+CREATE TABLE Event (
+'id' int(11) NOT NULL AUTO_INCREMENT,
+'title' varchar(45) NOT NULL,
+'category' enum('Concert', 'Festival', 'Expedition', 'Theater') NOT NULL,
+'photo' varchar(100) DEFAULT NULL,
+'ticketPrice' float NOT NULL,
+'date' datetime DEFAULT NULL,
+'venue' varchar(45) NOT NULL,
+'info' varchar(300) DEFAULT NULL,
+'totalTickets' int(11) DEFAULT NULL,
+'soldTickets' int(11) DEFAULT NULL,
+'user_id' int(11) NOT NULL,
+PRIMARY KEY ('id'),
+UNIQUE KEY 'title_UNIQUE' ('title'),
+KEY 'manager_idx' ('user_id'),
+CONSTRAINT 'user_id' FOREIGN KEY ('user_id') REFERENCES 'user' ('id') ON UPDATE NO ACTION
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+CREATE TABLE Ticket (
+'idTicket' int(11) NOT NULL AUTO_INCREMENT,
+'dateOfSale' datetime NOT NULL,
+'code' int(11) NOT NULL,
+'buyer' int(11) NOT NULL,
+'event' int(11) NOT NULL,
+PRIMARY KEY ('idTicket'),
+UNIQUE KEY 'code_UNIQUE' ('code'),
+KEY 'buyer_idx' ('buyer'),
+KEY 'event_idx' ('event'),
+CONSTRAINT 'buyer' FOREIGN KEY ('buyer') REFERENCES 'user' ('id') ON UPDATE NO ACTION,
+CONSTRAINT 'event' FOREIGN KEY ('event') REFERENCES 'event' ('id') ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

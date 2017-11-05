@@ -3,10 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Tick-Tac: Event Search</title>
+<title>Change your event</title>
 	<!-- CSS -->
 	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css" type="text/css"/>
 	<link rel="stylesheet" href="includes/css/main.css" type="text/css"/>
@@ -18,25 +17,21 @@
 	<%@ page import="com.ticktac.utils.Color" %>
     <jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
-	<c:if test="${not empty requestScope.foundNothing }"><b>No events found...</b></c:if>
-	
-	<div class="container" style="top: 25px">
-		<div class="offset-4" style="margin-top: 20px;">
-			<c:forEach items="${requestScope.events}" var="e">
-				<br/>
-				<div class="row">
-					<div class="col-10" style="background-color: #D3D2D2; border: 1px solid black;">
-						<form method="get" action="eventdetails">
-							<input type="hidden" name="eventID" value="${e.id}">
-							<h2><b>${e.title}</b></h2><br/>
-							<img src="${e.photo}" alt="" height="350" width="550"/>
-							<input type="submit" class="btn-default" value="Details">
-						</form><br/>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
+	<p> Your events</p>
+	<c:if test="${not empty requestScope.successfullDeletion }"><b>Event deleted successfully</b></c:if>
+	<c:if test="${not empty sessionScope.userBean }">
+	<div class="row text-center text-lg-left">
+		 
+		<c:forEach items="${sessionScope.userBean.events}" var="e">
+			<div class="col-lg-3 col-md-3 col-xs-9" style="background-color: #dadcef">
+				<form method="post" action="editevent">
+					<input type="hidden" name="eventID" value="${e.id}">
+					<input type="submit" class="btn-default" value="${e.title}">
+				</form>
+			</div>
+		</c:forEach>
 	</div>
-	
+	</c:if>
+		
 </body>
 </html>
