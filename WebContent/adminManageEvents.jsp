@@ -17,11 +17,6 @@
 <body>	
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
-	<h1>Admin page</h1>
-	<a href="adminManageUsers.jsp">Manage Users</a>
-	<br>
-	<a href="adminManageEvents.jsp">Manage Events</a>
-	<br>
-	<a href="adminMessaging.jsp">Communicate With Event Managers</a>
+	<h1>Manage Events</h1>
 </body>
 </html>
