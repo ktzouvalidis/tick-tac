@@ -23,12 +23,13 @@ public class TicketDAO {
 		return tickets;
 	}
 	
-	public boolean addTicket(Ticket ticket, User user, EntityManager em, UserTransaction tr) {
+	public boolean addTicket(Ticket ticket, User user, Event event, EntityManager em, UserTransaction tr) {
 		try {
 			tr.begin();
 			em.persist(ticket);
 			tr.commit();
 			user.addTicket(ticket);
+			event.addTicket(ticket);
 		} catch(Exception e) {
 			e.printStackTrace();
 			try {

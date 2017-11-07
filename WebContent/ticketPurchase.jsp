@@ -21,35 +21,43 @@
 	<br/><br/>
 	<div style="margin-left: 40%"> <!-- Add this cool style in the container class in main.css -->
 		<div class="container">
-			<form method="post"></form>
-			<div class="center" style="background-color: #ededed">
-				<div class="row">
-					<div class="container-fluid banner"><h1>Payment</h1></div>
-					<br/>
-					<div class="col-lg-12" style="top:25px">
-						<div class="form-group">
-							<label for="cardnumber">Credit Card Number</label>
-							<input type="text" class="form-control" name="cardnumber" placeholder="16 digits." required maxlength="16"/>
-						</div>
-						<div class="form-group">
-							<label>Expiration Date</label><br/>
-							<input lang="en" type="date" name="expiration" required>
-						</div>
-						<div class="form-group">
-							<label for="cv2">CV2 Code</label>
-							<input type="text" class="form-control" name="cv2" placeholder="Last 3 digits." required maxlength="16"/>
+			<form action="purchaseComplete" method="post">
+				<div class="center" style="background-color: #ededed">
+					<div class="row">
+						<div class="container-fluid banner"><h1>Payment</h1></div>
+						<br/>
+						<div class="col-lg-12" style="top:25px">
+							<div class="form-group">
+								<label for="amount">Tickets amount</label>
+								<div class="col-sm-3">
+									<input type="number" class="form-control" name="amount" min="1" max="10" value="0"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cardnumber">Credit Card Number</label>
+								<input type="text" class="form-control" name="cardnumber" placeholder="16 digits." required maxlength="16"/>
+							</div>
+							<div class="form-group">
+								<label>Expiration Date</label><br/>
+								<input lang="en" type="date" name="expiration" required>
+							</div>
+							<div class="form-group">
+								<label for="cv2">CV2 Code</label>
+								<input type="text" class="form-control" name="cv2" placeholder="Last 3 digits." required maxlength="16"/>
+							</div>
+							<div class="form-group">
+								<input type="submit" class="btn btn-primary" value="Complete your purchase!"
+								style="height: 40px; width: 220px ; align-content: center; color: black; background-color: #5373ff;"/>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 
 	<br/>
 	<div class="offset-6">
-		<div class="row">
-			<a href="purchaseComplete.htm" class="btn btn-primary" style="height: 40px; width: 220px ; align-content: center; color: black; background-color: #5373ff;">Complete your purchase!</a>
-		</div>
 	</div>
 
 </body>

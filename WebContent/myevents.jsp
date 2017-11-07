@@ -27,6 +27,7 @@
 				<form method="post" action="editevent">
 					<input type="hidden" name="eventID" value="${e.id}">
 					<input type="submit" class="btn-default" value="${e.title}">
+					<b>Tickets sold: ${e.soldTickets }</b>
 				</form>
 			</div>
 		</c:forEach>
