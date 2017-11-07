@@ -42,7 +42,7 @@
 					</c:when>
 					<c:otherwise>
 					<li class="nav_item">
-						<a class="nav-link" href="browsemessages">Inbox</a>
+						<a class="nav-link" href="readmessages">Inbox</a> <!-- browsemessages for browse (Previous solution) -->
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href='logout'>Log Out</a>

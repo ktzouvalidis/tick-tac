@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ticktac.utils.BrowseMessageRequestHandler;
 import com.ticktac.utils.MessageRequestHandler;
+import com.ticktac.utils.ReadMessageRequestHandler;
 import com.ticktac.utils.SendMessageRequestHandler;
 import com.ticktac.utils.ShowMessageRequestHandler;
 
@@ -21,7 +22,7 @@ import com.ticktac.utils.ShowMessageRequestHandler;
  * Servlet implementation class MessageController
  */
 @WebServlet(description = "Controller for handling the messaging functions",
-urlPatterns = { "/sendmessage", "/readmessage", "/browsemessages", "/showmessage"})
+urlPatterns = { "/sendmessage", "/readmessages", "/browsemessages", "/showmessage"})
 public class MessageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -37,7 +38,7 @@ public class MessageController extends HttpServlet {
     
     public void init() {
 		handlersMap.put("/sendmessage", new SendMessageRequestHandler());
-		//handlersMap.put("/readmessage", new LogOutRequestHandler());
+		handlersMap.put("/readmessages", new ReadMessageRequestHandler());
 		handlersMap.put("/browsemessages", new BrowseMessageRequestHandler());
 		handlersMap.put("/showmessage", new ShowMessageRequestHandler());
 	}

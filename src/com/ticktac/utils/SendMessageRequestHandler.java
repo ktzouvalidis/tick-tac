@@ -8,7 +8,6 @@ import javax.jms.Message;
 import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
-import javax.jms.TextMessage;
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +46,7 @@ public class SendMessageRequestHandler implements MessageRequestHandler {
 			
 			Message message = session.createTextMessage(request.getParameter("message")); // Always a TextMessage
 			// The ID of the User as the receiver (Should be always 1 if the logged in user is not the administrator)
-			message.setIntProperty("receiver_id", Integer.parseInt(request.getParameter("receiver")));
+			message.setIntProperty("receiver_id", 1);
 			// The ID of the User as the sender
 			message.setIntProperty("sender_id", ((User)request.getSession().getAttribute("userBean")).getId());
 			// The Fullname of the User as the sender 
