@@ -7,16 +7,26 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import com.sun.glass.ui.Application;
 import com.ticktac.business.Event;
 import com.ticktac.business.User;
 import com.ticktac.data.EventDAO;
+
+import org.apache.commons.*;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.*;
+import org.apache.commons.fileupload.servlet.*;
 
 public class EditEventRequestHandler implements RequestHandler {
 	EventDAO eventDAO;
@@ -52,6 +62,11 @@ public class EditEventRequestHandler implements RequestHandler {
 			int ticketPrice = Integer.parseInt(request.getParameter("ticketPrice"));
 			int moreTickets = Integer.parseInt(request.getParameter("moreTickets"));
 		  	
+			//int id = eventBean.getId();
+			//byte[] placeholder = eventDAO.loadEventImage(id);
+			
+			//boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+			
 		  	if(eventBean != null) {
 		  		if(photo != null && !photo.isEmpty()) {
 		  			photo = PHOTO_DIRECTORY + photo;
@@ -81,6 +96,10 @@ public class EditEventRequestHandler implements RequestHandler {
 	private boolean uploadPhoto(String path, PrintWriter writer) {
 		OutputStream out = null;
 		InputStream photoContent = null;
+		
+		//DiskFileItemFactory factory = new DiskFileItemFactory();
+		
+		
 		// TODO - Use Apache's commons UploadFile jar
 		try {
 			out = new FileOutputStream(new File(path));

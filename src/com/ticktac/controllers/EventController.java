@@ -63,7 +63,8 @@ public class EventController extends HttpServlet {
 		// This needs to be first. Without a handler!
 		if(path.equals("/editevent")) {
 			// If it finds the event by id - it SHOULD find it - forward to the Edit Event page.
-			Event event = new EventDAO().getEvent(Integer.parseInt(request.getParameter("eventID")), em, tr);
+			int id = Integer.parseInt(request.getParameter("eventID"));
+			Event event = new EventDAO().getEvent(id, em, tr);
 			if(event != null) {
 				request.getSession().setAttribute("eventBean", event);
 				request.getRequestDispatcher("editevent.jsp").forward(request, response);

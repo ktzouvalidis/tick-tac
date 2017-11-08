@@ -28,6 +28,7 @@
 					<input type="hidden" name="eventID" value="${e.id}">
 					<input type="submit" class="btn-default" value="${e.title}">
 				</form>
+				<img src="events/image.html?id=${e.id}" alt="...Whoops?"/>
 			</div>
 		</c:forEach>
 	</div>
