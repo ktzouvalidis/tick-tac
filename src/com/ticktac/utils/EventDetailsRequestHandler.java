@@ -3,8 +3,12 @@ package com.ticktac.utils;
 import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+
 import com.ticktac.business.Event;
+import com.ticktac.business.Ticket;
 import com.ticktac.data.EventDAO;
+import com.ticktac.data.TicketDAO;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -47,7 +51,6 @@ public class EventDetailsRequestHandler implements RequestHandler{
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException {
-		
 		return null;
 	}
 }

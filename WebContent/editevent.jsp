@@ -84,11 +84,25 @@
 			</div>
 		</div>
 		<div class="center">
-			<div class="row">
-				<div class="col-lg-5">
-					<table></table>
-				</div>
-			</div>
+			<h2 class="form-signin-heading">Tickets Information</h2>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Date of purchase</th>
+						<th>Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${requestScope.ticketuser }" var="tu">
+						<tr>
+							<td>${tu.name } ${tu.surname }</td>
+							<td>${tu.date }</td>
+							<td>${tu.amount }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </body>

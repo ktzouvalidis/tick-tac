@@ -17,6 +17,7 @@ import com.ticktac.business.Event;
 import com.ticktac.data.EventDAO;
 import com.ticktac.utils.AddEventRequestHandler;
 import com.ticktac.utils.EditEventRequestHandler;
+import com.ticktac.utils.UpdateEventRequestHandler;
 import com.ticktac.utils.RequestHandler;
 import com.ticktac.utils.EventDetailsRequestHandler;
 
@@ -35,8 +36,9 @@ public class EventController extends HttpServlet {
 	
     public EventController() {
 		handlersMap.put("/addevent", new AddEventRequestHandler());
-		handlersMap.put("/updateevent", new EditEventRequestHandler());
+		handlersMap.put("/updateevent", new UpdateEventRequestHandler());
 		handlersMap.put("/eventdetails", new EventDetailsRequestHandler());
+		handlersMap.put("/editevent", new EditEventRequestHandler());
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,28 +57,19 @@ public class EventController extends HttpServlet {
 				request.getRequestDispatcher("eventdetails.jsp").forward(request, response);
 			}
 		}
+		else
+			doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
 		
-		// This needs to be first. Without a handler!
-		if(path.equals("/editevent")) {
-			// If it finds the event by id - it SHOULD find it - forward to the Edit Event page.
-			Event event = new EventDAO().getEvent(Integer.parseInt(request.getParameter("eventID")), em, tr);
-			if(event != null) {
-				request.getSession().setAttribute("eventBean", event);
-				request.getRequestDispatcher("editevent.jsp").forward(request, response);
-			}
-		}else {
-			// Get the help of the handlers
-			RequestHandler handler = (RequestHandler) handlersMap.get(path);
-			String viewURL = "notfound.html";
-			
-			if(handler != null)
-				viewURL = handler.handleRequest(request, response, em, tr);
-			
-			request.getRequestDispatcher(viewURL).forward(request, response);
-		}
+		RequestHandler handler = (RequestHandler) handlersMap.get(path);
+		String viewURL = "notfound.html";
+		
+		if(handler != null)
+			viewURL = handler.handleRequest(request, response, em, tr);
+		
+		request.getRequestDispatcher(viewURL).forward(request, response);
 	}
 }
