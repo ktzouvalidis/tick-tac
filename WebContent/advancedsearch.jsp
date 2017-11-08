@@ -15,9 +15,9 @@
 <body>
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
-	<div class="container" style="margin-top: 4%">
-		<div class="offset-5">
-			<div class="center" style="background-color: #ededed">
+	<div class="container">
+		<div style="margin-left:45%">
+			<div class="center">
 				<form class="form-horizontal bv-form" action="advSearchResults" method="POST">
 					<table class="table table-bordered">
 						<tbody>

@@ -31,9 +31,9 @@
 		</c:otherwise>
 	</c:choose>
 	</div>
-	<div class="container" style="margin-top: 2%">
-		<div class="offset-4">
-			<div class="center" style="background-color: #ededed">
+	<div class="container">
+		<div style="margin-left: 30%; margin-top: 25px">
+			<div class="center">
 				<div class="row">
 					<div class="container-fluid banner"><h1>Account Editor</h1></div>
 					<div class="col-lg-12">
@@ -41,7 +41,7 @@
 							<h2 class="form-signin-heading">Edit Account</h2>
 							<div class="form-group">
 								<div class="photo-container">
-									<img src="${userBean.photo}" alt="Profile Photo" />
+									<img src="${userBean.photo }" alt="Profile photo" />
 								</div>
 								<input type="file" class="form-control" name="photo" accept="image"/>
 							</div>
