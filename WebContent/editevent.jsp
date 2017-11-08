@@ -33,6 +33,7 @@
 		<b>Couldn't delete this event... Please try again.</b>
 	</c:if>
 	</div>
+	
 	<div class="container">
 		<div class="center">
 			<div class="row">

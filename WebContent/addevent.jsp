@@ -39,6 +39,7 @@
 					       		<label for="title">Name</label>
 					        	<input type="text" class="form-control" id="title" name="title" required/>
 					        </div>
+
 							<div class="form-group">
 						        <label for="date">Date</label>
 						        <input type="datetime-local" class="form-control" id="date" name="date" required/>

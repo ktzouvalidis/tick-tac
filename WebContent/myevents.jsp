@@ -29,6 +29,7 @@
 					<input type="submit" class="btn-default" value="${e.title}">
 					<b>Tickets sold: ${e.soldTickets }</b>
 				</form>
+				<img src="events/image.html?id=${e.id}" alt="...Whoops?"/>
 			</div>
 		</c:forEach>
 	</div>

@@ -28,9 +28,26 @@
 					<div class="col-10" style="background-color: #D3D2D2; border: 1px solid black;">
 						<form method="get" action="eventdetails">
 							<input type="hidden" name="eventID" value="${e.id}">
-							<h2><b>${e.title}</b></h2><br/>
-							<img src="${e.photo}" alt="" height="350" width="550"/>
-							<input type="submit" class="btn-default" value="Details">
+							<br/>
+							<div style="background-color: #ff793f; text-align: center">
+								<h4><b>${e.title}</b></h4>
+							</div>
+							<div style="float: left; clear: left; margin-top: 3px"> <!--  -->
+								<img src="${e.photo}" alt="Event photo" height="375" width="608" style="border: 1px solid black"/>
+							</div>
+							<div style="float: left; clear: left; margin-top: 2px">
+								<br/>
+								Soon at ${e.venue}!<br/><br/>
+								- Category: <b>${e.category}</b> <br/>
+								- Date: <b>${e.date}</b> <br/>
+								- Ticket Price: <b>${e.ticketPrice }</b> / Tickets available: <b>${e.totalTickets - e.soldTickets}</b>
+							</div>
+							<br/><br/>
+							<div style="float: right; clear: left; margin-top: 6px" align="center">
+								<input type="submit" value="More info..." class="btn btn-primary"
+									style="color: black; background-color: #2659ff; margin-bottom: 12%">
+							</div>
+							<br/>
 						</form><br/>
 					</div>
 				</div>
@@ -38,5 +55,6 @@
 		</div>
 	</div>
 	
+		
 </body>
 </html>

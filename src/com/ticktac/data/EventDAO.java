@@ -33,6 +33,11 @@ public class EventDAO {
 		
 	}
 	
+	//EntityManager em;
+	//public byte[] loadEventImage(int eventID) {
+	//	return em.find(Event.class, eventID).getPhoto();
+	//}
+	
 	public List<Event> searchEvents(String title, EntityManager em, UserTransaction tr) {
 		String prep = "SELECT e FROM Event e WHERE e.title LIKE :title";
 		try {

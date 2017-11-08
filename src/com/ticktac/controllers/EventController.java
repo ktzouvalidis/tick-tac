@@ -71,5 +71,6 @@ public class EventController extends HttpServlet {
 			viewURL = handler.handleRequest(request, response, em, tr);
 		
 		request.getRequestDispatcher(viewURL).forward(request, response);
+
 	}
 }

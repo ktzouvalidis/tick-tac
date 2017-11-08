@@ -33,6 +33,7 @@ public class AddEventRequestHandler implements RequestHandler {
 		String title = (String)request.getParameter("title");
 		String date = (String)request.getParameter("date");
 		String venue = (String)request.getParameter("place");
+		String photo = (String)request.getParameter("photo");
 		int totalTickets = Integer.parseInt(request.getParameter("tickets"));
 		float ticketPrice = Float.parseFloat(request.getParameter("price"));
 		String category = (String)request.getParameter("category");
@@ -45,7 +46,7 @@ public class AddEventRequestHandler implements RequestHandler {
 			if(category.isEmpty() || info.isEmpty())
 				view = "addevent.jsp";
 			else {
-				Event event = new Event(title, category, venue, date, info, ticketPrice, totalTickets, user);
+				Event event = new Event(title, category, venue, date, info, ticketPrice, totalTickets, user,photo);
 				if(eventDAO.addEvent(event, user, em, tr)) {
 					request.setAttribute("eventExists", 0);
 				}

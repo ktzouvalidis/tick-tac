@@ -19,47 +19,43 @@
 <body>
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
-	<div class="container">
-		<div class="center" style="background-color: #ededed">
+	
+		<div class="container" style="top: 25px">
+		<div class="offset-3">
 			<div class="row">
-				<h1><b>${sessionScope.eventBean.title}</b></h1>
-				<div class="col-lg-9">
-					<h2 class="form-signin-heading">Edit Event</h2>
-					<div class="form-group">
-						<div class="photo-container">
-							<img src="${sessionScope.eventBean.photo}" alt="Event photo" />
-						</div>
-					</div>
-					<div class="form-group">
-						<h3><i>Date: </i></h3> <b>${sessionScope.eventBean.date}</b>
-					</div>
-					<div class="form-group">
-						<h3><i>Ticket Price: </i></h3>	<b>${sessionScope.eventBean.ticketPrice}</b>
-					</div>
-					<div class="form-group">
-						<h3><i>Available Tickets: </i></h3>
-						<!-- Calculate the available tickets of this event -->
-						<b>Tickets sold: ${sessionScope.eventBean.soldTickets } / ${sessionScope.eventBean.totalTickets}</b>
-					</div>
-					<div class="form-group">
-						<h3><i>Event Information: </i></h3>
-						<div class="col-sm-6">
-							<p>${sessionScope.eventBean.info}"</p>
-						</div>
-					</div>
+				<div class="col-4">
+					<img src="${sessionScope.eventBean.photo}" alt="Event photo" height="420" width="800"  style="border: 1px solid black "/>
+				</div>	
+			</div>
+		</div>
+		<br/>
+		<div class="offset-4">
+			<div class="row">
+				<div class="col-10" style="background-color: #c2beff; border: 1px solid black;">
 					<br/>
-					<div class="offset-9">
-						<div class="row">
-							<c:choose>
-								<c:when test="${sessionScope.userBean == null }">
-									<a href="login.jsp"><i>Login </i></a> <i>to purchase ticket...</i>
-								</c:when>
-								<c:otherwise>
-									<a href="ticketPurchase.jsp" class="btn btn-primary" style="height: 40px; width: 120px ; align-content: center; color: black; background-color: yellow">Buy a ticket!</a>
-								</c:otherwise>
-							</c:choose>
-						</div>
-					</div>
+					<h4><b><i>${sessionScope.eventBean.title}</i></b></h4>
+					- Venue: <b>${sessionScope.eventBean.venue}</b><br/>
+					- Date: <b>${sessionScope.eventBean.date}</b><br/>
+					- Ticket Price: <b>${sessionScope.eventBean.ticketPrice}</b> / Tickets available: <b>${sessionScope.eventBean.totalTickets - sessionScope.eventBean.soldTickets}</b>
+				
+					<br/><br/>
+					Information: <br/>
+					${sessionScope.eventBean.info}
+				
+					<br/>
+				</div>
+			</div>
+			<br/>
+			<div class="offset-9">
+				<div class="row">
+					<c:choose>
+						<c:when test="${sessionScope.userBean == null }">
+							<a href="login.jsp"><i>Login to purchase ticket...</i></a>
+						</c:when>
+						<c:otherwise>
+							<a href="ticketPurchase.jsp" class="btn btn-primary" style="height: 40px; width: 120px ; align-content: center; color: black; background-color: yellow">Buy a ticket!</a>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>

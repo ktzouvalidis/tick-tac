@@ -37,7 +37,7 @@ public class Event implements Serializable {
 	public Event() {}
 
 	public Event(String title, String category, String venue, String date, String info, float ticketPrice,
-			int totalTickets, User user) {
+			int totalTickets, User user, String photo) {
 		this.title = title;
 		this.category = category;
 		this.venue = venue;
@@ -49,6 +49,7 @@ public class Event implements Serializable {
 		this.ticketPrice = ticketPrice;
 		this.totalTickets = totalTickets;
 		this.user = user;
+		this.photo = photo;
 		
 		//Manage background color - Can't make it work
 		if(category == "Concert")
