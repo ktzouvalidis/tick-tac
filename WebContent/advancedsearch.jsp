@@ -15,6 +15,7 @@
 <body>
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
+	<br/><br/><br/>
 	<div class="container">
 		<div style="margin-left:45%">
 			<div class="center">
