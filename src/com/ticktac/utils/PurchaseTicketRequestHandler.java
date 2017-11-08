@@ -17,18 +17,17 @@ import com.ticktac.data.TicketDAO;
 
 public class PurchaseTicketRequestHandler implements RequestHandler{
 
-	EventDAO evDAO;
-	TicketDAO tickDAO;
+	EventDAO eventDAO;
+	TicketDAO ticketDAO;
 	
 	public PurchaseTicketRequestHandler() {
-		evDAO = new EventDAO();
-		tickDAO = new TicketDAO();
+		eventDAO = new EventDAO();
+		ticketDAO = new TicketDAO();
 	}
 	
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -36,28 +35,25 @@ public class PurchaseTicketRequestHandler implements RequestHandler{
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException {
 		
-		String sView = null;
+		String sView = "notfound.html";
 		Event eventBean = (Event)request.getSession().getAttribute("eventBean");
 	  	User userBean = (User)request.getSession().getAttribute("userBean");
+	  	int amount = Integer.parseInt(request.getParameter("amount"));
 	  		  	
 		if (eventBean != null) {
-			//Note: Decided not to have the option to buy multiple tickets, because they are all added to the same user.
-			Event ev = evDAO.buyTicket(eventBean, em, tr);
-			request.getSession().setAttribute("eventBean", ev);
+			for(int i = 0; i < amount; i++) {
+			  	Date currentDate = new Date();
+				//Random 5-digit number to be used as Ticket Code (NOT the Ticket ID)
+			  	int tCode = (int) (10000 + Math.random() * (99999-10000));
+			  	
+				eventBean = eventDAO.buyTicket(eventBean, em, tr);
+			  	//Creating and adding the ticket to the database.
+			  	Ticket ticket = new Ticket(tCode, currentDate, eventBean, userBean);
+			  	ticketDAO.addTicket(ticket, userBean, eventBean, em, tr);
 
-			//Random 5-digit number to be used as Ticket Code (NOT the Ticket ID)
-		  	int tCode = (int) (10000 + Math.random() * (99999-10000));
-		  	
-		  	//Should we use the java.sql.Date import instead of java.util.Date?
-		  	Date currentDate = new Date();
-		  	
-		  	//Creating and adding the ticket to the database.
-		  	Ticket ticket = new Ticket(tCode, currentDate, eventBean, userBean);
-		  	tickDAO.addTicket(ticket, userBean, em, tr);
-		  	
-		  	sView = "purchaseComplete.jsp";
-		}else {
-			sView = "notfound.html";
+				request.getSession().setAttribute("eventBean", eventBean);
+			  	sView = "purchaseComplete.jsp";
+			}
 		}
 		
 		return sView;

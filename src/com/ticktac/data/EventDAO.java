@@ -165,8 +165,10 @@ public class EventDAO {
 			em.remove(event);
 			tr.commit();
 		} catch(Exception e) {
-			e.printStackTrace();
-			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
+			e.printStackTrace();try {
+				if (tr.getStatus()==Status.STATUS_ACTIVE)
+					tr.rollback();
+			} catch (Exception se) {se.printStackTrace(); return false;}
 			return false;
 		}
 

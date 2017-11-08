@@ -18,11 +18,12 @@ import com.ticktac.utils.LogOutRequestHandler;
 import com.ticktac.utils.EditAccountRequestHandler;
 import com.ticktac.utils.RequestHandler;
 import com.ticktac.utils.SignUpRequestHandler;
+import com.ticktac.utils.TicketsBoughtRequestHandler;
 /**
  * AccountController
  */
 @WebServlet(description = "Controller that processes information about Registration and Log in actions.",
-urlPatterns = { "/login", "/logout", "/signup", "/editaccount" })
+urlPatterns = { "/login", "/logout", "/signup", "/editaccount", "/mytickets" })
 public class AccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
@@ -40,6 +41,7 @@ public class AccountController extends HttpServlet {
 		handlersMap.put("/logout", new LogOutRequestHandler());
 		handlersMap.put("/signup", new SignUpRequestHandler());
 		handlersMap.put("/editaccount", new EditAccountRequestHandler());
+		handlersMap.put("/mytickets", new TicketsBoughtRequestHandler());
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
