@@ -5,7 +5,8 @@
 		<ul id="sidenav-ul" class="nav navbar-nav">
 			<c:if test="${sessionScope.userBean !=null}">
 				<li><a class="nav-link" href="addevent.jsp"> Add Events</a></li>
-				<li><a class="nav-link" href="myevents.jsp"> My Events</a></li>	
+				<li><a class="nav-link" href="mytickets"> Tickets Bought</a></li>	
+				<li><a class="nav-link" href="myevents.jsp"> My Events</a></li>
 				<li><a class="nav-link" href="editaccount.jsp">My Account</a></li>
 			</c:if>
 		</ul>

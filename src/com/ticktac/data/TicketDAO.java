@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.ticktac.business.Event;
 import com.ticktac.business.Ticket;
+import com.ticktac.business.TicketEvent;
 import com.ticktac.business.TicketUser;
 import com.ticktac.business.User;
 
@@ -78,5 +79,24 @@ public class TicketDAO {
 			try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
 			return null;
 		}
+	}
+	
+	public List<TicketEvent> getTicketsForUser(User user, EntityManager em, UserTransaction tr) {
+		String prep = "SELECT t.code, t.dateOfSale, e.title, e.ticketPrice FROM ticket AS t, "
+				+ "event AS e WHERE t.event=e.id AND t.buyer=" + user.getId();
+	try {
+		Query q = em.createNativeQuery(prep);
+		//q.setParameter("user_id", user.getId());
+		
+		List<Object[]> results = q.getResultList();
+		List<TicketEvent> tickets = new ArrayList<>(results.size());
+		for(Object[] result : results)
+			tickets.add(new TicketEvent(((Integer)result[0]).intValue(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(result[1]), (String)result[2], ((Float)result[3]).floatValue()));
+		return tickets;
+	}  catch(Exception e) {
+		e.printStackTrace();
+		try { tr.rollback(); } catch (SystemException se) {	se.printStackTrace(); }
+		return null;
+	}
 	}
 }
