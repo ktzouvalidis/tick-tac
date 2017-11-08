@@ -80,29 +80,28 @@
 							<input type="submit" class="btn-default" id="btn-delete" name="submit" value="Delete this event"/>
 						</div>
 					</form>
+					<hr />
+					<h2 class="form-signin-heading">Tickets Information</h2>
+					<table class="table table-bordered" style="border-color: green;">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Date of purchase</th>
+								<th>Amount</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${requestScope.ticketuser }" var="tu">
+								<tr>
+									<td>${tu.name } ${tu.surname }</td>
+									<td>${tu.date }</td>
+									<td>${tu.amount }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 			</div>
-		</div>
-		<div class="center">
-			<h2 class="form-signin-heading">Tickets Information</h2>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Date of purchase</th>
-						<th>Amount</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${requestScope.ticketuser }" var="tu">
-						<tr>
-							<td>${tu.name } ${tu.surname }</td>
-							<td>${tu.date }</td>
-							<td>${tu.amount }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
 		</div>
 	</div>
 </body>

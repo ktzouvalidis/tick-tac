@@ -63,7 +63,7 @@ public class TicketDAO {
 	
 	public List<TicketUser> getTicketsForEvent(Event event, EntityManager em, UserTransaction tr) {
 		String prep = "SELECT u.name, u.surname, t.dateOfSale, count(u.id) as amount FROM user AS u, "
-					+ "ticket AS t WHERE u.id = t.buyer AND t.event=" + event.getId() + " GROUP BY u.id"; 
+					+ "ticket AS t WHERE u.id = t.buyer AND t.event=" + event.getId() + " GROUP BY u.id ORDER BY amount"; 
 		try {
 			Query q = em.createNativeQuery(prep);
 			//q.setParameter("category", event.getId());
