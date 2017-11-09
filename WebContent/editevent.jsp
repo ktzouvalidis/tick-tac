@@ -38,7 +38,7 @@
 		<div class="center">
 			<div class="row">
 				<div class="col-lg-9">
-					<form class="form-signin" action="updateevent" method="post">
+					<form class="form-signin" action="updateevent" method="post" enctype="multipart/form-data">
 						<h2 class="form-signin-heading">Edit Event</h2>
 						<div class="form-group">
 							<label for="title">Title</label>
