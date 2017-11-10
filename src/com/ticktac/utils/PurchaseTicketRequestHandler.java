@@ -52,6 +52,7 @@ public class PurchaseTicketRequestHandler implements RequestHandler{
 			  	ticketDAO.addTicket(ticket, userBean, eventBean, em, tr);
 
 				request.getSession().setAttribute("eventBean", eventBean);
+				eventDAO.editEventStatus(eventBean, false, em, tr);
 			  	sView = "purchaseComplete.jsp";
 			}
 		}

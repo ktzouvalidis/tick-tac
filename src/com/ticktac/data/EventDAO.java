@@ -1,5 +1,6 @@
 package com.ticktac.data;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -173,5 +174,67 @@ public class EventDAO {
 		}
 
 		return true;
+	}
+	
+	public void createEventState(Event event) {
+		
+		//String currentStatus = event.getStatus();
+		//System.out.println("CURRENT STATUS: " + currentStatus);
+		//if (currentStatus == null || !currentStatus.equals("Cancelled")) {
+			String status = null;		
+			Date evDate = event.getDate();
+			Date currentDate = new Date();
+			int ticketsLeft = event.getTotalTickets() - event.getSoldTickets();
+			
+			if (evDate.before(currentDate)) {
+				status = "Finished";
+			}else if (ticketsLeft == 0) {
+				status = "Sold Out";
+			}else {
+				status = "Available";
+			}
+			
+			event.setStatus(status);
+		//}
+	}
+	
+	public void editEventStatus(Event event, boolean cancel, EntityManager em, UserTransaction tr) {
+		try {
+			tr.begin();
+			if(!em.contains(event)) // Is it being managed?
+				event = em.merge(event);
+	
+			if (cancel) {
+				event.setStatus("Cancelled");
+			}else {
+				String currentStatus = event.getStatus();
+				//System.out.println("STATUS: " + currentStatus);
+				if (currentStatus == null || !currentStatus.equals("Cancelled")) {
+					String newStatus = null;
+					Date evDate = event.getDate();
+					Date currentDate = new Date();
+					int ticketsLeft = event.getTotalTickets() - event.getSoldTickets();
+					
+					if (evDate.before(currentDate)) {
+						newStatus = "Finished";
+					}else if (ticketsLeft == 0) {
+						newStatus = "Sold Out";
+					}else {
+						newStatus = "Available";
+					}	
+					event.setStatus(newStatus);
+				}
+			}
+			tr.commit();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			try {
+				if (tr.getStatus()==Status.STATUS_ACTIVE)
+					tr.rollback();
+			} catch (Exception se) {
+				se.printStackTrace();
+			}
+		}
 	}
 }

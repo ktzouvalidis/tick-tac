@@ -31,6 +31,8 @@ public class Event implements Serializable {
 	private User user;
 	private List<Ticket> tickets;
 	
+	private String status; //Available, Sold Out, Finished, Cancelled.
+	
 	//For the view - Can't make it work
 	private String color;
 
@@ -197,5 +199,13 @@ public class Event implements Serializable {
 	//For the view - Can't make it work
 	public String getColor() {
 		return color;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

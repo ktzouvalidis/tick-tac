@@ -32,6 +32,9 @@
 							<div style="background-color: #ff793f; text-align: center">
 								<h4><b>${e.title}</b></h4>
 							</div>
+							<br/>
+								Status: <b>${e.status}</b>
+							<br/>
 							<div style="float: left; clear: left; margin-top: 3px"> <!--  -->
 								<img src="${e.photo}" alt="Event photo" height="375" width="608" style="border: 1px solid black"/>
 							</div>

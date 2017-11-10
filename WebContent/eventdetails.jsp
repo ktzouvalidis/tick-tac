@@ -46,18 +46,31 @@
 				</div>
 			</div>
 			<br/>
-			<div class="offset-9">
-				<div class="row">
-					<c:choose>
-						<c:when test="${sessionScope.userBean == null }">
-							<a href="login.jsp"><i>Login to purchase ticket...</i></a>
-						</c:when>
-						<c:otherwise>
-							<a href="ticketPurchase.jsp" class="btn btn-primary" style="height: 40px; width: 120px ; align-content: center; color: black; background-color: yellow">Buy a ticket!</a>
-						</c:otherwise>
-					</c:choose>
-				</div>
-			</div>
+			
+			
+			<c:choose>
+				<c:when test="${sessionScope.eventBean.status == 'Available' }">
+					<div class="offset-9">
+						<div class="row">
+							<c:choose>
+								<c:when test="${sessionScope.userBean == null }">
+									<a href="login.jsp"><i>Login to purchase ticket...</i></a>
+								</c:when>
+								<c:otherwise>
+									<a href="ticketPurchase.jsp" class="btn btn-primary" style="height: 40px; width: 120px ; align-content: center; color: black; background-color: yellow">Buy a ticket!</a>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>	
+				</c:when>
+				<c:otherwise>
+						<div style="margin-left: 25%">
+							Current Event Status:&nbsp;<font color="red"><b>${sessionScope.eventBean.status }</b></font>
+							<br/>We are terribly sorry...
+						</div>
+				</c:otherwise>
+			</c:choose>
+			
 		</div>
 	</div>
 </body>
