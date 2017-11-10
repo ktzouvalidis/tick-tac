@@ -34,7 +34,7 @@
 	</c:if>
 	</div>
 	
-	<div class="container">
+	<div class="container" style="margin-left:31%; margin-top: 2%">
 		<div class="center">
 			<div class="row">
 				<div class="col-lg-9">

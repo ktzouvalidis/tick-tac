@@ -176,28 +176,6 @@ public class EventDAO {
 		return true;
 	}
 	
-	public void createEventState(Event event) {
-		
-		//String currentStatus = event.getStatus();
-		//System.out.println("CURRENT STATUS: " + currentStatus);
-		//if (currentStatus == null || !currentStatus.equals("Cancelled")) {
-			String status = null;		
-			Date evDate = event.getDate();
-			Date currentDate = new Date();
-			int ticketsLeft = event.getTotalTickets() - event.getSoldTickets();
-			
-			if (evDate.before(currentDate)) {
-				status = "Finished";
-			}else if (ticketsLeft == 0) {
-				status = "Sold Out";
-			}else {
-				status = "Available";
-			}
-			
-			event.setStatus(status);
-		//}
-	}
-	
 	public void editEventStatus(Event event, boolean cancel, EntityManager em, UserTransaction tr) {
 		try {
 			tr.begin();
