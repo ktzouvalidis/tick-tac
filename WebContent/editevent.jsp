@@ -34,15 +34,23 @@
 	</c:if>
 	</div>
 	
-	<div class="container" style="margin-top: 2%">
-		<div style="margin-left:30%">
-			<div class="center">
-				<div class="row">
-					<div class="col-lg-9">
-						<form class="form-signin" action="updateevent" method="post">
-							<h2 class="form-signin-heading">Edit Event</h2>
-							<div class="form-group">
+	<div class="container">
+		<div class="center">
+			<div class="row">
+				<div class="col-lg-9">
+					<form class="form-signin" action="updateevent" method="post" enctype="multipart/form-data">
+						<h2 class="form-signin-heading">Edit Event</h2>
+						<div class="form-group">
+							<label for="title">Title</label>
+							<input type="text" class="form-control" name="title" value="${sessionScope.eventBean.title}"/>
+						</div>
+            <div class="form-group">
 								Status: <b>${sessionScope.eventBean.status}</b>
+            </div>
+						<div class="form-group">
+							<div class="photo-container">
+								<img src="${sessionScope.eventBean.photo }" alt="Event photo" />
+
 							</div>
 							<div class="form-group">
 								<label for="title">Title</label>
