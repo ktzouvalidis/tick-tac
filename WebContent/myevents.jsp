@@ -27,14 +27,14 @@
 			<div class="col-lg-3 col-md-3 col-xs-9" 
 			 style="background-color: #dadcef; margin-left: 6%; margin-top: 2%; border: 1px solid black">
 				<form method="post" action="editevent">
-					<input type="hidden" name="eventID" value="${e.id}">
+					<input type="hidden" name="eventID" value="${e.id}"/>
 					<div style="text-align: center; margin-top: 2px; margin-bottom: 6px">${e.title}</div>
 					<b>Tickets sold: ${e.soldTickets}</b>
 					<div style="text-align: center; margin-top: 1px">
 						<img src="${e.photo}" alt="...Whoops?" height="150px" width="225px"/>
 					</div>
 					<div style="text-align: center; margin-top: 5px; margin-bottom: 5px">
-						<input type="submit" class="btn-default" value="Edit">
+						<input type="submit" class="btn-default" value="Edit"/>
 					</div>
 				</form>
 			</div>
