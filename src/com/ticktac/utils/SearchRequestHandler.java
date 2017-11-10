@@ -38,8 +38,11 @@ public class SearchRequestHandler implements RequestHandler{
 				request.setAttribute("foundNothing", 0);
 			else {
 		  		List<Event> events = eventDAO.searchEvents(eTitle, em, tr);
-		  		if (events != null && !events.isEmpty())
+		  		if (events != null && !events.isEmpty()) {
+		  			for(Event e : events) 
+		  				eventDAO.editEventStatus(e, false, em, tr); //boolean parameter checks if event is to be Cancelled.
 					request.setAttribute("events", events);
+		  		}
 				else
 					request.setAttribute("foundNothing", 0);
 			}

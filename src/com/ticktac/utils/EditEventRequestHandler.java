@@ -32,7 +32,7 @@ public class EditEventRequestHandler implements RequestHandler {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException {
 		String view = "notfound.html";
-
+		
 		Event event = new EventDAO().getEvent(Integer.parseInt(request.getParameter("eventID")), em, tr);
 		
 		if(event != null) {

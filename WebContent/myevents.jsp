@@ -21,15 +21,22 @@
 	<c:if test="${not empty requestScope.successfullDeletion }"><b>Event deleted successfully</b></c:if>
 	<c:if test="${not empty sessionScope.userBean }">
 	<div class="row text-center text-lg-left">
+
 		 
 		<c:forEach items="${sessionScope.userBean.events}" var="e">
-			<div class="col-lg-3 col-md-3 col-xs-9" style="background-color: #dadcef">
+			<div class="col-lg-3 col-md-3 col-xs-9" 
+			 style="background-color: #dadcef; margin-left: 6%; margin-top: 2%; border: 1px solid black">
 				<form method="post" action="editevent">
 					<input type="hidden" name="eventID" value="${e.id}">
-					<input type="submit" class="btn-default" value="${e.title}">
-					<b>Tickets sold: ${e.soldTickets }</b>
+					<div style="text-align: center; margin-top: 2px; margin-bottom: 6px">${e.title}</div>
+					<b>Tickets sold: ${e.soldTickets}</b>
+					<div style="text-align: center; margin-top: 1px">
+						<img src="${e.photo}" alt="...Whoops?" height="150px" width="225px"/>
+					</div>
+					<div style="text-align: center; margin-top: 5px; margin-bottom: 5px">
+						<input type="submit" class="btn-default" value="Edit">
+					</div>
 				</form>
-				<img src="events/image.html?id=${e.id}" alt="...Whoops?"/>
 			</div>
 		</c:forEach>
 	</div>

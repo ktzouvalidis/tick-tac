@@ -47,8 +47,14 @@ public class AddEventRequestHandler implements RequestHandler {
 				view = "addevent.jsp";
 			else {
 				Event event = new Event(title, category, venue, date, info, ticketPrice, totalTickets, user,photo);
+				
+				//We check if the Event is Available, Sold Out or Finished. 
+				//The State of the event is based on the number of available tickets and the date
+				//eventDAO.createEventState(event);
+				
 				if(eventDAO.addEvent(event, user, em, tr)) {
 					request.setAttribute("eventExists", 0);
+					eventDAO.editEventStatus(event, false, em, tr);
 				}
 				else
 					request.setAttribute("eventExists", 1);
