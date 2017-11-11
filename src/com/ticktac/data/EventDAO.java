@@ -81,7 +81,7 @@ public class EventDAO {
 							n = rand.nextInt(allEventsSize);
 						
 						if(!events.contains(allEvents.get(n))) {
-							allEvents.add(events.get(n));
+							events.add(allEvents.get(n));
 							break;
 						}
 					}
