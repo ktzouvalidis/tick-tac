@@ -21,11 +21,12 @@ import com.ticktac.utils.EditEventRequestHandler;
 import com.ticktac.utils.UpdateEventRequestHandler;
 import com.ticktac.utils.RequestHandler;
 import com.ticktac.utils.EventDetailsRequestHandler;
+import com.ticktac.utils.RandomEventsRequestHandler;
 
 /**
  * Servlet implementation class EventController
  */
-@WebServlet(urlPatterns = { "/addevent", "/getevents" ,"/myevents", "/editevent", "/updateevent", "/deleteEvent", "/eventdetails"})
+@WebServlet(urlPatterns = { "/addevent", "/getevents" ,"/myevents", "/editevent", "/updateevent", "/deleteEvent", "/eventdetails", "/index.jsp"})
 @MultipartConfig // Indicates that the servlet expects requests to be made using the multipart/form-data MIME type
 public class EventController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,6 +42,7 @@ public class EventController extends HttpServlet {
 		handlersMap.put("/updateevent", new UpdateEventRequestHandler());
 		handlersMap.put("/eventdetails", new EventDetailsRequestHandler());
 		handlersMap.put("/editevent", new EditEventRequestHandler());
+		handlersMap.put("/index.jsp", new RandomEventsRequestHandler());
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

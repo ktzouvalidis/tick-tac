@@ -1,9 +1,12 @@
 package com.ticktac.data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
 import com.ticktac.business.Event;
 
 import javax.persistence.EntityManager;
@@ -47,6 +50,45 @@ public class EventDAO {
 			
 			List<Event> events = q.getResultList();
 			return events;
+		} catch(Exception e) {
+			e.printStackTrace();
+			try {
+				if (tr.getStatus()==Status.STATUS_ACTIVE)
+					tr.rollback();
+			} catch (Exception se) {se.printStackTrace(); return null;}
+			return null;
+		}
+	}
+
+	public List<Event> getRandomEvents(int numOfEvents, EntityManager em, UserTransaction tr) {
+		try {
+			TypedQuery<Event> query = em.createQuery("SELECT e FROM Event e WHERE e.status = 'Available'", Event.class)
+					.setMaxResults(numOfEvents);
+			
+			List<Event> allEvents = query.getResultList();
+			List<Event> events = new ArrayList<Event>(allEvents.size());
+			int allEventsSize = allEvents.size();
+			Random rand = new Random();
+			
+			if(allEventsSize < numOfEvents)
+				numOfEvents = allEventsSize;
+			
+			if(allEvents != null && !allEvents.isEmpty()) {
+				for(int i = 0; i < numOfEvents; i++) {
+					int n = 0;
+					while(true) {
+						if(allEventsSize != 1)
+							n = rand.nextInt(allEventsSize);
+						
+						if(!events.contains(allEvents.get(n))) {
+							allEvents.add(events.get(n));
+							break;
+						}
+					}
+				}
+				return events;
+			}
+			return null;
 		} catch(Exception e) {
 			e.printStackTrace();
 			try {
@@ -215,4 +257,5 @@ public class EventDAO {
 			}
 		}
 	}
+
 }

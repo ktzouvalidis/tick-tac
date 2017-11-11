@@ -7,6 +7,7 @@ import javax.transaction.UserTransaction;
 
 import com.ticktac.business.User;
 
+
 public class UserDAO {
 	
 	public UserDAO() {}
@@ -25,10 +26,6 @@ public class UserDAO {
 			e.printStackTrace();
 			return null;
 		}
-	}
-	
-	public void addUser(String name, String surname, String email, String password) {
-		
 	}
 	
 	public boolean insertUser(User user, EntityManager em, UserTransaction tr) {

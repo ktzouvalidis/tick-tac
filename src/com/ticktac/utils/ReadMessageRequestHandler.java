@@ -39,6 +39,7 @@ public class ReadMessageRequestHandler implements MessageRequestHandler {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, ConnectionFactory cf,
 			Queue queue) throws ServletException, IOException {
 		String view = "notfound.html";
+		
 		try {
 			Connection connection = cf.createConnection();
 			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -80,6 +81,7 @@ public class ReadMessageRequestHandler implements MessageRequestHandler {
 			view = "inboxread.jsp";
 		} catch(Exception e) {
 			e.printStackTrace();
+			return view;
 		}
 		return view;
 	}
