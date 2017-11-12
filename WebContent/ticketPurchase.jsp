@@ -30,7 +30,7 @@
 							<div class="form-group">
 								<label for="amount">Tickets amount</label>
 								<div class="col-sm-3">
-									<input type="number" class="form-control" name="amount" min="1" max="10" value="0"/>
+									<input type="number" class="form-control" name="amount" min="1" max="10" value="1"/>
 								</div>
 							</div>
 							<div class="form-group">
@@ -45,7 +45,7 @@
 								<label for="cv2">CV2 Code</label>
 								<input type="text" class="form-control" name="cv2" placeholder="Last 3 digits." required maxlength="3"/>
 							</div>
-							<div class="form-group">
+							<div class="form-group" align="center">
 								<input type="submit" class="btn btn-primary" value="Complete your purchase!"
 								style="height: 40px; width: 220px ; align-content: center; color: black; background-color: #5373ff;"/>
 							</div>
