@@ -31,7 +31,6 @@ public class RandomEventsRequestHandler implements RequestHandler {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException {
-		String view = "notfound.html";
 		
 		List<Event> randomEvents = eventDAO.getRandomEvents(NUMBER_OF_RANDOM_EVENTS, em, tr);
 		if(randomEvents != null) {
@@ -39,11 +38,9 @@ public class RandomEventsRequestHandler implements RequestHandler {
 				request.setAttribute("randomEvents", randomEvents);
 			else
 				request.setAttribute("noevents", 1);
-
-			view = "home.jsp";
 		}		
 		
-		return view;
+		return "home.jsp";
 	}
 
 }
