@@ -19,7 +19,7 @@
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	
-	<div class="container">
+	<div class="container" style="margin-left:40%; margin-top: 5%">
 		<div class="center">
 			<h2 class="form-signin-heading">Tickets Information</h2>
 			<table class="table table-bordered" style="border-color: green;">

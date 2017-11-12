@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div role="navigation" class="navbar navbar-toggleable-md navbar-inverse" style="background-color: #9fbc43">
 	<div class="navbar-header" style="border-left: 3px solid #ffdd77; border-right: 3px solid #ffdd77;">
-     	<a id="brand" class="navbar-brand nav-link" href="#"><img src="images/ticket.png" alt="" height="35" width="35" hspace="10" /><b>Tick - Tac</b></a>
+     	<a id="brand" class="navbar-brand nav-link" href="index.jsp"><img src="images/ticket.png" alt="" height="35" width="35" hspace="10" /><b>Tick - Tac</b></a>
     </div>
 	<div class="collapse navbar-collapse" id="navbarText">
 		<ul id="nav-ul" class="navbar-nav mr-auto">
