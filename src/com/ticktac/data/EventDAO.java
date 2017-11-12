@@ -18,24 +18,7 @@ import javax.transaction.UserTransaction;
 import com.ticktac.business.User;	
 public class EventDAO {
 
-	private Map<String , Event> events =new HashMap <String, Event>();
-	
-
 	public EventDAO() {}
-	
-	public Map<String, Event> returnEvents(){
-		return events;
-	}
-	
-	public Event getInfo(String title) {
-		return (Event) events.get(title);
-	}
-	public boolean deleteEvent (String title) {
-		events.remove(title);
-		
-		return true;
-		
-	}
 	
 	//EntityManager em;
 	//public byte[] loadEventImage(int eventID) {

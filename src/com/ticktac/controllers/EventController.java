@@ -40,7 +40,6 @@ public class EventController extends HttpServlet {
     public EventController() {
 		handlersMap.put("/addevent", new AddEventRequestHandler());
 		handlersMap.put("/updateevent", new UpdateEventRequestHandler());
-		handlersMap.put("/eventdetails", new EventDetailsRequestHandler());
 		handlersMap.put("/editevent", new EditEventRequestHandler());
 		handlersMap.put("/index.jsp", new RandomEventsRequestHandler());
     }
@@ -48,7 +47,6 @@ public class EventController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String path = request.getServletPath();
-		System.out.println(path);
 		
 		if(path.equals("/addevent"))
 			request.getRequestDispatcher("addevent.jsp").forward(request, response);

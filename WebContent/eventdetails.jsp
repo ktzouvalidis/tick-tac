@@ -40,7 +40,7 @@
 				
 					<br/><br/>
 					Information: <br/>
-					${sessionScope.eventBean.info}
+					<i>${sessionScope.eventBean.info}</i>
 				
 					<br/>
 				</div>
