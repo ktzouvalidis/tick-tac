@@ -47,7 +47,8 @@
 			</div>
 			<br/>
 			
-			
+			<!-- If the event is Available, then if the user is logged in, show the "Buy Ticket" button -->
+			<!-- Otherwise, if the event is Finished, Sold Out, or Cancelled, display a message saying so. -->
 			<c:choose>
 				<c:when test="${sessionScope.eventBean.status == 'Available' }">
 					<div class="offset-9">

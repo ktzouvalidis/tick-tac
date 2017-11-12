@@ -70,6 +70,7 @@ public class UpdateEventRequestHandler implements RequestHandler {
 	              Event updatedEvent = eventDAO.updateEvent(eventBean, title, date, photo, info, ticketPrice, moreTickets, em, tr);
 	              if(updatedEvent != null) {
 	                request.getSession().setAttribute("eventBean", updatedEvent);
+	                //Checking to see if the event's state needs to be updated.
 	                eventDAO.editEventStatus(updatedEvent, false, em, tr);
 	              }else
 	                request.setAttribute("successfullEdit", 0);

@@ -39,6 +39,7 @@ public class SearchRequestHandler implements RequestHandler{
 			else {
 		  		List<Event> events = eventDAO.searchEvents(eTitle, em, tr);
 		  		if (events != null && !events.isEmpty()) {
+		  			//For every event we found, we check its status, in case it needs to be changed.
 		  			for(Event e : events) 
 		  				eventDAO.editEventStatus(e, false, em, tr); //boolean parameter checks if event is to be Cancelled.
 					request.setAttribute("events", events);

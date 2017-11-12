@@ -40,6 +40,7 @@ public class RandomEventsRequestHandler implements RequestHandler {
 				request.setAttribute("noevents", 1);
 		}		
 		
+		//The request leads to home.jsp, regardless if the Database contains events or not.
 		return "home.jsp";
 	}
 

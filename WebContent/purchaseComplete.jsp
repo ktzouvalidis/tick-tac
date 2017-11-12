@@ -17,9 +17,8 @@
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	
-	<br/>
-	<!-- No need to go to a new page, it can return to the previous page, check an attribute and print a message -->
+	<br/><br/>
 	<h4 style="text-align: center;">Thank you!</h4>
-
+	<h5 style="text-align: center;">Your purchase has been completed, we look forward to seeing you!</h5>
 </body>
 </html>

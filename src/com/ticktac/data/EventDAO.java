@@ -168,8 +168,8 @@ public class EventDAO {
 			tr.begin();
 			if(!em.contains(event)) // Is it being managed?
 				event = em.merge(event);
-			int sold = event.getSoldTickets();
-			event.setSoldTickets(++sold);
+			int sold = event.getSoldTickets(); //Get the current number of sold ticket.
+			event.setSoldTickets(++sold);	  //Then increase it by 1 and set it to the event.
 			tr.commit();
 		}
 		catch (Exception e){
@@ -207,21 +207,27 @@ public class EventDAO {
 			if(!em.contains(event)) // Is it being managed?
 				event = em.merge(event);
 	
+			//If cancel is true, then we plan to Cancel the event.
 			if (cancel) {
 				event.setStatus("Cancelled");
-			}else {
+			}else { 
+				//Otherwise, we check what the current status is.
 				String currentStatus = event.getStatus();
-				//System.out.println("STATUS: " + currentStatus);
+				//If the event does not have a status, then it is being added right now.
+				//Also, if the event is already Cancelled, then its state can no longer be edited.
 				if (currentStatus == null || !currentStatus.equals("Cancelled")) {
 					String newStatus = null;
 					Date evDate = event.getDate();
 					Date currentDate = new Date();
 					int ticketsLeft = event.getTotalTickets() - event.getSoldTickets();
 					
-					if (evDate.before(currentDate)) {
+					//If the event's set date is before the current date, then its state is Finished.
+					if (evDate.before(currentDate)) { 
 						newStatus = "Finished";
+					//If all of the event's tickets are soldm then its state is Sold Out.
 					}else if (ticketsLeft == 0) {
 						newStatus = "Sold Out";
+					//Otherwise, its state is Available.
 					}else {
 						newStatus = "Available";
 					}	
