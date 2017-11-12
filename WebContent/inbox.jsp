@@ -12,6 +12,9 @@
 	<!-- JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="includes/js/dynamic.js"></script>
+	<!-- ************************************************************ -->
+	<!-- This inbox isn't used. Just keeping it in case of an upgrade -->
+	<!-- ************************************************************ -->
 </head>
 <body>
 	<jsp:include page="/pages/header.jsp" />

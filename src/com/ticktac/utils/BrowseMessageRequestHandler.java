@@ -22,10 +22,9 @@ import com.ticktac.business.User;
 
 public class BrowseMessageRequestHandler implements MessageRequestHandler {
 	
-	/* A constant String that holds the property value of the receiver's ID
-	 * -ID of the user that the message is sent to
+	/*
+	 * This class is not used in the application. We use it just for debugging.
 	 */
-	private final String RECEIVER_ID = "receiver";
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)

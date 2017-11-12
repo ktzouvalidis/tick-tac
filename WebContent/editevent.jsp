@@ -65,14 +65,14 @@
 							</div>
 							<div class="form-group">
 								<label for="ticketPrice">Ticket Price</label>
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<fmt:parseNumber var="ticketPrice" type="number" value="${sessionScope.eventBean.ticketPrice}"/>
 									<input type="number" class="form-control" style="width: 80px" name="ticketPrice" min="1" step="0.1" value="${ticketPrice}"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="moreTickets">Add more tickets</label>
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<input type="number" class="form-control" style="width: 80px" name="moreTickets" min="0" value="0"/>
 								</div>
 							</div>

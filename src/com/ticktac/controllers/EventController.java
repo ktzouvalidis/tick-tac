@@ -20,7 +20,6 @@ import com.ticktac.utils.AddEventRequestHandler;
 import com.ticktac.utils.EditEventRequestHandler;
 import com.ticktac.utils.UpdateEventRequestHandler;
 import com.ticktac.utils.RequestHandler;
-import com.ticktac.utils.EventDetailsRequestHandler;
 import com.ticktac.utils.RandomEventsRequestHandler;
 
 /**
