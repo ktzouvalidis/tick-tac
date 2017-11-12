@@ -41,6 +41,11 @@
 					        </div>
 
 							<div class="form-group">
+								<label for="photo">Insert image url...</label>
+								<input type="url" class="form-control" id="photo" name="photo" required/>
+							</div>
+
+							<div class="form-group">
 						        <label for="date">Date</label>
 						        <input type="datetime-local" class="form-control" id="date" name="date" required/>
 					        </div>

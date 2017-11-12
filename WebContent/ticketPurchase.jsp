@@ -43,7 +43,7 @@
 							</div>
 							<div class="form-group">
 								<label for="cv2">CV2 Code</label>
-								<input type="text" class="form-control" name="cv2" placeholder="Last 3 digits." required maxlength="16"/>
+								<input type="text" class="form-control" name="cv2" placeholder="Last 3 digits." required maxlength="3"/>
 							</div>
 							<div class="form-group">
 								<input type="submit" class="btn btn-primary" value="Complete your purchase!"

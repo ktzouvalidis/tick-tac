@@ -63,9 +63,10 @@ public class UpdateEventRequestHandler implements RequestHandler {
 	          int moreTickets = Integer.parseInt(request.getParameter("moreTickets"));
 	
 	            if(eventBean != null) {
-	              if(photo != null && !photo.isEmpty()) {
-	                uploadPhoto(request.getPart("photo"), response.getWriter());
-	              }
+	            	//editevent with URL will not load the next page properly if these 3 lines are uncommented.
+	            	//if(photo != null && !photo.isEmpty()) {
+	            	// uploadPhoto(request.getPart("photo"), response.getWriter());
+	            	// }
 	              Event updatedEvent = eventDAO.updateEvent(eventBean, title, date, photo, info, ticketPrice, moreTickets, em, tr);
 	              if(updatedEvent != null) {
 	                request.getSession().setAttribute("eventBean", updatedEvent);

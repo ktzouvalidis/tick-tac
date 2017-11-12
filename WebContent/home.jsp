@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Login to Tick-Tac!</title>
+	<title>Tick-Tac: Home</title>
 	<!-- CSS -->
 	<link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css" type="text/css"/>
 	<link rel="stylesheet" href="includes/css/main.css" type="text/css"/>
@@ -21,7 +21,7 @@
 	<!-- NO WAY! -->
 		<c:forEach items="${requestScope.randomEvents }" var="e">
 			<div class="col-lg-3 col-md-3 col-xs-9" 
-			 style="background-color: #dadcef; margin-left: 6%; margin-top: 5%; border: 1px solid black">
+			 style="background-color: #faff98; margin-left: 6%; margin-top: 5%; border: 1px solid black">
 				<form method="get" action="eventdetails">
 					<input type="hidden" name="eventID" value="${e.id }"/>
 					<div style="text-align: center; margin-top: 2px; margin-bottom: 6px">${e.title }</div>
