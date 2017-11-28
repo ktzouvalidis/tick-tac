@@ -55,6 +55,7 @@ public class MessageController extends HttpServlet {
 		if(handler != null)
 			viewURL = handler.handleRequest(request, response, cf, queue);
 		
+		System.out.println(viewURL);
 		request.getRequestDispatcher(viewURL).forward(request, response);
 	}
 
