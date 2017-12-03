@@ -25,6 +25,17 @@ public class BankReturn implements Serializable {
 	public String toString() {
 		return "BankReturn [transactionCode=" + transactionCode + ", httpCode=" + httpCode + "]";
 	}
+	public BankReturn(int transactionCode, int httpCode) {
+		super();
+		this.transactionCode = transactionCode;
+		this.httpCode = httpCode;
+	}
+	public BankReturn() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	
 	
 

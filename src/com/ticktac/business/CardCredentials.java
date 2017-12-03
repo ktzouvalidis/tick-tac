@@ -41,5 +41,19 @@ public class CardCredentials implements Serializable {
 		return "CardCredentials [cardNumber=" + cardNumber + ", cv2Number=" + cv2Number + ", expireMonth=" + expireMonth
 				+ ", expireYear=" + expireYear + "]";
 	}
+	
+	public CardCredentials(int cardNumber, int cv2Number, int expireMonth, int expireYear) {
+		super();
+		this.cardNumber = cardNumber;
+		this.cv2Number = cv2Number;
+		this.expireMonth = expireMonth;
+		this.expireYear = expireYear;
+	}
+	
+	public CardCredentials() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 
 }
