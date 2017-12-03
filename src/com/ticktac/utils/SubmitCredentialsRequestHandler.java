@@ -24,7 +24,7 @@ public class SubmitCredentialsRequestHandler implements RequestHandler {
 		
 		request.setAttribute("out", out);
 		
-		return "InsertBankInfo.jsp";
+		return "/InsertBankInfo.jsp";
 	}
 
 	@Override

@@ -6,7 +6,10 @@ import java.util.HashMap;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +37,7 @@ public class BankController extends HttpServlet {
     }
 
 	public void init() {
-		handlersMap.put("submitcredentials", new SubmitCredentialsRequestHandler());
+		handlersMap.put("/submitcredentials", new SubmitCredentialsRequestHandler());
 	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,8 +50,13 @@ public class BankController extends HttpServlet {
 		RequestHandler handler = (RequestHandler) handlersMap.get(path);
 		
 		if(handler != null) 
-			viewURL = handler.handleRequest(request, response, em, tr);
-		request.getRequestDispatcher(viewURL).forward(request, response);
+			viewURL = handler.handleRequest(request, response);
+		
+		ServletContext context;
+		context = request.getServletContext();
+		RequestDispatcher rd = context.getRequestDispatcher("/insertBankInfo.jsp"); //viewURL doesn't work. Really weird.
+		rd.forward(request, response);
+		
 	}
 
 }

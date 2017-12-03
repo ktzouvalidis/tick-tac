@@ -39,7 +39,7 @@
 		</c:forEach>
 	</div>
 	<h1>Hello, welcome to this awesome bank</h1>
-	<form action="BankController" method="post">
+	<form action="submitcredentials" method="post">
 		Insert card credentials:
 		<input type="number" name="cardNumber">
 		<br>

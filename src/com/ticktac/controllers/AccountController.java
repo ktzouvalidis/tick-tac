@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,7 +57,9 @@ public class AccountController extends HttpServlet {
 		if(handler != null)
 			viewURL = handler.handleRequest(request, response, em, tr);
 		
-		request.getRequestDispatcher(viewURL).forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher(viewURL);
+		rd.forward(request, response);
+		//request.getRequestDispatcher(viewURL).forward(request, response); 
 	}
 
 }
