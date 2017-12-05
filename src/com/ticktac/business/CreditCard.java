@@ -3,13 +3,14 @@ package com.ticktac.business;
 import java.io.Serializable;
 import java.math.BigInteger;
 
-public class CardCredentials implements Serializable {
+public class CreditCard implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String cardNumber;
 	private int cv2Number;
 	private int expireMonth;
 	private int expireYear;
+	private float balance;
 	
 
 	public String getCardNumber() {
@@ -36,6 +37,12 @@ public class CardCredentials implements Serializable {
 	public void setExpireYear(int expireYear) {
 		this.expireYear = expireYear;
 	}
+	public float getBalance() {
+		return balance;
+	}
+	public void setBalance(float balance) {
+		this.balance = balance;
+	}
 	
 	@Override
 	public String toString() {
@@ -43,15 +50,16 @@ public class CardCredentials implements Serializable {
 				+ ", expireYear=" + expireYear + "]";
 	}
 	
-	public CardCredentials(String cardNumber, int cv2Number, int expireMonth, int expireYear) {
+	public CreditCard(String cardNumber, int cv2Number, int expireMonth, int expireYear, float balance) {
 		super();
 		this.cardNumber = cardNumber;
 		this.cv2Number = cv2Number;
 		this.expireMonth = expireMonth;
 		this.expireYear = expireYear;
+		this.balance = balance;
 	}
 	
-	public CardCredentials() {
+	public CreditCard() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

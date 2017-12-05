@@ -3,6 +3,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page import="com.ticktac.business.*" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -56,7 +57,12 @@
 		<input type ="submit" value="Submit card info">
 	</form>
 	
-	<%String serviceString = (String)request.getAttribute("out"); %>
-	<%= (serviceString!=null)?serviceString:"If connection to Bank Microservice works, you will get message here" %>
+	<% BankReturn bankReturn = (BankReturn)request.getAttribute("bankreturn"); %>
+	<span>Transaction code: </span>
+	<%= (bankReturn!=null)?bankReturn.getTransactionCode():"If card is valid you will see a transaction code here" %>
+	<br>
+	
+	<span>Http Code: </span>
+	<%= (bankReturn!=null)?bankReturn.getHttpCode():"After transaction you will see Http code here" %>
 </body>
 </html>
