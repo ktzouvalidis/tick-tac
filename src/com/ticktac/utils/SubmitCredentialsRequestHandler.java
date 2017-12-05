@@ -1,6 +1,7 @@
 package com.ticktac.utils;
 
 import java.io.IOException;
+import java.math.BigInteger;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -20,13 +21,20 @@ public class SubmitCredentialsRequestHandler implements RequestHandler {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		CardCredentials cardCredentials = new CardCredentials();
-		cardCredentials.setCardNumber(Integer.parseInt(request.getParameter("cardNumber")));
-		//cardCredentials.setCv2Number(Integer.parseInt(request.getParameter("cv2Number")));
+		
+		
+		cardCredentials.setCardNumber(request.getParameter("cardNumber"));
+		cardCredentials.setCv2Number(Integer.parseInt(request.getParameter("cv2Number")));
+		cardCredentials.setExpireMonth(Integer.parseInt(request.getParameter("expireMonth")));
+		cardCredentials.setExpireYear(Integer.parseInt(request.getParameter("expireYear")));
 		
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget webResource = client.target("http://localhost:8081").path("banking")
-				.queryParam("cardNumber", cardCredentials.getCardNumber());
+				.queryParam("cardNumber", cardCredentials.getCardNumber())
+				.queryParam("cv2Number", cardCredentials.getCv2Number())
+				.queryParam("expireMonth",cardCredentials.getExpireMonth())
+				.queryParam("expireYear", cardCredentials.getExpireYear());
 		
 		String out = webResource.request().accept("applicatio/json").get(String.class);
 		

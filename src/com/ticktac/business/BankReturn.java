@@ -6,7 +6,7 @@ public class BankReturn implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int transactionCode;
-	private int httpCode;
+	private String httpCode;
 	
 	public int getTransactionCode() {
 		return transactionCode;
@@ -14,10 +14,10 @@ public class BankReturn implements Serializable {
 	public void setTransactionCode(int transactionCode) {
 		this.transactionCode = transactionCode;
 	}
-	public int getHttpCode() {
+	public String getHttpCode() {
 		return httpCode;
 	}
-	public void setHttpCode(int httpCode) {
+	public void setHttpCode(String httpCode) {
 		this.httpCode = httpCode;
 	}
 	
@@ -25,7 +25,7 @@ public class BankReturn implements Serializable {
 	public String toString() {
 		return "BankReturn [transactionCode=" + transactionCode + ", httpCode=" + httpCode + "]";
 	}
-	public BankReturn(int transactionCode, int httpCode) {
+	public BankReturn(int transactionCode, String httpCode) {
 		super();
 		this.transactionCode = transactionCode;
 		this.httpCode = httpCode;

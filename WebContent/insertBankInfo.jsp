@@ -40,12 +40,17 @@
 	</div>
 	<h1>Hello, welcome to this awesome bank</h1>
 	<form action="submitcredentials" method="post">
-		Insert card credentials:
-		<input type="number" name="cardNumber">
+		Insert card number:
+		<input type="text" name="cardNumber" style="width: 200px" placeholder = "16 digits">
 		<br>
 		<br>
 		Insert CV2 number:
-		<input type="number" name="cv2Number">
+		<input type="number" name="cv2Number" placeholder = "3 digits">
+		<br>
+		<br>
+		Insert expire month and year
+		<input type="number" name="expireMonth" style="width: 54px" placeholder = "month">
+		<input type="number" name ="expireYear" style="width: 54px" placeholder = "year">
 		<br>
 		<br>
 		<input type ="submit" value="Submit card info">
