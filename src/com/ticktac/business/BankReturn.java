@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class BankReturn implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private int transactionCode;
+	private String transactionCode;
 	
-	public int getTransactionCode() {
+	public String getTransactionCode() {
 		return transactionCode;
 	}
-	public void setTransactionCode(int transactionCode) {
+	public void setTransactionCode(String transactionCode) {
 		this.transactionCode = transactionCode;
 	}
 
@@ -19,7 +19,7 @@ public class BankReturn implements Serializable {
 	public String toString() {
 		return "BankReturn [transactionCode=" + transactionCode + "]";
 	}
-	public BankReturn(int transactionCode) {
+	public BankReturn(String transactionCode) {
 		super();
 		this.transactionCode = transactionCode;
 	}
