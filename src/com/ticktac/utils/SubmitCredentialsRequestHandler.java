@@ -22,22 +22,26 @@ public class SubmitCredentialsRequestHandler implements RequestHandler {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		CreditCard creditCard = new CreditCard();
+		String fullCardNumber = "";
+		fullCardNumber += request.getParameter("cardNumber1") + request.getParameter("cardNumber2") +
+				request.getParameter("cardNumber3") + request.getParameter("cardNumber4");
 		
-		
-		creditCard.setCardNumber(request.getParameter("cardNumber"));
+		creditCard.setCardNumber(fullCardNumber);
 		creditCard.setCv2Number(Integer.parseInt(request.getParameter("cv2Number")));
 		creditCard.setExpireMonth(Integer.parseInt(request.getParameter("expireMonth")));
 		creditCard.setExpireYear(Integer.parseInt(request.getParameter("expireYear")));
 		
 		
 		Client client = ClientBuilder.newClient();
+		
 		WebTarget webResource = client.target("http://localhost:8081").path("banking")
 				.queryParam("cardNumber", creditCard.getCardNumber())
 				.queryParam("cv2Number", creditCard.getCv2Number())
-				.queryParam("expireMonth",creditCard.getExpireMonth())
+				.queryParam("expireMonth", creditCard.getExpireMonth())
 				.queryParam("expireYear", creditCard.getExpireYear());
 		
-		BankReturn bankReturn = webResource.request().accept("applicatio/json").get(BankReturn.class);
+		BankReturn bankReturn = webResource.request().accept("application/json").get(BankReturn.class);
+		
 		
 		request.setAttribute("bankreturn", bankReturn);
 		

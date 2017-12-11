@@ -42,7 +42,10 @@
 	<h1>Hello, welcome to this awesome bank</h1>
 	<form action="submitcredentials" method="post">
 		Insert card number:
-		<input type="text" name="cardNumber" style="width: 200px" placeholder = "16 digits">
+		<input type="text" name="cardNumber1" style="width: 54px" placeholder = "4 digits">
+		<input type="text" name="cardNumber2" style="width: 54px" placeholder = "4 digits">
+		<input type="text" name="cardNumber3" style="width: 54px" placeholder = "4 digits">
+		<input type="text" name="cardNumber4" style="width: 54px" placeholder = "4 digits">
 		<br>
 		<br>
 		Insert CV2 number:
@@ -61,8 +64,7 @@
 	<span>Transaction code: </span>
 	<%= (bankReturn!=null)?bankReturn.getTransactionCode():"If card is valid you will see a transaction code here" %>
 	<br>
-	
-	<span>Http Code: </span>
-	<%= (bankReturn!=null)?bankReturn.getHttpCode():"After transaction you will see Http code here" %>
+
+
 </body>
 </html>
