@@ -57,8 +57,13 @@
 		<input type="number" name ="expireYear" style="width: 54px" placeholder = "year">
 		<br>
 		<br>
+		<h2>Info about tickets and prices should be given earlier, but let's have it here for now</h2>
+		<input type="number" name="ticketsBought" style="width: 100px" placeholder = "# of tickets">
+		<input type="number" name="ticketPrice" style="width: 100px" placeholder = "ticket price">
+		<br>
+		<br>
 		<input type ="submit" value="Submit card info">
-	</form>
+	</form>	
 	
 	<% BankReturn bankReturn = (BankReturn)request.getAttribute("bankreturn"); %>
 	<span>Transaction code: </span>

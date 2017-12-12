@@ -1,16 +1,16 @@
 package com.ticktac.business;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 
-public class CreditCard implements Serializable {
+public class BankTransaction implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String cardNumber;
 	private int cv2Number;
 	private int expireMonth;
 	private int expireYear;
-	private float balance;
+	private int ticketsBought;
+	private int ticketPrice;
 	
 
 	public String getCardNumber() {
@@ -37,11 +37,17 @@ public class CreditCard implements Serializable {
 	public void setExpireYear(int expireYear) {
 		this.expireYear = expireYear;
 	}
-	public float getBalance() {
-		return balance;
+	public int getTicketsBought() {
+		return ticketsBought;
 	}
-	public void setBalance(float balance) {
-		this.balance = balance;
+	public void setTicketsBought(int ticketsBought) {
+		this.ticketsBought = ticketsBought;
+	}
+	public int getTicketPrice() {
+		return ticketPrice;
+	}
+	public void setTicketPrice(int ticketPrice) {
+		this.ticketPrice = ticketPrice;
 	}
 	
 	@Override
@@ -49,20 +55,20 @@ public class CreditCard implements Serializable {
 		return "CardCredentials [cardNumber=" + cardNumber + ", cv2Number=" + cv2Number + ", expireMonth=" + expireMonth
 				+ ", expireYear=" + expireYear + "]";
 	}
-	
-	public CreditCard(String cardNumber, int cv2Number, int expireMonth, int expireYear, float balance) {
+	public BankTransaction(String cardNumber, int cv2Number, int expireMonth, int expireYear, int ticketsBought, int ticketPrice) {
 		super();
 		this.cardNumber = cardNumber;
 		this.cv2Number = cv2Number;
 		this.expireMonth = expireMonth;
 		this.expireYear = expireYear;
-		this.balance = balance;
+		this.ticketsBought = ticketsBought;
+		this.ticketPrice = ticketPrice;
 	}
-	
-	public CreditCard() {
+	public BankTransaction() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 
 }
