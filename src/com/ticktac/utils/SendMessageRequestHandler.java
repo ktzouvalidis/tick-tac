@@ -83,7 +83,8 @@ public class SendMessageRequestHandler implements MessageRequestHandler {
 		WebTarget webTarget = client.target("http://localhost:8082").path("sendmessage");
 		Message result = webTarget.request("application/json").accept("application/json").
 				post(Entity.entity(message, MediaType.APPLICATION_JSON), Message.class);
-		
+
+		request.setAttribute("messageSent", 1);
 		view = "sendmessage.jsp";
 		
 		return view;
