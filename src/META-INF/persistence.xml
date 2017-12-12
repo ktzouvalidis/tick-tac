@@ -6,6 +6,7 @@
 		<class>com.ticktac.business.Event</class>
 		<class>com.ticktac.business.Ticket</class>
 		<class>com.ticktac.business.User</class>
+		<class>com.ticktac.business.Message</class>
 		<properties>
 			<property name="eclipselink.logging.level" value="FINE"/>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>
