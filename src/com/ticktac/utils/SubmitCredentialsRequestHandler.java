@@ -12,6 +12,8 @@ import javax.transaction.UserTransaction;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.client.Entity;
 
 import com.ticktac.business.BankReturn;
 import com.ticktac.business.BankTransaction;
@@ -32,20 +34,14 @@ public class SubmitCredentialsRequestHandler implements RequestHandler {
 		bankTransaction.setExpireYear(Integer.parseInt(request.getParameter("expireYear")));
 		bankTransaction.setTicketsBought(Integer.parseInt(request.getParameter("ticketsBought")));
 		bankTransaction.setTicketPrice(Integer.parseInt(request.getParameter("ticketPrice")));
-		
+		bankTransaction.setTotalAmount(bankTransaction.getTicketsBought()*bankTransaction.getTicketPrice());
 		
 		Client client = ClientBuilder.newClient();
-		
-		WebTarget webResource = client.target("http://localhost:8081").path("banking")
-				.queryParam("cardNumber", bankTransaction.getCardNumber())
-				.queryParam("cv2Number", bankTransaction.getCv2Number())
-				.queryParam("expireMonth", bankTransaction.getExpireMonth())
-				.queryParam("expireYear", bankTransaction.getExpireYear())
-				.queryParam("ticketsBought", bankTransaction.getTicketsBought())
-				.queryParam("ticketPrice", bankTransaction.getTicketPrice());
+		WebTarget webResource = client.target("http://localhost:8081").path("/banking");
+		BankReturn bankReturn = webResource.request("application/json").accept("application/json").post(Entity.entity(bankTransaction,MediaType.APPLICATION_JSON),BankReturn.class);
 
 		
-		BankReturn bankReturn = webResource.request().accept("application/json").get(BankReturn.class);
+		//BankReturn bankReturn = webResource.request().accept("application/json").get(BankReturn.class);
 		
 		
 		request.setAttribute("bankreturn", bankReturn);
