@@ -30,7 +30,7 @@
 					<c:forEach items="${applicationScope['messages']}" var="m">
 						<div class="row" style="background-color: #dadcef">
 							<b>Message <i>#${i}</i></b><br>
-							${m.text}
+							${m.body}
 						</div><br>
 						<c:set var="i" value="${i + 1}" scope="page"/>
 					</c:forEach>
