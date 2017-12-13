@@ -35,50 +35,15 @@ public class SendMessageRequestHandler implements MessageRequestHandler {
 		return null;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * Main message request handler
-	 * @see com.ticktac.utils.MessageRequestHandler#handleRequest(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, javax.jms.ConnectionFactory, javax.jms.Queue)
-	 */
-	/*@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response, ConnectionFactory cf,
-			Queue queue) throws ServletException, IOException {
-		String view = "notfound.html";
-		try {
-			Connection connection = cf.createConnection();
-			Session session = connection.createSession(false, javax.jms.Session.AUTO_ACKNOWLEDGE);
-			MessageProducer messageProducer = session.createProducer(queue);
-			
-			Message message = session.createTextMessage(request.getParameter("message")); // Always a TextMessage
-			// The ID of the User as the receiver (Should be always 1 if the logged in user is not the administrator)
-			message.setIntProperty("receiver_id", 1);
-			// The ID of the User as the sender
-			message.setIntProperty("sender_id", ((User)request.getSession().getAttribute("userBean")).getId());
-			// The Fullname of the User as the sender 
-			message.setStringProperty("sender_name", ((User)request.getSession().getAttribute("userBean")).getName() + " " +
-					((User)request.getSession().getAttribute("userBean")).getSurname());
-			
-			messageProducer.send(message);
-			
-			messageProducer.close();
-			session.close();
-			connection.close();
-			
-			request.setAttribute("messageSent", 1);
-			view = "sendmessage.jsp";
-		} catch(Exception e) {
-			request.setAttribute("messageSent", 0);
-			e.printStackTrace();
-		}
-		
-		return view;
-	}*/
-	
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, ConnectionFactory cf,
 			Queue queue) throws ServletException, IOException {
 		String view = "notfound.html";
 		
-		Message message = new Message(((User)request.getSession().getAttribute("userBean")).getId(), 1, request.getParameter("message"));
+		// Create the message with the required parameters
+		Message message = new Message(((User)request.getSession().getAttribute("userBean")).getId(),
+				((User)request.getSession().getAttribute("userBean")).getName() + " " + ((User)request.getSession().getAttribute("userBean")).getSurname(),
+				1, request.getParameter("message"));
+		
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target("http://localhost:8082").path("sendmessage");
 		Message result = webTarget.request("application/json").accept("application/json").
