@@ -16,15 +16,15 @@ public class Message implements Serializable {
 	@GeneratedValue
 	private Long id;
 	private int sender; // ID of the sender
-	private String senderName; // Sender's name - value of 'Administrator' if the sender is the Administrator
+	private String sendername; // Sender's name - value of 'Administrator' if the sender is the Administrator
 	private int receiver; // ID of the receiver
 	private String body; // Content of the message
 	
 	public Message() {}
 	
-	public Message(int sender, String senderName, int receiver, String body) {
+	public Message(int sender, String sendername, int receiver, String body) {
 		this.sender = sender;
-		this.senderName = senderName;
+		this.sendername = sendername;
 		this.receiver = receiver;
 		this.body = body;
 	}
@@ -37,12 +37,12 @@ public class Message implements Serializable {
 		this.sender = from;
 	}
 	
-	public String getSenderName() {
-		return senderName;
+	public String getSendername() {
+		return sendername;
 	}
 
-	public void setSenderName(String senderName) {
-		this.senderName = senderName;
+	public void setSendername(String sendername) {
+		this.sendername = sendername;
 	}
 
 	public int getReceiver() {
