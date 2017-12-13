@@ -7,59 +7,56 @@ import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
-import com.ticktac.utils.LogInRequestHandler;
-import com.ticktac.utils.LogOutRequestHandler;
-import com.ticktac.utils.EditAccountRequestHandler;
 import com.ticktac.utils.RequestHandler;
-import com.ticktac.utils.SignUpRequestHandler;
-import com.ticktac.utils.TicketsBoughtRequestHandler;
+import com.ticktac.utils.SubmitCredentialsRequestHandler;
+
 /**
- * AccountController
+ * BankController
  */
-@WebServlet(description = "Controller that processes information about Registration and Log in actions.",
-urlPatterns = { "/login", "/logout", "/signup", "/editaccount", "/mytickets" })
-public class AccountController extends HttpServlet {
+@WebServlet(description = "Controller that processes information about bank actions",
+urlPatterns = { "/submitcredentials" })
+public class BankController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, Object> handlersMap = new HashMap<String, Object>();
 	@PersistenceContext(unitName="ticktacUP")
 	EntityManager em;
 	@Resource
 	UserTransaction tr;
-	
-	public AccountController() {
+       
+    public BankController() {
         super();
     }
-	
+
 	public void init() {
-		handlersMap.put("/login", new LogInRequestHandler());
-		handlersMap.put("/logout", new LogOutRequestHandler());
-		handlersMap.put("/signup", new SignUpRequestHandler());
-		handlersMap.put("/editaccount", new EditAccountRequestHandler());
-		handlersMap.put("/mytickets", new TicketsBoughtRequestHandler());
+		handlersMap.put("/submitcredentials", new SubmitCredentialsRequestHandler());
 	}
-	
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		doPost(request,response);
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
 		String viewURL = "notfound.html";
 		RequestHandler handler = (RequestHandler) handlersMap.get(path);
 		
-		if(handler != null)
-			viewURL = handler.handleRequest(request, response, em, tr);
+		if(handler != null) 
+			viewURL = handler.handleRequest(request, response);
 		
-		RequestDispatcher rd = request.getRequestDispatcher(viewURL);
+		ServletContext context;
+		context = request.getServletContext();
+		RequestDispatcher rd = context.getRequestDispatcher("/insertBankInfo.jsp"); //viewURL doesn't work. Really weird.
 		rd.forward(request, response);
-		//request.getRequestDispatcher(viewURL).forward(request, response); 
+		
 	}
 
 }
