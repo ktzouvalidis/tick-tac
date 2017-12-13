@@ -33,18 +33,22 @@
 									<input type="number" class="form-control" name="amount" min="1" max="10" value="1"/>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="cardnumber">Credit Card Number</label>
-								<input type="text" class="form-control" name="cardnumber" placeholder="16 digits." required maxlength="16"/>
-							</div>
-							<div class="form-group">
-								<label>Expiration Date</label><br/>
-								<input lang="en" type="date" name="expiration" required>
-							</div>
-							<div class="form-group">
-								<label for="cv2">CV2 Code</label>
-								<input type="text" class="form-control" name="cv2" placeholder="Last 3 digits." required maxlength="3"/>
-							</div>
+							Insert card number:
+							<input type="text" name="cardNumber1" style="width: 54px" placeholder = "4 digits">
+							<input type="text" name="cardNumber2" style="width: 54px" placeholder = "4 digits">
+							<input type="text" name="cardNumber3" style="width: 54px" placeholder = "4 digits">
+							<input type="text" name="cardNumber4" style="width: 54px" placeholder = "4 digits">
+							<br>
+							<br>
+							Insert CV2 number:
+							<input type="number" name="cv2Number" placeholder = "3 digits">
+							<br>
+							<br>
+							Insert expire month and year
+							<input type="number" name="expireMonth" style="width: 54px" placeholder = "month">
+							<input type="number" name ="expireYear" style="width: 54px" placeholder = "year">
+							<br>
+							<br>
 							<div class="form-group" align="center">
 								<input type="submit" class="btn btn-primary" value="Complete your purchase!"
 								style="height: 40px; width: 220px ; align-content: center; color: black; background-color: #5373ff;"/>
@@ -57,6 +61,10 @@
 	</div>
 
 	<br/>
+	
+	<% String error = (String)request.getAttribute("purchaseerror"); %>
+	<h5 style="color:red;"><%=(error!=null)?error:"" %></h5>
+	
 	<div class="offset-6">
 	</div>
 

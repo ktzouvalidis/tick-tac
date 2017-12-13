@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="com.ticktac.business.*" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -20,5 +21,10 @@
 	<br/><br/>
 	<h4 style="text-align: center;">Thank you!</h4>
 	<h5 style="text-align: center;">Your purchase has been completed, we look forward to seeing you!</h5>
+	<br>
+	<br> 
+	<% BankReturn bankReturn = (BankReturn)request.getAttribute("bankreturn"); %>
+	<h5 style="text-align: center;"><span>Transaction code from bank: </span></h5>
+	<h5 style="text-align: center;"><%=(bankReturn!=null)?bankReturn.getTransactionCode():"Card was not accepted in bank" %></h5>
 </body>
 </html>
