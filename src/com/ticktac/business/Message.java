@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+
 @Entity
 public class Message implements Serializable {
 	
@@ -15,14 +16,16 @@ public class Message implements Serializable {
 	@GeneratedValue
 	private Long id;
 	private int sender; // ID of the sender
+	private String senderName; // Sender's name - value of 'Administrator' if the sender is the Administrator
 	private int receiver; // ID of the receiver
 	private String body; // Content of the message
 	
 	public Message() {}
 	
-	public Message(int from, int to, String body) {
-		this.sender = from;
-		this.receiver = to;
+	public Message(int sender, String senderName, int receiver, String body) {
+		this.sender = sender;
+		this.senderName = senderName;
+		this.receiver = receiver;
 		this.body = body;
 	}
 
@@ -32,6 +35,14 @@ public class Message implements Serializable {
 
 	public void setSender(int from) {
 		this.sender = from;
+	}
+	
+	public String getSenderName() {
+		return senderName;
+	}
+
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
 	}
 
 	public int getReceiver() {

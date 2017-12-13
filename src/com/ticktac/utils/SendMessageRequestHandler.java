@@ -78,7 +78,7 @@ public class SendMessageRequestHandler implements MessageRequestHandler {
 			Queue queue) throws ServletException, IOException {
 		String view = "notfound.html";
 		
-		Message message = new Message(((User)request.getSession().getAttribute("userBean")).getId(), 1, request.getParameter("message"));
+		Message message = new Message(((User)request.getSession().getAttribute("userBean")).getId(), "Administrator", 1, request.getParameter("message"));
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target("http://localhost:8082").path("sendmessage");
 		Message result = webTarget.request("application/json").accept("application/json").
