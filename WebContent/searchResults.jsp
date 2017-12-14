@@ -42,8 +42,6 @@
 								<br/>
 								Soon at ${e.venue}!<br/><br/>
 								- Category: <b>${e.category}</b> <br/>
-								- Date: <b>${e.date}</b> <br/>
-								- Ticket Price: <b>${e.ticketPrice }</b> / Tickets available: <b>${e.totalTickets - e.soldTickets}</b>
 							</div>
 							<br/><br/>
 							<div style="float: right; clear: left; margin-top: 6px" align="center">

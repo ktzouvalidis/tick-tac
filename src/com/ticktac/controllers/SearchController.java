@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,10 +14,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
 
+import com.ticktac.business.Event;
+import com.ticktac.data.EventDAO;
+import java.util.List;
+
 import com.ticktac.utils.AdvSearchRequestHandler;
 import com.ticktac.utils.PurchaseTicketRequestHandler;
 import com.ticktac.utils.RequestHandler;
 import com.ticktac.utils.SearchRequestHandler;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Servlet implementation class SearchController
@@ -47,14 +58,17 @@ public class SearchController extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String path = request.getServletPath();
 		String viewURL = "notfound.html";
 		RequestHandler handler = (RequestHandler) handlersMap.get(path);
 		
-		if (handler != null)
+		if (handler != null) 
 			viewURL = handler.handleRequest(request, response, em, tr);
-		
+			
 		request.getRequestDispatcher(viewURL).forward(request, response);
+		
+		
 	}
 
 }

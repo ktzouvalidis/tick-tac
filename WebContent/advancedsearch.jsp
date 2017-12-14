@@ -39,13 +39,9 @@
 									<input type="text" id="venue" name="venue" required/>
 								</td>
 							</tr>
-							<tr>
-								<td><label for="date">Date</label></td>
-								<td><input lang="en" type="date" name="date"></td>
-							</tr>
 						</tbody>
 					</table><br/>
-					<p align="center">
+					<p align="center">		
 						<input type="submit" class="btn btn-primary" value="Search"
 						style="color: black; background-color: yellow"/>
 					</p>

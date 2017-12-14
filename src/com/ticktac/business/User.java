@@ -10,7 +10,7 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+//@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
@@ -110,7 +110,6 @@ public class User implements Serializable {
 
 		return event;
 	}
-
 
 	//bi-directional many-to-one association to Ticket
 	@OneToMany(mappedBy="user")
