@@ -20,6 +20,7 @@
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	<div class="error-message">
+		<c:if test="${requestScope.noConnection == 1 }">Inbox service is not working. Please try again later...</c:if>
 		<c:if test="${requestScope.noMessages == 1 }"><b>No messages</b></c:if>
 	</div>
 	<a class="nav-link" href="sendmessage.jsp">Send new message to administrator</a>

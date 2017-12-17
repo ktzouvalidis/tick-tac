@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -42,76 +43,31 @@ public class ReadMessageRequestHandler implements MessageRequestHandler {
 		return null;
 	}
 
-	/*@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response, ConnectionFactory cf,
-			Queue queue) throws ServletException, IOException {
-		String view = "notfound.html";
-		
-		try {
-			Connection connection = cf.createConnection();
-			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			// Filtering the messages - receiver_id should be equal to the id of the current logged in user
-			String selector =  "receiver_id=" + ((User) request.getSession().getAttribute("userBean")).getId();
-			QueueBrowser browser = session.createBrowser(queue, selector);
-			MessageConsumer consumer = session.createConsumer(queue, selector);
-			
-			connection.start();
-			@SuppressWarnings("unchecked")
-			Enumeration<Message> messageCollection = browser.getEnumeration();
-			List<TextMessage> messages = new ArrayList<TextMessage>();
-			// Browse the messages
-			while(messageCollection.hasMoreElements()) {
-				Message message = messageCollection.nextElement();
-				
-				if(message instanceof TextMessage) {
-					messages.add((TextMessage) message);
-					// ADMINSTRATOR - Should add the property 'sender_name' (sender's fullname) in a List to print it
-				}
-			}
-			
-			// Receive the messages
-			while(true) {
-				Message message = consumer.receive(1);
-				if(message == null)
-					break;
-			}
-			
-			browser.close();
-			session.close();
-			connection.close();
-			
-			if(messages.isEmpty())
-				request.setAttribute("noMessages", 1);
-			else
-				request.getServletContext().setAttribute("messages", messages);
-			
-			view = "inboxread.jsp";
-		} catch(Exception e) {
-			e.printStackTrace();
-			return view;
-		}
-		return view;
-	}*/
-	
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, ConnectionFactory cf,
 			Queue queue) throws ServletException, IOException {
 		String view = "notfound.html";
 		
-		Client client = ClientBuilder.newClient();
-		// Get the response of the service
-		Response serviceResponse = client.target("http://localhost:8082").path("readmessages").
-				path(String.valueOf(((User) request.getSession().getAttribute("userBean")).getId())).
-				request(MediaType.APPLICATION_JSON).get(Response.class);
-		// Then parse it to a list of Messages
-		List<Message> messages = serviceResponse.readEntity(new GenericType<List<Message>>() {});
-		
-		if(messages.isEmpty())
-			request.setAttribute("noMessages", 1);
-		else
-			request.getServletContext().setAttribute("messages", messages);
-
-		view = "inboxread.jsp";
+		try {
+			Client client = ClientBuilder.newClient();
+			// Get the response of the service
+			Response serviceResponse = client.target("http://localhost:8082").path("readmessages").
+					path(String.valueOf(((User) request.getSession().getAttribute("userBean")).getId())).
+					request(MediaType.APPLICATION_JSON).get(Response.class);
+			// Then parse it to a list of Messages
+			List<Message> messages = serviceResponse.readEntity(new GenericType<List<Message>>() {});
+			
+			if(messages.isEmpty())
+				request.setAttribute("noMessages", 1);
+			else
+				request.getServletContext().setAttribute("messages", messages);
+	
+			view = "inboxread.jsp";
+		} catch(Exception e) {
+			request.setAttribute("noConnection", 1);
+			view = "inboxread.jsp";
+			e.printStackTrace();
+		}
 		
 		return view;
 	}
