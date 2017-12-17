@@ -7,7 +7,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 
+import com.ticktac.business.BankReturn;
+import com.ticktac.business.SignupReturn;
 import com.ticktac.business.User;
 import com.ticktac.data.UserDAO;
 
@@ -27,22 +34,23 @@ public class SignUpRequestHandler implements RequestHandler {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, EntityManager em,
 			UserTransaction tr) throws ServletException, IOException {
-		String view = "";
-		String name = (String)request.getParameter("name");
-		String surname = (String)request.getParameter("surname");
-	  	String email = (String)request.getParameter("email");
-	  	String password = (String)request.getParameter("pass");
+		User user = new User();
+		user.setName(request.getParameter("name"));
+		user.setSurname(request.getParameter("surname"));
+		user.setEmail(request.getParameter("email"));
+		user.setPassword(request.getParameter("pass"));
 		
-		if(name.isEmpty() || surname.isEmpty() || email.isEmpty() || password.isEmpty())
-			view = "signup.jsp";
-		else {
-			if(userDAO.insertUser(new User(name, surname, email, password), em, tr)) {
-				request.setAttribute("newUser", name);
-				view = "index.jsp";
-			}
+		try {
+		Client client = ClientBuilder.newClient();
+		WebTarget webResource = client.target("http://localhost:8085").path("/signup");
+		SignupReturn signupReturn = webResource.request("application/json").accept("application/json").post(Entity.entity(user,MediaType.APPLICATION_JSON),SignupReturn.class);
+		request.setAttribute("feedbackmessage", "Account was perfectly made. You can now log in and have fun");
+		return signupReturn.getView();
+		}catch (javax.ws.rs.WebApplicationException e) {
+			request.setAttribute("feedbackmessage", "ERROR: E-mail probably exists, or something else is super wrong "
+					+ "Please contact your internet provider");
+			return "index.jsp";	
 		}
-		
-		return view;
 	}
 
 }

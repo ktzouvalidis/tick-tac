@@ -18,6 +18,8 @@
 <body>
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
+		<% String feedback = (String)request.getAttribute("feedbackmessage"); %>
+	<h5 style="color:red;"><%=(feedback!=null)?feedback:"" %></h5>
 	<div class="container" style ="margin-top:15px">
 		<div style="margin-left:40%">
 			<div class="center">

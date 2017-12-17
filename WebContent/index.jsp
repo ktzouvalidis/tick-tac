@@ -17,6 +17,8 @@
 	<% String newUser = (String)request.getAttribute("newUser"); %>
 </head>
 <body>	
+	<% String feedback = (String)request.getAttribute("feedbackmessage"); %>
+	<h5 style="color:red;"><%=(feedback!=null)?feedback:"" %></h5>
 	<jsp:include page="/pages/header.jsp" />
 	<jsp:include page="/pages/sidemenu.jsp"/>
 	<% if(newUser != null && !newUser.isEmpty()) {%>
