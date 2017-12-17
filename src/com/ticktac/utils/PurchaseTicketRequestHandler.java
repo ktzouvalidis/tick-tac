@@ -70,6 +70,7 @@ public class PurchaseTicketRequestHandler implements RequestHandler{
 			WebTarget webResource = client.target("http://localhost:8081").path("/banking");
 			BankReturn bankReturn = webResource.request("application/json").accept("application/json").post(Entity.entity(bankTransaction,MediaType.APPLICATION_JSON),BankReturn.class);		
 			request.setAttribute("bankreturn", bankReturn);
+			
 
 			
 			//Add the ticket to the tick-tac database
