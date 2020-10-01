@@ -1,10 +1,7 @@
 # tick-tac
 @@ -16,8 +16,6 @@ We will be making a Tic Tac Toe game using all of these concepts.
 * Fork and clone this repository.
-* Run `npm install` to install dependencies.
-  * `npm start` - start BrowserSync server
-  * `npm run lint:css` - lint CSS
-  * `npm run lint:js` - lint JS
+
 * Before you even start working with JavaScript, construct the gameboard. The gameboard page should include the 3x3 grid (of divs), and at minimum a reset button. Using `id` and `class` on clickable elements will help you wire this up in JavaScript afterwards.
 * The JavaScript portion will be next
   * Select elements and attach functions via event listeners
